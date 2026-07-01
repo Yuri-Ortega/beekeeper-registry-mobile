@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.EditProfileImagePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    Title="Edit Profile Picture"
+    x:DataType="viewModels:EditProfileImageViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarHasShadow="True"
+    Shell.NavBarIsVisible="True">
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <dxe:ImageEdit
+            x:Name="editor"
+            CropAreaRatioX="1"
+            CropAreaRatioY="1"
+            CropAreaShape="Ellipse"
+            HeightRequest="300"
+            HorizontalOptions="Center"
+            Source="{Binding SelectedImageSource, Mode=TwoWay}"
+            WidthRequest="300" />
+
+        <dx:DXBorder
+            Padding="0"
+            BackgroundColor="{StaticResource Surface}"
+            BorderThickness="1">
+            <dx:DXToolbar
+                BackgroundColor="{StaticResource Surface}"
+                ItemAlignment="Fill"
+                VerticalOptions="End">
+
+                <dx:ToolbarButton
+                    Command="{Binding Source={x:Reference editor}, Path=Commands.RotateLeft}"
+                    Icon="rotate_left.png"
+                    IconColor="{StaticResource BrandLight}" />
+                <dx:ToolbarButton
+                    Command="{Binding Source={x:Reference editor}, Path=Commands.RotateRight}"
+                    Icon="rotate_right.png"
+                    IconColor="{StaticResource BrandLight}" />
+                <dx:ToolbarButton
+                    Command="{Binding Source={x:Reference editor}, Path=Commands.FlipHorizontal}"
+                    Icon="flip_h.png"
+                    IconColor="{StaticResource BrandLight}" />
+                <dx:ToolbarButton
+                    Command="{Binding Source={x:Reference editor}, Path=Commands.FlipVertical}"
+                    Icon="flip_v.png"
+                    IconColor="{StaticResource BrandLight}" />
+                <dx:ToolbarButton
+                    Command="{Binding Source={x:Reference editor}, Path=Commands.SwitchCropAreaShape}"
+                    Icon="crop.png"
+                    IconColor="{StaticResource BrandLight}" />
+
+            </dx:DXToolbar>
+        </dx:DXBorder>
+
+        <dx:DXButton
+            Command="{Binding PickImgBTNCommand}"
+            Content="Select from Gallery"
+            Style="{StaticResource ButtonStyle}" />
+
+        <dx:DXButton
+            Command="{Binding SaveImgBTNCommand}"
+            Content="Save Photo"
+            Style="{StaticResource ButtonStyle}" />
+
+    </VerticalStackLayout>
+</ContentPage>

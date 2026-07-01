@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BeeKeeperRegister.Views.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:views="clr-namespace:BeeKeeperRegister.Views"
+    Shell.BackgroundColor="{StaticResource BrandDark}"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarHasShadow="True">
+    <Shell.Behaviors>
+        <dx:SystemBarBehavior AndroidNavigationBarBackground="#FFFDF8" StatusBarForeground="Light" />
+    </Shell.Behaviors>
+
+    <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:MainPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:RegisterUserPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:DashboardUserPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:AddFarmProfilePage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:UpdateFarmProfilePage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:AddTrainingsPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:UpdateTrainingsPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:AddTempBeeSpeciesPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:UpdateTempBeeSpeciesPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:AddTempBeeProductioonPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:UpdateTempBeeProductioonPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:EditProfileImagePage}" />
+
+    <ShellContent ContentTemplate="{DataTemplate views:AddBeeSpeciesPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:UpdateBeeSpeciesPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:AddBeeProductioonPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:UpdateBeeProductioonPage}" />
+
+    <ShellContent ContentTemplate="{DataTemplate views:ViewFarmProfilePage}" />
+</Shell>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.AddTrainingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    Title="Apply New Training"
+    x:DataType="viewModels:AddTrainingsViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarHasShadow="True"
+    Shell.NavBarIsVisible="True">
+    <dx:DXScrollView>
+        <Grid Padding="50" RowDefinitions="Auto, Auto, Auto, Auto,*">
+            <dx:ComboBoxEdit
+                Grid.Row="0"
+                AllowAnimation="True"
+                DisplayMember="TrainingDescription"
+                HasError="{Binding ErrBeeTrainingsBool}"
+                ItemsSource="{Binding BeeTrainings}"
+                LabelText="*Select farm lot no:"
+                SelectedItem="{Binding SelectedBeeTrainings, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectionBeeTrainingsCommand}" />
+
+            <Picker
+                Title="*Training Year"
+                Grid.Row="1"
+                ItemsSource="{Binding Years}"
+                SelectedItem="{Binding TrainingYear}"
+                TitleColor="{Binding ErrTrainingYearColor}" />
+
+
+            <dx:TextEdit
+                Grid.Row="2"
+                HasError="{Binding ErrNumberOfHrsBool}"
+                IsErrorIconVisible="False"
+                Keyboard="Numeric"
+                LabelText="*Number of hours"
+                MaxCharacterCount="5"
+                MaxCharacterCountOverflowMode="LimitInput"
+                Text="{Binding NumberOfHrs, Mode=TwoWay}" />
+
+            <dx:DXButton
+                Grid.Row="3"
+                Margin="0,10,0,0"
+                Command="{Binding AddTrainingCommand}"
+                Content="Add New Training"
+                Icon="add.png" />
+        </Grid>
+    </dx:DXScrollView>
+</ContentPage>
+
+
+
+
+
+
+
+

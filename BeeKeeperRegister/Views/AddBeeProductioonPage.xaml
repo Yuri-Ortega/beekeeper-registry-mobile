@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.AddBeeProductioonPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    Title="Add Bee Production"
+    x:DataType="viewModels:AddBeeProductioonViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarHasShadow="True"
+    Shell.NavBarIsVisible="True">
+    <dx:DXScrollView>
+        <Grid Padding="50" RowDefinitions="Auto, Auto, Auto, *">
+            <dx:ComboBoxEdit
+                Grid.Row="0"
+                AllowAnimation="True"
+                DisplayMember="BeeProductionDescription"
+                HasError="{Binding ErrBeeProductionBool}"
+                ItemsSource="{Binding BeeProduction}"
+                LabelText="Bee Production *"
+                SelectedItem="{Binding SelectedBeeProduction, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectionBeeProductionCommand}" />
+
+            <dx:TextEdit
+                Grid.Row="1"
+                HasError="{Binding ErrEstProdYieldBool}"
+                IsErrorIconVisible="False"
+                Keyboard="Numeric"
+                LabelText="Average Per Year(KG) *"
+                Text="{Binding EstProdYield, Mode=TwoWay}" />
+
+            <dx:DXButton
+                Grid.Row="2"
+                Margin="0,10,0,0"
+                Command="{Binding AddBeeProductioonCommand}"
+                Content="Add Bee Production"
+                Icon="add.png" />
+        </Grid>
+    </dx:DXScrollView>
+</ContentPage>

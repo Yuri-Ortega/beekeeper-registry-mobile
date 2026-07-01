@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors">
+
+    <Style TargetType="dx:DXBorder">
+        <Setter Property="Padding" Value="15" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="CornerRadius" Value="15" />
+    </Style>
+
+    <Style TargetType="dx:DXButton">
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="ButtonType" Value="Filled" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Action}" />
+        <Setter Property="DisabledBackgroundColor" Value="{StaticResource Muted}" />
+        <Setter Property="DisabledTextColor" Value="{StaticResource Label}" />
+        <Setter Property="CornerRadius" Value="15" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Padding" Value="2,10" />
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <Style TargetType="dxe:NumericEdit">
+        <Setter Property="TextFontFamily" Value="InterRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BoxMode" Value="Filled" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="FocusedBorderThickness" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="FocusedBorderColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelColor" Value="{StaticResource Label}" />
+        <Setter Property="FocusedLabelColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelFontSize" Value="15" />
+        <Setter Property="ErrorColor" Value="{StaticResource Warning}" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <!--  Background  -->
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+
+        <!--  Text  -->
+        <Setter Property="TitleColor" Value="{StaticResource TextPrimary}" />
+
+        <!--  Border  -->
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="Margin" Value="0,8" />
+
+        <!--  Font  -->
+        <Setter Property="FontSize" Value="15" />
+
+        <!--  Optional padding (via handler-supported platforms)  -->
+        <Setter Property="Visual" Value="Material" />
+    </Style>
+
+    <Style TargetType="RadioButton">
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="TextColor" Value="{StaticResource Label}" />
+    </Style>
+
+    <Style TargetType="dx:CheckEdit">
+        <Setter Property="CheckBoxColor" Value="{StaticResource Action}" />
+        <Setter Property="CheckedCheckBoxColor" Value="{StaticResource Action}" />
+        <Setter Property="LabelColor" Value="{StaticResource Label}" />
+    </Style>
+
+    <Style TargetType="dx:TextEdit">
+        <Setter Property="TextFontFamily" Value="InterRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BoxMode" Value="Filled" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="FocusedBorderThickness" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="FocusedBorderColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelColor" Value="{StaticResource Label}" />
+        <Setter Property="FocusedLabelColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="ErrorColor" Value="{StaticResource Warning}" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+    <Style TargetType="dx:PasswordEdit">
+        <Setter Property="TextFontFamily" Value="InterRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BoxMode" Value="Filled" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="FocusedBorderThickness" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="FocusedBorderColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelColor" Value="{StaticResource Label}" />
+        <Setter Property="FocusedLabelColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelFontSize" Value="15" />
+        <Setter Property="ErrorColor" Value="{StaticResource Warning}" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+    <Style TargetType="dx:ComboBoxEdit">
+        <Setter Property="TextFontFamily" Value="InterRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BoxMode" Value="Filled" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="FocusedBorderThickness" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="FocusedBorderColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelColor" Value="{StaticResource Label}" />
+        <Setter Property="FocusedLabelColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelFontSize" Value="15" />
+        <Setter Property="ErrorColor" Value="{StaticResource Warning}" />
+        <Setter Property="DropDownBackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="DropDownItemTextColor" Value="{StaticResource TextPrimary}" />
+
+        <Setter Property="DropDownSelectedItemBackgroundColor" Value="{StaticResource BackgroundColor}" />
+        <Setter Property="TextFontSize" Value="15" />
+        <Setter Property="DropDownSelectedItemTextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+
+    <Style TargetType="dxe:TokenEdit">
+        <Setter Property="TextFontFamily" Value="InterRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BoxMode" Value="Filled" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="FocusedBorderThickness" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="FocusedBorderColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelColor" Value="{StaticResource Label}" />
+        <Setter Property="FocusedLabelColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelFontSize" Value="15" />
+        <Setter Property="ErrorColor" Value="{StaticResource Warning}" />
+        <Setter Property="DropDownBackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="DropDownItemTextColor" Value="{StaticResource TextPrimary}" />
+
+        <Setter Property="DropDownSelectedItemBackgroundColor" Value="{StaticResource BackgroundColor}" />
+        <Setter Property="TextFontSize" Value="15" />
+        <Setter Property="DropDownSelectedItemTextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+
+    <Style TargetType="dxe:DateEdit">
+        <Setter Property="TextFontFamily" Value="InterRegular" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="PickerBackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BoxMode" Value="Filled" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="FocusedBorderThickness" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="FocusedBorderColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelColor" Value="{StaticResource Label}" />
+        <Setter Property="FocusedLabelColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelFontSize" Value="15" />
+        <Setter Property="ErrorColor" Value="{StaticResource Warning}" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+    <Style TargetType="dx:TabViewItem">
+        <Setter Property="HeaderFontFamily" Value="InterRegular" />
+    </Style>
+
+    <!--  button style model outline style  -->
+    <Style x:Key="ButtonOutlineStyle" TargetType="dx:DXButton">
+        <Setter Property="ButtonType" Value="Outlined" />
+        <Setter Property="BorderColor" Value="{StaticResource ActionOutline}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="DisabledBorderColor" Value="{StaticResource Muted}" />
+        <Setter Property="DisabledTextColor" Value="{StaticResource Label}" />
+        <Setter Property="CornerRadius" Value="15" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Padding" Value="5,20" />
+    </Style>
+
+    <!--  text edit box model outline style  -->
+    <Style x:Key="TextEditBoxModelOutlinedStyle" TargetType="dx:TextEdit">
+        <Setter Property="BoxMode" Value="Outlined" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="FocusedBorderThickness" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="FocusedBorderColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelColor" Value="{StaticResource Label}" />
+        <Setter Property="FocusedLabelColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelFontSize" Value="15" />
+        <Setter Property="ErrorColor" Value="{StaticResource Warning}" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+    <!--  text password box model outline style  -->
+    <Style x:Key="PasswordEditBoxModelOutlineStyle" TargetType="dx:PasswordEdit">
+        <Setter Property="BoxMode" Value="Outlined" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="FocusedBorderThickness" Value="2" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="FocusedBorderColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelColor" Value="{StaticResource Label}" />
+        <Setter Property="FocusedLabelColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="LabelFontSize" Value="15" />
+        <Setter Property="ErrorColor" Value="{StaticResource Warning}" />
+        <Setter Property="CornerRadius" Value="10" />
+    </Style>
+
+    <!--  Menu Button Style  -->
+    <Style x:Key="MenuButtonStyle" TargetType="dx:DXButton">
+        <Setter Property="BorderColor" Value="{StaticResource BorderEdge}" />
+        <Setter Property="PressedIconColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="PressedTextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="IconHeight" Value="80" />
+        <Setter Property="IconWidth" Value="80" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Padding" Value="15" />
+        <!--<Setter Property="HeightRequest" Value="100" />
+    <Setter Property="WidthRequest" Value="130" />-->
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+</ResourceDictionary>

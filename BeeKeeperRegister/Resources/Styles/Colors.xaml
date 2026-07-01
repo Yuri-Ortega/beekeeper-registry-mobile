@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--  Brand Colors  -->
+    <Color x:Key="BrandDark">#5C6B2F</Color>
+    <Color x:Key="BrandLight">#9CA052</Color>
+    <Color x:Key="BackgroundColor">#F5F0E1</Color>
+    <Color x:Key="Surface">#FFFDF8</Color>
+
+    <!--  Action Colors  -->
+    <Color x:Key="Action">#C9962F</Color>
+    <Color x:Key="ActionOutline">#5C6B2F</Color>
+    <Color x:Key="Danger">#B5402E</Color>
+    <Color x:Key="BorderEdge">#D9D4C2</Color>
+    <Color x:Key="FocusedBorderEdge">#5C6B2F</Color>
+
+
+    <!--  Semantic Colors  -->
+    <Color x:Key="Success">#5C8A3A</Color>
+    <Color x:Key="Warning">#B5402E</Color>
+    <Color x:Key="TextPrimary">#2E2E1F</Color>
+    <Color x:Key="Label">#6B6B55</Color>
+    <Color x:Key="Muted">#DFDFDF</Color>
+
+</ResourceDictionary>

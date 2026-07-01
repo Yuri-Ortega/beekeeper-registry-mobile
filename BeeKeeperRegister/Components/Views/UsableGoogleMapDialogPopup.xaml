@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dx:DXPopup
+    x:Class="BeeKeeperRegister.Components.Views.UsableGoogleMapDialogPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center"
+    AllowAnimation="True"
+    AllowScrim="True"
+    BackgroundColor="{StaticResource Surface}"
+    CornerRadius="20"
+    ScrimColor="#80000000">
+
+    <dx:DXPopup.Content>
+        <Grid Padding="40" RowDefinitions="Auto, *, Auto">
+
+            <!--  🔷 HEADER  -->
+            <Label
+                Grid.Row="0"
+                Margin="0,5"
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Center"
+                Text="Select Location"
+                TextColor="{StaticResource TextPrimary}" />
+
+            <!--  🗺️ MAP  -->
+            <dx:DXBorder
+                Grid.Row="1"
+                Margin="0,10"
+                Padding="0"
+                CornerRadius="15">
+
+                <maps:Map
+                    x:Name="MyMap"
+                    HeightRequest="350"
+                    IsScrollEnabled="True"
+                    IsShowingUser="True"
+                    IsTrafficEnabled="False"
+                    IsZoomEnabled="True"
+                    MapClicked="OnMapClicked"
+                    MapType="Hybrid" />
+            </dx:DXBorder>
+
+            <!--  📍 LOCATION INFO + BUTTON  -->
+            <VerticalStackLayout Grid.Row="2" Spacing="10">
+
+                <Grid ColumnDefinitions="*,*">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="13"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Latitude, StringFormat='Latitude: {0:F6}'}" />
+
+                    <Label
+                        Grid.Column="1"
+                        FontSize="13"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Longitude, StringFormat='Longtitude: {0:F6}'}" />
+                </Grid>
+
+                <dx:DXButton
+                    Command="{Binding ConfirmCommand}"
+                    Content="Confirm Location"
+                    FontSize="15" />
+            </VerticalStackLayout>
+
+        </Grid>
+    </dx:DXPopup.Content>
+</dx:DXPopup>

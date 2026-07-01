@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.ViewFarmProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    Title="View Farm Profile"
+    x:DataType="viewModels:ViewFarmProfileViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarHasShadow="True"
+    Shell.NavBarIsVisible="True">
+
+    <RefreshView
+        Command="{Binding RefreshFarmProfileCommand}"
+        IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+        RefreshColor="{StaticResource BrandDark}">
+        <dx:DXScrollView>
+            <VerticalStackLayout Padding="16" Spacing="0">
+
+                <!--  Lot Info  -->
+                <Grid Margin="0,0,0,9" ColumnDefinitions="*, Auto">
+                    <HorizontalStackLayout Grid.Column="0" Spacing="6">
+                        <dx:DXImage
+                            HeightRequest="16"
+                            Source="location_icon.png"
+                            TintColor="{StaticResource BrandDark}"
+                            WidthRequest="16" />
+                        <Label
+                            CharacterSpacing="0.4"
+                            FontAttributes="Bold"
+                            FontSize="12"
+                            Text="LOT INFORMATION"
+                            TextColor="{StaticResource BrandDark}"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                </Grid>
+
+                <dx:DXBorder
+                    Margin="0,0,0,22"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Surface}"
+                    BorderColor="{StaticResource BorderEdge}"
+                    BorderThickness="1"
+                    CornerRadius="14">
+                    <VerticalStackLayout>
+
+                        <maps:Map
+                            x:Name="MyMap"
+                            HeightRequest="140"
+                            IsScrollEnabled="False"
+                            IsTrafficEnabled="False"
+                            IsZoomEnabled="False"
+                            MapType="Hybrid" />
+
+                        <VerticalStackLayout Padding="14" Spacing="8">
+
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="{Binding LotNo, StringFormat='Lot {0}'}"
+                                TextColor="{StaticResource TextPrimary}" />
+                            <Label
+                                FontSize="11.5"
+                                Text="{Binding Location}"
+                                TextColor="{StaticResource Label}" />
+
+                            <BoxView
+                                Margin="0,4,0,0"
+                                HeightRequest="0.5"
+                                Color="{StaticResource BorderEdge}" />
+
+                            <Grid
+                                Margin="0,2,0,0"
+                                ColumnDefinitions="*,*,*"
+                                ColumnSpacing="10">
+                                <VerticalStackLayout Grid.Column="0" Spacing="3">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="9.5"
+                                        Text="SETUP"
+                                        TextColor="{StaticResource BrandLight}" />
+                                    <Label
+                                        FontSize="11"
+                                        LineBreakMode="WordWrap"
+                                        Text="{Binding ProductionSystem}"
+                                        TextColor="{StaticResource TextPrimary}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="1" Spacing="3">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="9.5"
+                                        Text="DISEASE"
+                                        TextColor="{StaticResource BrandLight}" />
+                                    <Label
+                                        FontSize="11"
+                                        LineBreakMode="WordWrap"
+                                        Text="{Binding Disease}"
+                                        TextColor="{StaticResource TextPrimary}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="2" Spacing="3">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="9.5"
+                                        Text="PEST"
+                                        TextColor="{StaticResource BrandLight}" />
+                                    <Label
+                                        FontSize="11"
+                                        LineBreakMode="WordWrap"
+                                        Text="{Binding Pest}"
+                                        TextColor="{StaticResource TextPrimary}" />
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <BoxView
+                                Margin="0,2,0,0"
+                                HeightRequest="0.5"
+                                Color="{StaticResource BorderEdge}" />
+
+                            <Label FontSize="11" TextColor="{StaticResource Label}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Forages "
+                                            TextColor="{StaticResource TextPrimary}" />
+                                        <Span Text="{Binding Forages}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label FontSize="11" TextColor="{StaticResource Label}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="Health Monitoring "
+                                            TextColor="{StaticResource TextPrimary}" />
+                                        <Span
+                                            FontAttributes="Bold"
+                                            Text="{Binding HDMng}"
+                                            TextColor="{StaticResource Success}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <dx:DXImage
+                                Margin="0,4,0,0"
+                                HeightRequest="16"
+                                HorizontalOptions="End"
+                                Source="edit_icon.png"
+                                TintColor="{StaticResource BrandDark}"
+                                WidthRequest="16">
+                                <dx:DXImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditFarmProfileCommand}" />
+                                </dx:DXImage.GestureRecognizers>
+                            </dx:DXImage>
+
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </dx:DXBorder>
+
+                <!--  BEE SPECIES  -->
+                <Grid Margin="0,0,0,9" ColumnDefinitions="*, Auto">
+                    <HorizontalStackLayout Grid.Column="0" Spacing="6">
+                        <dx:DXImage
+                            HeightRequest="16"
+                            Source="bee_icon.png"
+                            TintColor="{StaticResource BrandDark}"
+                            WidthRequest="16" />
+                        <Label
+                            CharacterSpacing="0.4"
+                            FontAttributes="Bold"
+                            FontSize="12"
+                            Text="BEE SPECIES"
+                            TextColor="{StaticResource BrandDark}"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                    <dx:DXButton
+                        Grid.Column="1"
+                        Padding="10,5"
+                        Command="{Binding AddBeeSpeciesCommand}"
+                        Content="+ Add"
+                        CornerRadius="7"
+                        FontSize="11"
+                        IsEnabled="{Binding IsEnabledAddBeeSpecies}" />
+                </Grid>
+
+                <VerticalStackLayout
+                    Margin="0,0,0,22"
+                    BindableLayout.ItemsSource="{Binding SpeciesList}"
+                    IsVisible="{Binding BeeSpeciesHasData}"
+                    Spacing="10">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type x:Object}">
+                            <dx:DXBorder
+                                Padding="12"
+                                BorderThickness="1"
+                                CornerRadius="12">
+                                <VerticalStackLayout Spacing="8">
+
+                                    <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8">
+                                        <dx:DXBorder
+                                            Grid.Column="0"
+                                            BackgroundColor="{StaticResource BackgroundColor}"
+                                            BorderThickness="0"
+                                            CornerRadius="8"
+                                            HeightRequest="30"
+                                            WidthRequest="30">
+                                            <dx:DXImage
+                                                Aspect="AspectFit"
+                                                HeightRequest="15"
+                                                Source="bee_icon.png"
+                                                TintColor="{StaticResource Action}"
+                                                WidthRequest="15" />
+                                        </dx:DXBorder>
+                                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="12.5"
+                                                Text="{Binding BeeTypeDescription}"
+                                                TextColor="{StaticResource TextPrimary}" />
+                                            <Label FontSize="10.5" TextColor="{StaticResource Label}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Imported: " />
+                                                        <Span Text="{Binding Imported}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </VerticalStackLayout>
+                                    </Grid>
+
+                                    <BoxView HeightRequest="0.5" Color="{StaticResource BorderEdge}" />
+
+                                    <Label FontSize="11" TextColor="{StaticResource Label}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    Text="Origins  "
+                                                    TextColor="{StaticResource TextPrimary}" />
+                                                <Span Text="{Binding Origin}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label FontSize="11" TextColor="{StaticResource Label}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    Text="Colonies "
+                                                    TextColor="{StaticResource TextPrimary}" />
+                                                <Span Text="{Binding NOC}" />
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    Text="   •   Source "
+                                                    TextColor="{StaticResource TextPrimary}" />
+                                                <Span Text="{Binding Source}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <HorizontalStackLayout HorizontalOptions="End" Spacing="10">
+                                        <dx:DXImage
+                                            HeightRequest="15"
+                                            Source="edit_icon.png"
+                                            TintColor="{StaticResource BrandDark}"
+                                            WidthRequest="15">
+                                            <dx:DXImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateBeeSpeciesCommand}" CommandParameter="{Binding .}" />
+                                            </dx:DXImage.GestureRecognizers>
+                                        </dx:DXImage>
+                                        <dx:DXImage
+                                            HeightRequest="15"
+                                            Source="delete_icon.png"
+                                            TintColor="{StaticResource Danger}"
+                                            WidthRequest="15">
+                                            <dx:DXImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteBeeSpeciesCommand}" CommandParameter="{Binding .}" />
+                                            </dx:DXImage.GestureRecognizers>
+                                        </dx:DXImage>
+                                    </HorizontalStackLayout>
+
+                                </VerticalStackLayout>
+                            </dx:DXBorder>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <Label
+                    Margin="0,0,0,22"
+                    Padding="0,30"
+                    FontSize="14"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="{Binding SpeciesListIsEmpty}"
+                    Text="No items to display"
+                    TextColor="{StaticResource Label}" />
+
+                <!--  BEE PRODUCTION  -->
+                <Grid Margin="0,0,0,9" ColumnDefinitions="*, Auto">
+                    <HorizontalStackLayout Grid.Column="0" Spacing="6">
+                        <dx:DXImage
+                            HeightRequest="16"
+                            Source="honey_pot_icon.png"
+                            TintColor="{StaticResource BrandDark}"
+                            WidthRequest="16" />
+                        <Label
+                            CharacterSpacing="0.4"
+                            FontAttributes="Bold"
+                            FontSize="12"
+                            Text="BEE PRODUCTION"
+                            TextColor="{StaticResource BrandDark}"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                    <dx:DXButton
+                        Grid.Column="1"
+                        Padding="10,5"
+                        Command="{Binding AddBeeProductioonCommand}"
+                        Content="+ Add"
+                        CornerRadius="7"
+                        FontSize="11"
+                        IsEnabled="{Binding IsEnabledAddBeeProduction}" />
+                </Grid>
+
+                <dx:DXBorder
+                    Margin="0,0,0,22"
+                    Padding="0,4"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    IsVisible="{Binding BeeProductioonHasData}">
+                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding BeeProductioonList}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type x:Object}">
+                                <VerticalStackLayout>
+                                    <Grid
+                                        Padding="12,9"
+                                        ColumnDefinitions="Auto, *, Auto, Auto"
+                                        ColumnSpacing="10">
+                                        <dx:DXBorder
+                                            Grid.Column="0"
+                                            BackgroundColor="{StaticResource BackgroundColor}"
+                                            BorderThickness="0"
+                                            CornerRadius="9"
+                                            HeightRequest="34"
+                                            WidthRequest="34">
+                                            <dx:DXImage
+                                                Aspect="AspectFit"
+                                                HeightRequest="17"
+                                                Source="honey_pot_icon.png"
+                                                TintColor="{StaticResource Action}"
+                                                WidthRequest="17" />
+                                        </dx:DXBorder>
+                                        <VerticalStackLayout
+                                            Grid.Column="1"
+                                            Spacing="2"
+                                            VerticalOptions="Center">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="12.5"
+                                                Text="{Binding BeeProduction}"
+                                                TextColor="{StaticResource TextPrimary}" />
+                                            <Label FontSize="10.5" TextColor="{StaticResource Label}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding EstProdYield}" />
+                                                        <Span Text=" kg / year average" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </VerticalStackLayout>
+                                        <dx:DXImage
+                                            Grid.Column="2"
+                                            HeightRequest="15"
+                                            Source="edit_icon.png"
+                                            TintColor="{StaticResource BrandDark}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="15">
+                                            <dx:DXImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateBeeProductioonCommand}" CommandParameter="{Binding .}" />
+                                            </dx:DXImage.GestureRecognizers>
+                                        </dx:DXImage>
+                                        <dx:DXImage
+                                            Grid.Column="3"
+                                            HeightRequest="15"
+                                            Source="delete_icon.png"
+                                            TintColor="{StaticResource Danger}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="15">
+                                            <dx:DXImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteBeeProductioonCommand}" CommandParameter="{Binding .}" />
+                                            </dx:DXImage.GestureRecognizers>
+                                        </dx:DXImage>
+                                    </Grid>
+                                    <BoxView
+                                        Margin="12,0"
+                                        HeightRequest="0.5"
+                                        Color="{StaticResource BorderEdge}" />
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </dx:DXBorder>
+
+                <Label
+                    Margin="0,0,0,22"
+                    Padding="0,30"
+                    FontSize="14"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="{Binding BeeProductioonListIsEmpty}"
+                    Text="No items to display"
+                    TextColor="{StaticResource Label}" />
+
+                <!--  BIOSECURITY MEASURES  -->
+                <Grid Margin="0,0,0,9" ColumnDefinitions="*, Auto">
+                    <HorizontalStackLayout Grid.Column="0" Spacing="6">
+                        <dx:DXImage
+                            HeightRequest="16"
+                            Source="details_icon.png"
+                            TintColor="{StaticResource BrandDark}"
+                            WidthRequest="16" />
+                        <Label
+                            CharacterSpacing="0.4"
+                            FontAttributes="Bold"
+                            FontSize="12"
+                            Text="BIOSECURITY MEASURES"
+                            TextColor="{StaticResource BrandDark}"
+                            VerticalTextAlignment="Center" />
+                    </HorizontalStackLayout>
+                    <dx:DXButton
+                        Grid.Column="1"
+                        Padding="10,5"
+                        BorderColor="{StaticResource Action}"
+                        BorderThickness="1"
+                        Command="{Binding EditBioCommand}"
+                        Content="{Binding EditBioButton}"
+                        CornerRadius="7"
+                        FontSize="11"
+                        Style="{StaticResource ButtonOutlineStyle}"
+                        TextColor="{StaticResource Action}" />
+                </Grid>
+
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding BioSecurityList}" Spacing="10">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type x:Object}">
+                            <dx:DXBorder
+                                Padding="14"
+                                BackgroundColor="{StaticResource Surface}"
+                                BorderColor="{StaticResource BorderEdge}"
+                                BorderThickness="1"
+                                CornerRadius="12">
+                                <VerticalStackLayout Spacing="10">
+
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        LineBreakMode="WordWrap"
+                                        Text="{Binding BeeBioDescription}"
+                                        TextColor="{StaticResource TextPrimary}" />
+                                    <Grid
+                                        ColumnDefinitions="*, *"
+                                        ColumnSpacing="10"
+                                        RadioButtonGroup.GroupName="{Binding BeeBioCode}"
+                                        RadioButtonGroup.SelectedValue="{Binding SelectedBioSecurity}">
+
+                                        <dx:DXBorder
+                                            Grid.Column="0"
+                                            Padding="0,7"
+                                            BackgroundColor="{Binding YesRadioBg, Mode=TwoWay}"
+                                            BorderColor="{StaticResource Success}"
+                                            BorderThickness="1"
+                                            CornerRadius="8"
+                                            InputTransparent="{Binding ReadonlyYesBio}"
+                                            IsVisible="{Binding IsviYesBio}">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="12"
+                                                HorizontalTextAlignment="Center"
+                                                Text="Yes"
+                                                TextColor="{Binding YesRadioTxt, Mode=TwoWay}" />
+                                            <dx:DXBorder.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectYesBioCommand}" CommandParameter="{Binding .}" />
+                                            </dx:DXBorder.GestureRecognizers>
+                                        </dx:DXBorder>
+
+                                        <dx:DXBorder
+                                            Grid.Column="{Binding ColumnNumNoBio, Mode=TwoWay}"
+                                            Padding="0,7"
+                                            BackgroundColor="{Binding NoRadioBg, Mode=TwoWay}"
+                                            BorderColor="{StaticResource Danger}"
+                                            BorderThickness="1"
+                                            CornerRadius="8"
+                                            InputTransparent="{Binding ReadonlyNoBio}"
+                                            IsVisible="{Binding IsviNoBio}">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="12"
+                                                HorizontalTextAlignment="Center"
+                                                Text="No"
+                                                TextColor="{Binding NoRadioTxt, Mode=TwoWay}" />
+                                            <dx:DXBorder.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectNoBioCommand}" CommandParameter="{Binding .}" />
+                                            </dx:DXBorder.GestureRecognizers>
+                                        </dx:DXBorder>
+
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </dx:DXBorder>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </dx:DXScrollView>
+    </RefreshView>
+</ContentPage>
+
+
+
+
+
+
+

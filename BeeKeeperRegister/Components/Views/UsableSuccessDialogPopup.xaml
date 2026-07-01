@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dx:DXPopup
+    x:Class="BeeKeeperRegister.Components.Views.UsableSuccessDialogPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center"
+    AllowAnimation="True"
+    AllowScrim="True"
+    BackgroundColor="{StaticResource Surface}"
+    CloseOnScrimTap="True"
+    CornerRadius="25"
+    ScrimColor="#80000000">
+
+    <dx:DXPopup.Content>
+        <StackLayout
+            Padding="25"
+            HeightRequest="230"
+            WidthRequest="250">
+
+            <dx:DXBorder
+                Padding="0"
+                BorderColor="{StaticResource Success}"
+                BorderThickness="4"
+                CornerRadius="50"
+                HeightRequest="60"
+                WidthRequest="60">
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    HorizontalTextAlignment="Center"
+                    Text="✔"
+                    TextColor="{StaticResource Success}"
+                    VerticalTextAlignment="Center" />
+            </dx:DXBorder>
+
+            <Label
+                Margin="0,10,0,0"
+                FontAttributes="Bold"
+                FontSize="25"
+                HorizontalTextAlignment="Center"
+                Text="Success"
+                TextColor="{StaticResource Label}" />
+
+            <Label
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                Text="{Binding DialogMessage}" />
+        </StackLayout>
+    </dx:DXPopup.Content>
+</dx:DXPopup>

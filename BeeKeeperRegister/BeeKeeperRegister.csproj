@@ -1,0 +1,194 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <UseMaui>true</UseMaui>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SingleProject>true</SingleProject>
+    <Nullable>enable</Nullable>
+    <RootNamespace>BeeKeeperRegister</RootNamespace>
+
+    <!-- Display name -->
+    <ApplicationTitle>BeeKeeperRegister</ApplicationTitle>
+
+    <!-- App Identifier -->
+    <ApplicationId>com.companyname.BeeKeeperRegister</ApplicationId>
+    <ApplicationIdGuid>80590D1D-9D5B-43C1-91C5-74D211555022</ApplicationIdGuid>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- App Icon -->
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
+	  
+    <!-- Splash Screen -->
+    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#f7f4e1" BaseSize="128,128" />
+
+    <!-- Images -->
+    <MauiImage Include="Resources\Images\*" />
+
+    <!-- Custom Fonts -->
+    <MauiFont Include="Resources\Fonts\*" />
+
+    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui.Markup" Version="6.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.2" />
+	  <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.120" />
+	  <PackageReference Include="DevExpress.Data" Version="25.1.7" />
+	  <PackageReference Include="DevExpress.Maui.Controls" Version="25.1.7" />
+	  <PackageReference Include="DevExpress.Maui.CollectionView" Version="25.1.7" />
+	  <PackageReference Include="DevExpress.Maui.Editors" Version="25.1.7" />
+	  <PackageReference Include="DevExpress.Maui.DataGrid" Version="25.1.7" />
+	  <PackageReference Include="DevExpress.Maui.TreeView" Version="25.1.7" />
+	  <PackageReference Include="DevExpress.Maui.Scheduler" Version="25.1.7" />
+	  <PackageReference Include="DevExpress.Maui.Gauges" Version="25.1.7" />
+	  <PackageReference Include="DevExpress.Maui.Charts" Version="25.1.7" />
+	  <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="9.0.120" />
+	  <PackageReference Include="Mopups.Maui" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Components\Views\UsableGoogleMapDialogPopup.xaml.cs">
+      <DependentUpon>UsableGoogleMapDialogPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Components\Views\UsableLoadingDialogPopup.xaml.cs">
+      <DependentUpon>UsableLoadingDialogPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddBeeProductioonPage.xaml.cs">
+      <DependentUpon>AddBeeProductioonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\EditProfileImagePage.xaml.cs">
+      <DependentUpon>EditProfileImagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UpdateFarmProfilePage.xaml.cs">
+      <DependentUpon>UpdateFarmProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddTempBeeProductioonPage.xaml.cs">
+      <DependentUpon>AddTempBeeProductioonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddBeeSpeciesPage.xaml.cs">
+      <DependentUpon>AddBeeSpeciesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UpdateBeeProductioonPage.xaml.cs">
+      <DependentUpon>UpdateBeeProductioonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UpdateBeeSpeciesPage.xaml.cs">
+      <DependentUpon>UpdateBeeSpeciesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewFarmProfilePage.xaml.cs">
+      <DependentUpon>ViewFarmProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UpdateTempBeeProductioonPage.xaml.cs">
+      <DependentUpon>UpdateTempBeeProductioonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UpdateTempBeeSpeciesPage.xaml.cs">
+      <DependentUpon>UpdateTempBeeSpeciesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddFarmProfilePage.xaml.cs">
+      <DependentUpon>AddFarmProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddTempBeeSpeciesPage.xaml.cs">
+      <DependentUpon>AddTempBeeSpeciesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UpdateTrainingsPage.xaml.cs">
+      <DependentUpon>UpdateTrainingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddTrainingsPage.xaml.cs">
+      <DependentUpon>AddTrainingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\RegisterUserPage.xaml.cs">
+      <DependentUpon>RegisterUserPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiXaml Update="Components\Views\UsableConfirmDialogPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Components\Views\UsableGoogleMapDialogPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Components\Views\UsableInvalidDialogPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Components\Views\UsableLoadingDialogPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Components\Views\UsableServerErrorDialogPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Components\Views\UsableSuccessDialogPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AddBeeProductioonPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AddBeeSpeciesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\EditProfileImagePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\UpdateBeeProductioonPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\UpdateBeeSpeciesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\ViewFarmProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\UpdateTempBeeProductioonPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\UpdateTempBeeSpeciesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\UpdateFarmProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AddTempBeeSpeciesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\UpdateTrainingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\DashboardUserPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AddFarmProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\AddTrainingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\RegisterUserPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+  </ItemGroup>
+</Project>

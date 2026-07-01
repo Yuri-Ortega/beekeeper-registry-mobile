@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    x:DataType="viewModels:LoginViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarIsVisible="False">
+    <dx:DXScrollView>
+        <Grid
+            Padding="50"
+            ColumnDefinitions="*, Auto, *"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, *"
+            RowSpacing="15">
+            <dx:DXBorder
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="{StaticResource BackgroundColor}"
+                CornerRadius="30">
+                <dx:DXBorder.Shadow>
+                    <Shadow
+                        Brush="{StaticResource BrandDark}"
+                        Opacity="0.15"
+                        Radius="12"
+                        Offset="0,4" />
+                </dx:DXBorder.Shadow>
+                <dx:DXImage
+                    HeightRequest="100"
+                    Source="bee_app_icon.png"
+                    WidthRequest="100" />
+            </dx:DXBorder>
+            <Grid
+                Grid.Row="1"
+                Grid.ColumnSpan="3"
+                RowDefinitions="Auto, Auto">
+
+                <Label
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalTextAlignment="Center"
+                    Text="Welcome Back" />
+
+                <Label
+                    Grid.Row="1"
+                    FontSize="17"
+                    HorizontalTextAlignment="Center"
+                    Text="Sign in to continue"
+                    TextColor="{StaticResource Label}" />
+
+            </Grid>
+
+            <dx:TextEdit
+                Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Margin="0,40,0,0"
+                AutofillContentType="Username"
+                HasError="{Binding ErrUserBool}"
+                IsErrorIconVisible="False"
+                LabelText="Username"
+                StartIcon="user_icon.png"
+                Style="{StaticResource TextEditBoxModelOutlinedStyle}"
+                Text="{Binding User, Mode=TwoWay}" />
+
+            <dx:PasswordEdit
+                Grid.Row="3"
+                Grid.ColumnSpan="3"
+                AutofillContentType="Password"
+                HasError="{Binding ErrPassBool}"
+                IsErrorIconVisible="False"
+                LabelText="Password"
+                PasswordIconVisibility="Auto"
+                StartIcon="lock_icon.png"
+                Style="{StaticResource PasswordEditBoxModelOutlineStyle}"
+                Text="{Binding Pass, Mode=TwoWay}" />
+
+            <dx:CheckEdit
+                Grid.Row="4"
+                Grid.ColumnSpan="3"
+                IsChecked="{Binding RememberMe, Mode=TwoWay}"
+                Label="Remember Me"
+                LabelFontSize="17" />
+
+            <dx:DXButton
+                Grid.Row="5"
+                Grid.ColumnSpan="3"
+                Command="{Binding LoginCommand}"
+                Content="Log in" />
+
+            <dx:DXButton
+                Grid.Row="6"
+                Grid.ColumnSpan="3"
+                Padding="2,10"
+                Command="{Binding CreateAccountCommand}"
+                Content="Sign Up"
+                Style="{StaticResource ButtonOutlineStyle}" />
+
+            <BoxView
+                Grid.Row="7"
+                Grid.ColumnSpan="3"
+                Margin="0,10,0,10"
+                HeightRequest="0.5"
+                Color="{StaticResource BorderEdge}" />
+
+            <Label
+                Grid.Row="8"
+                Grid.ColumnSpan="3"
+                FontAutoScalingEnabled="True"
+                FontSize="15"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
+                TextColor="{StaticResource Label}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="By signing in, you agree to our " />
+                        <Span
+                            FontAttributes="Bold"
+                            Text="Terms &amp; Conditions"
+                            TextColor="{StaticResource BrandDark}"
+                            TextDecorations="Underline" />
+                        <Span Text=" and " />
+                        <Span
+                            FontAttributes="Bold"
+                            Text="Privacy Policy."
+                            TextColor="{StaticResource BrandDark}"
+                            TextDecorations="Underline" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+    </dx:DXScrollView>
+</ContentPage>

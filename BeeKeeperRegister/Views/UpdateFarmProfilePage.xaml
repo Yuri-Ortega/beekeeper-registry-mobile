@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.UpdateFarmProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    Title="Edit Farm Location"
+    x:DataType="viewModels:UpdateFarmProfileViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarHasShadow="True"
+    Shell.NavBarIsVisible="True">
+    <dx:DXScrollView>
+        <VerticalStackLayout Padding="16,16,16,24" Spacing="0">
+
+            <!--  LOT INFORMATION  -->
+            <HorizontalStackLayout Margin="0,0,0,9" Spacing="6">
+                <dx:DXImage
+                    HeightRequest="16"
+                    Source="location_icon.png"
+                    TintColor="{StaticResource BrandDark}"
+                    WidthRequest="16" />
+                <Label
+                    CharacterSpacing="0.4"
+                    FontAttributes="Bold"
+                    FontSize="12"
+                    Text="LOT INFORMATION"
+                    TextColor="{StaticResource BrandDark}"
+                    VerticalTextAlignment="Center" />
+            </HorizontalStackLayout>
+
+            <dx:DXBorder
+                Margin="0,0,0,22"
+                Padding="0"
+                BorderThickness="1"
+                CornerRadius="14">
+                <VerticalStackLayout>
+
+                    <maps:Map
+                        x:Name="MyMap"
+                        HeightRequest="140"
+                        IsScrollEnabled="False"
+                        IsTrafficEnabled="False"
+                        IsZoomEnabled="False"
+                        MapType="Hybrid" />
+
+                    <VerticalStackLayout Padding="14" Spacing="4">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Text="{Binding LotNo, StringFormat='Lot {0}'}"
+                            TextColor="{StaticResource TextPrimary}" />
+                        <Label
+                            FontSize="11.5"
+                            Text="{Binding Location}"
+                            TextColor="{StaticResource Label}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </dx:DXBorder>
+
+            <!--  GEOGRAPHIC COORDINATE  -->
+            <HorizontalStackLayout Margin="0,0,0,9" Spacing="6">
+                <dx:DXImage
+                    HeightRequest="16"
+                    Source="map_icon.png"
+                    TintColor="{StaticResource BrandDark}"
+                    WidthRequest="16" />
+                <Label
+                    CharacterSpacing="0.4"
+                    FontAttributes="Bold"
+                    FontSize="12"
+                    Text="GEOGRAPHIC COORDINATE"
+                    TextColor="{StaticResource BrandDark}"
+                    VerticalTextAlignment="Center" />
+            </HorizontalStackLayout>
+
+            <dx:DXBorder
+                Margin="0,0,0,22"
+                Padding="14"
+                BorderThickness="1"
+                CornerRadius="12">
+                <VerticalStackLayout Spacing="10">
+                    <Label FontSize="12" TextColor="{StaticResource Label}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontAttributes="Bold"
+                                    Text="Latitude "
+                                    TextColor="{StaticResource TextPrimary}" />
+                                <Span Text="{Binding SelectedLatitude}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label FontSize="12" TextColor="{StaticResource Label}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontAttributes="Bold"
+                                    Text="Longitude "
+                                    TextColor="{StaticResource TextPrimary}" />
+                                <Span Text="{Binding SelectedLongitude}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <dx:DXButton
+                        Margin="0,4,0,0"
+                        Padding="10"
+                        BorderColor="{StaticResource Action}"
+                        Command="{Binding MapLocationBtnCommand}"
+                        Content="Select Location"
+                        FontSize="14"
+                        IsEnabled="{Binding IsEnabledSelectLocation}"
+                        Style="{StaticResource ButtonOutlineStyle}"
+                        TextColor="{StaticResource Action}" />
+                </VerticalStackLayout>
+            </dx:DXBorder>
+
+            <!--  PRODUCTION SYSTEM  -->
+            <HorizontalStackLayout Margin="0,0,0,9" Spacing="6">
+                <dx:DXImage
+                    HeightRequest="16"
+                    Source="details_icon.png"
+                    TintColor="{StaticResource BrandDark}"
+                    WidthRequest="16" />
+                <Label
+                    CharacterSpacing="0.4"
+                    FontAttributes="Bold"
+                    FontSize="12"
+                    Text="PRODUCTION SYSTEM"
+                    TextColor="{StaticResource BrandDark}"
+                    VerticalTextAlignment="Center" />
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout Margin="0,0,0,22" Spacing="10">
+
+                <dxe:TokenEdit
+                    DisplayMember="BeeSystemProduction"
+                    DropDownIconColor="{StaticResource BorderEdge}"
+                    HasError="{Binding ErrBeeProductionSystemBool}"
+                    ItemsSource="{Binding BeeProductionSystem}"
+                    LabelText="Production System *"
+                    PlaceholderText="Select one or more"
+                    SelectedItems="{Binding SelectedBeeProductionSystem, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectionBeeProductionSystemCommand}">
+                    <dxe:TokenEdit.TokenAppearance>
+                        <dxe:TokenAppearance
+                            Padding="12,6"
+                            BackgroundColor="{StaticResource BrandLight}"
+                            BorderColor="{StaticResource BrandDark}"
+                            BorderThickness="0.5"
+                            CornerRadius="20"
+                            TextColor="{StaticResource Surface}" />
+                    </dxe:TokenEdit.TokenAppearance>
+                </dxe:TokenEdit>
+
+                <dxe:TokenEdit
+                    DisplayMember="CommonDiseaseBeeDescription"
+                    DropDownIconColor="{StaticResource BorderEdge}"
+                    ItemsSource="{Binding BeeCommonDiseases}"
+                    LabelText="Common Disease/s Encountered"
+                    PlaceholderText="Select one or more"
+                    SelectedItems="{Binding SelectedBeeCommonDiseases, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectionBeeCommonDiseasesCommand}">
+                    <dxe:TokenEdit.TokenAppearance>
+                        <dxe:TokenAppearance
+                            Padding="12,6"
+                            BackgroundColor="{StaticResource BrandLight}"
+                            BorderColor="{StaticResource BrandDark}"
+                            BorderThickness="0.5"
+                            CornerRadius="20"
+                            TextColor="{StaticResource Surface}" />
+                    </dxe:TokenEdit.TokenAppearance>
+                </dxe:TokenEdit>
+
+                <dxe:TokenEdit
+                    DisplayMember="CommonPestsDescription"
+                    DropDownIconColor="{StaticResource BorderEdge}"
+                    ItemsSource="{Binding BeeCommonPest}"
+                    LabelText="Common Pest/s Encountered"
+                    PlaceholderText="Select one or more"
+                    SelectedItems="{Binding SelectedBeeCommonPest, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectionBeeCommonPestCommand}">
+                    <dxe:TokenEdit.TokenAppearance>
+                        <dxe:TokenAppearance
+                            Padding="12,6"
+                            BackgroundColor="{StaticResource BrandLight}"
+                            BorderColor="{StaticResource BrandDark}"
+                            BorderThickness="0.5"
+                            CornerRadius="20"
+                            TextColor="{StaticResource Surface}" />
+                    </dxe:TokenEdit.TokenAppearance>
+                </dxe:TokenEdit>
+
+            </VerticalStackLayout>
+
+            <!--  FORAGES  -->
+            <HorizontalStackLayout Margin="0,0,0,9" Spacing="6">
+                <dx:DXImage
+                    HeightRequest="16"
+                    Source="leaf_icon.png"
+                    TintColor="{StaticResource BrandDark}"
+                    WidthRequest="16" />
+                <Label
+                    CharacterSpacing="0.4"
+                    FontAttributes="Bold"
+                    FontSize="12"
+                    Text="FORAGES"
+                    TextColor="{StaticResource BrandDark}" />
+            </HorizontalStackLayout>
+
+            <dxe:TokenEdit
+                Margin="0,0,0,22"
+                DisplayMember="ForagesDescription"
+                HasError="{Binding ErrBeeLocationForageBool}"
+                ItemsSource="{Binding BeeLocationForage}"
+                LabelText="Species Plant"
+                PlaceholderText="Select one or more"
+                SelectedItems="{Binding SelectedBeeLocationForage, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectionBeeLocationForageCommand}">
+                <dxe:TokenEdit.TokenAppearance>
+                    <dxe:TokenAppearance
+                        Padding="12,6"
+                        BackgroundColor="{StaticResource BrandLight}"
+                        BorderColor="{StaticResource BrandDark}"
+                        BorderThickness="0.5"
+                        CornerRadius="20"
+                        TextColor="{StaticResource Surface}" />
+                </dxe:TokenEdit.TokenAppearance>
+            </dxe:TokenEdit>
+
+            <!--  ============ HEALTH MONITORING PROTOCOL ============  -->
+            <HorizontalStackLayout Margin="0,0,0,9" Spacing="6">
+                <dx:DXImage
+                    HeightRequest="16"
+                    Source="shield_icon.png"
+                    TintColor="{StaticResource BrandDark}"
+                    WidthRequest="16" />
+                <Label
+                    CharacterSpacing="0.4"
+                    FontAttributes="Bold"
+                    FontSize="12"
+                    Text="HEALTH MONITORING PROTOCOL"
+                    TextColor="{StaticResource BrandDark}" />
+            </HorizontalStackLayout>
+
+            <dx:DXBorder
+                Margin="0,0,0,26"
+                Padding="14"
+                BackgroundColor="{StaticResource Surface}"
+                BorderColor="{StaticResource BorderEdge}"
+                BorderThickness="1"
+                CornerRadius="12">
+                <VerticalStackLayout
+                    RadioButtonGroup.GroupName="HMP"
+                    RadioButtonGroup.SelectedValue="{Binding SelectedHDMng, Mode=TwoWay}"
+                    Spacing="8">
+                    <RadioButton
+                        Content="Yes"
+                        GroupName="HMP"
+                        TextColor="{StaticResource TextPrimary}"
+                        Value="Yes" />
+                    <RadioButton
+                        Content="No"
+                        GroupName="HMP"
+                        TextColor="{StaticResource TextPrimary}"
+                        Value="No" />
+                </VerticalStackLayout>
+            </dx:DXBorder>
+
+            <!--  SUBMIT  -->
+            <dx:DXButton
+                Padding="12"
+                BackgroundColor="{StaticResource Action}"
+                Command="{Binding UpdateFarmProfileCommand}"
+                Content="Edit Farm"
+                CornerRadius="10"
+                FontSize="15"
+                TextColor="{StaticResource Surface}" />
+
+        </VerticalStackLayout>
+    </dx:DXScrollView>
+</ContentPage>
+
+
+
+
+
+
+
+

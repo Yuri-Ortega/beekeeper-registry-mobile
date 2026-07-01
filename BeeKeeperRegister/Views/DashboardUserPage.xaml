@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.DashboardUserPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:BeeKeeperRegister.Behaviors"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    x:DataType="viewModels:DashboardUserViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto, *">
+        <Border
+            Grid.Row="0"
+            BackgroundColor="{StaticResource BrandDark}"
+            StrokeThickness="0">
+
+            <Border.Shadow>
+                <Shadow
+                    Brush="#000000"
+                    Opacity="0.25"
+                    Radius="10"
+                    Offset="0,6" />
+            </Border.Shadow>
+
+            <Grid
+                Padding="20,10"
+                ColumnDefinitions="Auto, *, Auto"
+                VerticalOptions="Center">
+                <dx:DXBorder
+                    Grid.Column="0"
+                    Padding="0"
+                    BackgroundColor="#9CA052"
+                    BorderColor="#FFFDF8"
+                    CornerRadius="55"
+                    HeightRequest="50"
+                    WidthRequest="50">
+                    <dx:DXImage Aspect="AspectFill" Source="{Binding SelectedImageSource}" />
+                </dx:DXBorder>
+
+                <Label
+                    Grid.Column="1"
+                    Padding="20"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HorizontalTextAlignment="Start"
+                    Text="{Binding FullName, StringFormat=' {0}'}"
+                    TextColor="{StaticResource Surface}" />
+
+                <dx:DXButton
+                    Grid.Column="2"
+                    Padding="5"
+                    BackgroundColor="{StaticResource BrandLight}"
+                    Command="{Binding SettingsCommand}"
+                    CornerRadius="20"
+                    FontSize="15"
+                    Icon="settings_icon.png"
+                    IconColor="{StaticResource Surface}"
+                    IconHeight="25"
+                    IconWidth="25"
+                    Style="{StaticResource MenuButtonStyle}" />
+
+            </Grid>
+        </Border>
+        <dx:TabView
+            Grid.Row="1"
+            HeaderPanelBackgroundColor="{StaticResource Surface}"
+            HeaderPanelContentAlignment="Center"
+            HeaderPanelPosition="Bottom"
+            HeaderPanelShadowColor="{StaticResource Label}"
+            HeaderPanelShadowHeight="5"
+            HeaderPanelShadowRadius="10"
+            IsSelectedItemIndicatorVisible="true"
+            ItemHeaderHeight="*"
+            ItemHeaderWidth="*"
+            SelectedItemIndicatorColor="{StaticResource BrandLight}"
+            SelectedItemIndicatorHeight="3">
+            <dx:TabViewItem
+                HeaderFontSize="10"
+                HeaderIcon="home_icon.png"
+                HeaderText="Home"
+                HeaderWidth="*"
+                SelectedHeaderIconColor="{StaticResource BrandLight}"
+                SelectedHeaderTextColor="{StaticResource BrandLight}">
+                <dx:TabViewItem.Content>
+                    <dx:DXScrollView>
+                        <VerticalStackLayout Padding="20" Spacing="10">
+
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                HorizontalTextAlignment="Start"
+                                Text="Farm Location Status"
+                                TextColor="{StaticResource BrandDark}" />
+                            <Grid ColumnDefinitions="*, *" ColumnSpacing="20">
+                                <dx:DXBorder
+                                    Grid.Column="0"
+                                    Padding="15"
+                                    BackgroundColor="{StaticResource Surface}"
+                                    BorderColor="{StaticResource BorderEdge}"
+                                    BorderThickness="1"
+                                    CornerRadius="15">
+                                    <VerticalStackLayout>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="14"
+                                            HorizontalTextAlignment="Start"
+                                            Text="Total Colonies"
+                                            TextColor="{StaticResource Label}" />
+                                        <Grid ColumnDefinitions="Auto, Auto" ColumnSpacing="20">
+                                            <Label
+                                                Grid.Column="0"
+                                                Padding="0"
+                                                FontAttributes="Bold"
+                                                FontSize="20"
+                                                HorizontalTextAlignment="Start"
+                                                Text="{Binding TotalColonies}"
+                                                TextColor="{StaticResource TextPrimary}"
+                                                VerticalTextAlignment="Center" />
+                                            <dx:DXImage
+                                                Grid.Column="1"
+                                                HeightRequest="25"
+                                                Source="bee_icon.png"
+                                                WidthRequest="25" />
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </dx:DXBorder>
+                                <dx:DXBorder
+                                    Grid.Column="1"
+                                    BackgroundColor="{StaticResource Surface}"
+                                    BorderColor="{StaticResource BorderEdge}"
+                                    BorderThickness="1"
+                                    CornerRadius="15">
+                                    <VerticalStackLayout>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="14"
+                                            HorizontalTextAlignment="Start"
+                                            Text="Total Farms"
+                                            TextColor="{StaticResource Label}" />
+                                        <Grid ColumnDefinitions="Auto, Auto" ColumnSpacing="20">
+                                            <Label
+                                                Grid.Column="0"
+                                                Padding="0"
+                                                FontAttributes="Bold"
+                                                FontSize="20"
+                                                HorizontalTextAlignment="Start"
+                                                Text="{Binding NumberOfFarm}"
+                                                TextColor="{StaticResource TextPrimary}"
+                                                VerticalTextAlignment="Center" />
+                                            <dx:DXImage
+                                                Grid.Column="1"
+                                                HeightRequest="25"
+                                                Source="farms_icon.png"
+                                                WidthRequest="25" />
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </dx:DXBorder>
+                            </Grid>
+                            <Grid ColumnDefinitions="*" ColumnSpacing="20">
+                                <dx:DXBorder
+                                    Grid.Column="0"
+                                    Padding="15"
+                                    BackgroundColor="{StaticResource Surface}"
+                                    BorderColor="{StaticResource BorderEdge}"
+                                    BorderThickness="1"
+                                    CornerRadius="15">
+                                    <VerticalStackLayout HorizontalOptions="Center">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="14"
+                                            HorizontalTextAlignment="Start"
+                                            Text="Total Kilograms of Production"
+                                            TextColor="{StaticResource Label}" />
+                                        <Label
+                                            Padding="0"
+                                            FontAttributes="Bold"
+                                            FontSize="20"
+                                            HorizontalTextAlignment="Center"
+                                            TextColor="{StaticResource TextPrimary}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding TotalProductioonKG}" />
+                                                    <Span Text=" KG" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </VerticalStackLayout>
+                                </dx:DXBorder>
+                            </Grid>
+
+                            <Label
+                                CharacterSpacing="0.4"
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                Text="BEE SUMMARY"
+                                TextColor="{StaticResource BrandDark}" />
+
+                            <!--  Species — Donut chart  -->
+                            <dx:DXBorder
+                                Margin="0,0,0,16"
+                                Padding="14"
+                                BackgroundColor="{StaticResource Surface}"
+                                BorderColor="{StaticResource BorderEdge}"
+                                BorderThickness="1"
+                                CornerRadius="12">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        Text="Species"
+                                        TextColor="{StaticResource TextPrimary}" />
+                                    <dxc:PieChartView HeightRequest="200">
+                                        <dxc:PieChartView.Series>
+                                            <dxc:DonutSeries>
+                                                <dxc:DonutSeries.Data>
+                                                    <dxc:PieSeriesDataAdapter
+                                                        DataSource="{Binding SpeciesChartData}"
+                                                        LabelDataMember="Label"
+                                                        ValueDataMember="Count" />
+                                                </dxc:DonutSeries.Data>
+                                            </dxc:DonutSeries>
+                                        </dxc:PieChartView.Series>
+                                        <dxc:PieChartView.Legend>
+                                            <dxc:Legend
+                                                HorizontalPosition="RightOutside"
+                                                Orientation="TopToBottom"
+                                                VerticalPosition="Center" />
+                                        </dxc:PieChartView.Legend>
+                                    </dxc:PieChartView>
+                                </VerticalStackLayout>
+                            </dx:DXBorder>
+
+                            <!--  Production — Donut chart  -->
+                            <dx:DXBorder
+                                Margin="0,0,0,16"
+                                Padding="14"
+                                BackgroundColor="{StaticResource Surface}"
+                                BorderColor="{StaticResource BorderEdge}"
+                                BorderThickness="1"
+                                CornerRadius="12">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        Text="Production"
+                                        TextColor="{StaticResource TextPrimary}" />
+                                    <dxc:PieChartView HeightRequest="200">
+                                        <dxc:PieChartView.Series>
+                                            <dxc:DonutSeries>
+                                                <dxc:DonutSeries.Data>
+                                                    <dxc:PieSeriesDataAdapter
+                                                        DataSource="{Binding ProductionChartData}"
+                                                        LabelDataMember="Label"
+                                                        ValueDataMember="Count" />
+                                                </dxc:DonutSeries.Data>
+                                            </dxc:DonutSeries>
+                                        </dxc:PieChartView.Series>
+                                        <dxc:PieChartView.Legend>
+                                            <dxc:Legend
+                                                HorizontalPosition="RightOutside"
+                                                Orientation="TopToBottom"
+                                                VerticalPosition="Center" />
+                                        </dxc:PieChartView.Legend>
+                                    </dxc:PieChartView>
+                                </VerticalStackLayout>
+                            </dx:DXBorder>
+
+                            <!--  Forages — Bar chart  -->
+                            <dx:DXBorder
+                                Margin="0,0,0,22"
+                                Padding="14"
+                                BackgroundColor="{StaticResource Surface}"
+                                BorderColor="{StaticResource BorderEdge}"
+                                BorderThickness="1"
+                                CornerRadius="12">
+                                <VerticalStackLayout Spacing="8">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        Text="Forages"
+                                        TextColor="{StaticResource TextPrimary}" />
+                                    <dxc:ChartView HeightRequest="240">
+                                        <dxc:ChartView.Series>
+                                            <dxc:BarSeries>
+                                                <dxc:BarSeries.Data>
+                                                    <dxc:SeriesDataAdapter ArgumentDataMember="Label" DataSource="{Binding ForagesChartData}">
+                                                        <dxc:ValueDataMember Member="Count" Type="Value" />
+                                                    </dxc:SeriesDataAdapter>
+                                                </dxc:BarSeries.Data>
+                                            </dxc:BarSeries>
+                                        </dxc:ChartView.Series>
+                                    </dxc:ChartView>
+                                </VerticalStackLayout>
+                            </dx:DXBorder>
+                        </VerticalStackLayout>
+                    </dx:DXScrollView>
+                </dx:TabViewItem.Content>
+            </dx:TabViewItem>
+
+            <dx:TabViewItem
+                HeaderFontSize="10"
+                HeaderIcon="training_btn_icon.png"
+                HeaderIconColor="#3D3938"
+                HeaderText="Trainings"
+                HeaderWidth="*"
+                SelectedHeaderIconColor="{StaticResource BrandLight}"
+                SelectedHeaderTextColor="{StaticResource BrandLight}">
+                <dx:TabViewItem.Content>
+
+                    <Grid>
+
+                        <!--  Layer 1: Main content  -->
+                        <Grid RowDefinitions="Auto, Auto, Auto, *">
+
+                            <!--  Search bar  -->
+                            <dx:DXBorder
+                                Grid.Row="0"
+                                Margin="14,12,14,14"
+                                Padding="0"
+                                BackgroundColor="{StaticResource Surface}"
+                                BorderColor="{StaticResource BorderEdge}">
+                                <dx:TextEdit
+                                    BackgroundColor="{StaticResource Surface}"
+                                    BorderThickness="0"
+                                    EndIcon="search"
+                                    FocusedBorderThickness="0"
+                                    PlaceholderText="Search trainings"
+                                    TextChangedCommand="{Binding SearchTrainingsCommand}"
+                                    TextChangedCommandParameter="{Binding Text, Source={RelativeSource Self}}"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    TextFontSize="14" />
+                            </dx:DXBorder>
+
+
+                            <dx:DXBorder
+                                Grid.Row="1"
+                                Margin="14,0,14,0"
+                                Padding="20,10"
+                                BackgroundColor="{StaticResource BrandLight}"
+                                BorderColor="{StaticResource BorderEdge}"
+                                BorderThickness="1"
+                                CornerRadius="35"
+                                HorizontalOptions="Start">
+                                <Label
+                                    Grid.Row="1"
+                                    Padding="0"
+                                    FontAttributes="Bold"
+                                    FontSize="15"
+                                    TextColor="{StaticResource Surface}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding CountTrainings}" />
+                                            <Span Text=" trainings" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </dx:DXBorder>
+
+
+                            <BoxView
+                                Grid.Row="2"
+                                Margin="14,10,14,10"
+                                HeightRequest="0.5"
+                                Color="{StaticResource BorderEdge}" />
+
+                            <!--  Training list  -->
+                            <dx:DXCollectionView
+                                Grid.Row="3"
+                                FilterString="{Binding FilterTrainingsString}"
+                                IndicatorColor="{StaticResource BrandLight}"
+                                IsPullToRefreshEnabled="True"
+                                IsRefreshing="{Binding IsRefreshingTrainingList, Mode=TwoWay}"
+                                IsVisible="{Binding TrainingListHasData}"
+                                ItemsSource="{Binding TrainingList}"
+                                PullToRefreshCommand="{Binding PullToRefreshTrainingListCommand}"
+                                VerticalOptions="Fill">
+
+                                <dx:DXCollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="{x:Type x:Object}">
+                                        <dx:DXBorder
+                                            Margin="14,0,14,10"
+                                            Padding="12"
+                                            BackgroundColor="{StaticResource Surface}"
+                                            BorderColor="{StaticResource BorderEdge}"
+                                            BorderThickness="1"
+                                            CornerRadius="12">
+                                            <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="12">
+
+                                                <!--  Icon container  -->
+                                                <dx:DXBorder
+                                                    Grid.Column="0"
+                                                    BackgroundColor="{StaticResource BackgroundColor}"
+                                                    BorderThickness="0"
+                                                    CornerRadius="9"
+                                                    HeightRequest="38"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="38">
+                                                    <dx:DXImage
+                                                        Aspect="AspectFit"
+                                                        HeightRequest="20"
+                                                        Source="trainings_tab.png"
+                                                        TintColor="{StaticResource Action}"
+                                                        WidthRequest="20" />
+                                                </dx:DXBorder>
+
+                                                <!--  Title + year/hour  -->
+                                                <VerticalStackLayout
+                                                    Grid.Column="1"
+                                                    Spacing="3"
+                                                    VerticalOptions="Center">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="13"
+                                                        LineBreakMode="WordWrap"
+                                                        Text="{Binding TrainingDescription}"
+                                                        TextColor="{StaticResource TextPrimary}" />
+                                                    <Label FontSize="11" TextColor="{StaticResource Label}">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding TrainingYear}" />
+                                                                <Span Text="  •  " />
+                                                                <Span Text="{Binding TrainingHour, StringFormat='{0}h'}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </VerticalStackLayout>
+
+                                                <!--  Edit / Delete actions  -->
+                                                <HorizontalStackLayout
+                                                    Grid.Column="2"
+                                                    Spacing="14"
+                                                    VerticalOptions="Center">
+                                                    <dx:DXImage
+                                                        HeightRequest="17"
+                                                        Source="edit_icon.png"
+                                                        TintColor="{StaticResource BrandDark}"
+                                                        WidthRequest="17">
+                                                        <dx:DXImage.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateCommand}" CommandParameter="{Binding .}" />
+                                                        </dx:DXImage.GestureRecognizers>
+                                                    </dx:DXImage>
+                                                    <dx:DXImage
+                                                        HeightRequest="17"
+                                                        Source="delete_icon.png"
+                                                        TintColor="{StaticResource Warning}"
+                                                        WidthRequest="17">
+                                                        <dx:DXImage.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCommand}" CommandParameter="{Binding .}" />
+                                                        </dx:DXImage.GestureRecognizers>
+                                                    </dx:DXImage>
+                                                </HorizontalStackLayout>
+
+                                            </Grid>
+                                        </dx:DXBorder>
+                                    </DataTemplate>
+                                </dx:DXCollectionView.ItemTemplate>
+
+                                <dx:DXCollectionView.Footer>
+                                    <BoxView HeightRequest="90" Color="Transparent" />
+                                </dx:DXCollectionView.Footer>
+
+                            </dx:DXCollectionView>
+
+                            <AbsoluteLayout Grid.Row="3" IsVisible="{Binding TrainingListIsEmpty}">
+
+                                <Image
+                                    AbsoluteLayout.LayoutBounds="0.5, 0.4, 1, 1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    Source="empty_trainings.png" />
+
+                            </AbsoluteLayout>
+
+                            <Label
+                                Grid.Row="3"
+                                Padding="0,50"
+                                FontSize="14"
+                                HorizontalTextAlignment="Center"
+                                IsVisible="{Binding NoSearchResultsForTrainingList}"
+                                Text="No results matched your search"
+                                TextColor="{StaticResource Label}"
+                                VerticalTextAlignment="Center" />
+
+                        </Grid>
+
+                        <!--  Layer 2: Floating Action Button  -->
+                        <dx:DXButton
+                            Margin="0,0,16,50"
+                            Padding="20"
+                            BorderThickness="0"
+                            Command="{Binding AddTrainingCommand}"
+                            CornerRadius="10"
+                            FontAttributes="Bold"
+                            FontSize="40"
+                            HorizontalOptions="End"
+                            Icon="add.png"
+                            VerticalOptions="End">
+                            <dx:DXButton.Shadow>
+                                <Shadow
+                                    Brush="Black"
+                                    Opacity="0.3"
+                                    Radius="8"
+                                    Offset="0,3" />
+                            </dx:DXButton.Shadow>
+                        </dx:DXButton>
+
+                    </Grid>
+
+                </dx:TabViewItem.Content>
+            </dx:TabViewItem>
+
+            <dx:TabViewItem
+                HeaderFontSize="10"
+                HeaderIcon="farm_icon.png"
+                HeaderText="My Farms"
+                HeaderWidth="*"
+                SelectedHeaderIconColor="{StaticResource BrandLight}"
+                SelectedHeaderTextColor="{StaticResource BrandLight}">
+                <dx:TabViewItem.Content>
+
+                    <Grid>
+
+                        <!--  Layer 1: Main content  -->
+                        <Grid
+                            Padding="14"
+                            RowDefinitions="Auto, Auto, *"
+                            RowSpacing="10">
+
+                            <HorizontalStackLayout Grid.Row="0" Spacing="15">
+                                <dx:DXBorder
+                                    Padding="20,10"
+                                    BackgroundColor="{StaticResource BrandLight}"
+                                    BorderColor="{StaticResource BorderEdge}"
+                                    BorderThickness="1"
+                                    CornerRadius="35"
+                                    HorizontalOptions="Start">
+                                    <Label
+                                        Grid.Row="1"
+                                        Padding="0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        TextColor="{StaticResource Surface}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding CountFarms}" />
+                                                <Span Text=" Farms" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </dx:DXBorder>
+
+                                <Label
+                                    FontAutoScalingEnabled="True"
+                                    FontSize="15"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="WordWrap"
+                                    Text="Tap a farm to view"
+                                    TextColor="{StaticResource Label}"
+                                    VerticalTextAlignment="Center" />
+
+                            </HorizontalStackLayout>
+
+
+                            <BoxView
+                                Grid.Row="1"
+                                HeightRequest="0.5"
+                                Color="{StaticResource BorderEdge}" />
+
+                            <!--  Farm list  -->
+                            <dx:DXCollectionView
+                                Grid.Row="2"
+                                IndicatorColor="{StaticResource BrandLight}"
+                                IsPullToRefreshEnabled="True"
+                                IsRefreshing="{Binding IsRefreshingFarmList, Mode=TwoWay}"
+                                IsVisible="{Binding FarmListHasData}"
+                                ItemsSource="{Binding FarmList}"
+                                PullToRefreshCommand="{Binding PullToRefreshFarmListCommand}"
+                                VerticalOptions="Fill">
+
+                                <dx:DXCollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="{x:Type x:Object}">
+                                        <dx:DXBorder
+                                            Margin="0,0,0,10"
+                                            Padding="0"
+                                            BackgroundColor="{StaticResource Surface}"
+                                            BorderColor="{StaticResource BorderEdge}"
+                                            BorderThickness="1"
+                                            CornerRadius="14">
+                                            <dx:DXBorder.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ViewDetailsCommand}" CommandParameter="{Binding .}" />
+                                            </dx:DXBorder.GestureRecognizers>
+
+
+                                            <VerticalStackLayout>
+                                                <maps:Map
+                                                    HeightRequest="140"
+                                                    InputTransparent="True"
+                                                    IsScrollEnabled="False"
+                                                    IsTrafficEnabled="False"
+                                                    IsZoomEnabled="False"
+                                                    MapType="Hybrid">
+                                                    <maps:Map.Behaviors>
+                                                        <behaviors:FarmLocationBehavior Latitude="{Binding Latitude}" Longitude="{Binding Longitude}" />
+                                                    </maps:Map.Behaviors>
+                                                </maps:Map>
+
+                                                <VerticalStackLayout Padding="14" Spacing="8">
+
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="16"
+                                                        Text="{Binding LotNo, StringFormat='Lot {0}'}"
+                                                        TextColor="{StaticResource TextPrimary}" />
+                                                    <Label
+                                                        FontSize="11.5"
+                                                        Text="{Binding Location}"
+                                                        TextColor="{StaticResource Label}" />
+
+                                                    <BoxView
+                                                        Margin="0,4,0,0"
+                                                        HeightRequest="0.5"
+                                                        Color="{StaticResource BorderEdge}" />
+
+                                                    <Grid
+                                                        Margin="0,2,0,0"
+                                                        ColumnDefinitions="*,*,*"
+                                                        ColumnSpacing="10">
+
+                                                        <dx:DXBorder
+                                                            Grid.Column="0"
+                                                            Padding="10,5"
+                                                            BackgroundColor="{StaticResource BackgroundColor}"
+                                                            BorderThickness="0"
+                                                            CornerRadius="8">
+                                                            <Label
+                                                                FontAttributes="Bold"
+                                                                FontSize="11.5"
+                                                                TextColor="{StaticResource BrandDark}">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="Species " />
+                                                                        <Span Text="{Binding NumberSpecies}" />
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </dx:DXBorder>
+
+                                                        <dx:DXBorder
+                                                            Grid.Column="1"
+                                                            Padding="10,5"
+                                                            BackgroundColor="{StaticResource BackgroundColor}"
+                                                            BorderThickness="0"
+                                                            CornerRadius="8">
+                                                            <Label
+                                                                FontAttributes="Bold"
+                                                                FontSize="11.5"
+                                                                TextColor="{StaticResource BrandDark}">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="Production " />
+                                                                        <Span Text="{Binding NumberProductioon}" />
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </dx:DXBorder>
+
+                                                        <dx:DXBorder
+                                                            Grid.Column="2"
+                                                            Padding="10,5"
+                                                            BackgroundColor="{StaticResource BackgroundColor}"
+                                                            BorderThickness="0"
+                                                            CornerRadius="8">
+                                                            <Label
+                                                                FontAttributes="Bold"
+                                                                FontSize="11.5"
+                                                                TextColor="{StaticResource BrandDark}">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="Forages " />
+                                                                        <Span Text="{Binding NumberForages}" />
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </dx:DXBorder>
+
+
+                                                    </Grid>
+                                                </VerticalStackLayout>
+                                            </VerticalStackLayout>
+                                        </dx:DXBorder>
+                                    </DataTemplate>
+                                </dx:DXCollectionView.ItemTemplate>
+
+                                <dx:DXCollectionView.Footer>
+                                    <BoxView HeightRequest="20" Color="Transparent" />
+                                </dx:DXCollectionView.Footer>
+
+                            </dx:DXCollectionView>
+
+                            <AbsoluteLayout Grid.Row="3" IsVisible="{Binding FarmListIsEmpty}">
+
+                                <Image
+                                    AbsoluteLayout.LayoutBounds="0.5, 0.4, 1, 1"
+                                    AbsoluteLayout.LayoutFlags="All"
+                                    Source="empty_farms.png" />
+
+                            </AbsoluteLayout>
+
+                            <Label
+                                Grid.Row="3"
+                                Padding="0,50"
+                                FontSize="14"
+                                HorizontalTextAlignment="Center"
+                                IsVisible="{Binding NoSearchResultsForFarmList}"
+                                Text="No results matched your search"
+                                TextColor="{StaticResource Label}"
+                                VerticalTextAlignment="Center" />
+
+                        </Grid>
+
+                        <!--  Layer 2: Floating Action Button  -->
+                        <dx:DXButton
+                            Margin="0,0,16,50"
+                            Padding="20"
+                            BorderThickness="0"
+                            Command="{Binding AddFarmLocationProfileCommand}"
+                            CornerRadius="10"
+                            FontAttributes="Bold"
+                            FontSize="40"
+                            HorizontalOptions="End"
+                            Icon="add.png"
+                            VerticalOptions="End">
+                            <dx:DXButton.Shadow>
+                                <Shadow
+                                    Brush="Black"
+                                    Opacity="0.3"
+                                    Radius="8"
+                                    Offset="0,3" />
+                            </dx:DXButton.Shadow>
+                        </dx:DXButton>
+
+                    </Grid>
+
+                </dx:TabViewItem.Content>
+            </dx:TabViewItem>
+            <dx:TabViewItem
+                HeaderFontSize="10"
+                HeaderIcon="user_icon.png"
+                HeaderText="Profile"
+                HeaderWidth="*"
+                SelectedHeaderIconColor="{StaticResource BrandLight}"
+                SelectedHeaderTextColor="{StaticResource BrandLight}">
+                <dx:TabViewItem.Content>
+                    <Grid
+                        Padding="40,0"
+                        RowDefinitions="Auto, Auto"
+                        VerticalOptions="Center">
+                        <Grid Grid.Row="0" RowDefinitions="Auto, Auto, Auto">
+                            <Grid
+                                Grid.Row="0"
+                                Margin="0,0,0,10"
+                                HorizontalOptions="Center">
+                                <dx:DXBorder
+                                    Padding="0"
+                                    BackgroundColor="#9CA052"
+                                    BorderColor="#FFFDF8"
+                                    CornerRadius="55"
+                                    HeightRequest="100"
+                                    WidthRequest="100">
+                                    <dx:DXImage Aspect="AspectFill" Source="{Binding SelectedImageSource}" />
+                                </dx:DXBorder>
+
+                                <dx:DXBorder
+                                    Padding="0"
+                                    BackgroundColor="{StaticResource Action}"
+                                    BorderColor="#F5F0E1"
+                                    CornerRadius="13"
+                                    HeightRequest="35"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="End"
+                                    WidthRequest="35">
+                                    <ImageButton
+                                        Padding="6"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding EditProfileImageCommand}"
+                                        Source="camera_icon.png" />
+                                </dx:DXBorder>
+                            </Grid>
+
+                            <Label
+                                Grid.Row="1"
+                                Margin="0,0,0,2"
+                                FontAttributes="Bold"
+                                FontSize="17"
+                                HorizontalOptions="Center"
+                                Text="{Binding FullName}"
+                                TextColor="{StaticResource TextPrimary}" />
+
+                            <Label
+                                Grid.Row="2"
+                                Margin="0,0,0,22"
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                Text="Beekeeper"
+                                TextColor="{StaticResource Label}" />
+                        </Grid>
+
+                        <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
+                            <!--  Section label  -->
+                            <Label
+                                Grid.Row="0"
+                                Margin="0,0,0,8"
+                                CharacterSpacing="0.5"
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                Text="PERSONAL INFORMATION"
+                                TextColor="{StaticResource BrandLight}" />
+
+                            <!--  Info card  -->
+                            <dx:DXBorder
+                                Grid.Row="1"
+                                Margin="0,0,0,18"
+                                Padding="20"
+                                BorderThickness="1"
+                                CornerRadius="12">
+                                <VerticalStackLayout Spacing="10">
+
+                                    <!--  Email row (copyable)  -->
+                                    <Grid ColumnDefinitions="Auto, *, Auto">
+                                        <Image
+                                            Grid.Column="0"
+                                            HeightRequest="16"
+                                            Source="mail_icon.png"
+                                            VerticalOptions="Center"
+                                            WidthRequest="16" />
+                                        <VerticalStackLayout
+                                            Grid.Column="1"
+                                            Margin="10,0,0,0"
+                                            VerticalOptions="Center">
+                                            <Label
+                                                FontSize="12"
+                                                Text="Email"
+                                                TextColor="{StaticResource Label}" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding Email}"
+                                                TextColor="{StaticResource TextPrimary}" />
+                                        </VerticalStackLayout>
+                                        <ImageButton
+                                            Grid.Column="2"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="18"
+                                            Source="copy_icon.png"
+                                            WidthRequest="18" />
+                                    </Grid>
+                                    <BoxView HeightRequest="0.5" Color="#EFEADA" />
+
+                                    <!--  Contact number row (copyable)  -->
+                                    <Grid ColumnDefinitions="Auto, *, Auto">
+                                        <Image
+                                            Grid.Column="0"
+                                            HeightRequest="16"
+                                            Source="phone_icon.png"
+                                            VerticalOptions="Center"
+                                            WidthRequest="16" />
+                                        <VerticalStackLayout
+                                            Grid.Column="1"
+                                            Margin="10,0,0,0"
+                                            VerticalOptions="Center">
+                                            <Label
+                                                FontSize="12"
+                                                Text="Contact Number"
+                                                TextColor="{StaticResource Label}" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding ContactNumber}"
+                                                TextColor="{StaticResource TextPrimary}" />
+                                        </VerticalStackLayout>
+                                        <ImageButton
+                                            Grid.Column="2"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="18"
+                                            Source="copy_icon.png"
+                                            WidthRequest="18" />
+                                    </Grid>
+                                    <BoxView HeightRequest="0.5" Color="#EFEADA" />
+
+                                    <!--  Birthday row (not copyable)  -->
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <Image
+                                            Grid.Column="0"
+                                            HeightRequest="16"
+                                            Source="cake_icon.png"
+                                            VerticalOptions="Center"
+                                            WidthRequest="16" />
+                                        <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0">
+                                            <Label
+                                                FontSize="12"
+                                                Text="Birthday"
+                                                TextColor="{StaticResource Label}" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding Birthday}"
+                                                TextColor="{StaticResource TextPrimary}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                    <BoxView HeightRequest="0.5" Color="#EFEADA" />
+
+                                    <!--  Sex row (not copyable)  -->
+                                    <Grid ColumnDefinitions="Auto, *">
+                                        <Image
+                                            Grid.Column="0"
+                                            HeightRequest="16"
+                                            Source="gender_icon.png"
+                                            VerticalOptions="Center"
+                                            WidthRequest="16" />
+                                        <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0">
+                                            <Label
+                                                FontSize="12"
+                                                Text="Sex"
+                                                TextColor="{StaticResource Label}" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding Sex}"
+                                                TextColor="{StaticResource TextPrimary}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </dx:DXBorder>
+                        </Grid>
+                    </Grid>
+                </dx:TabViewItem.Content>
+            </dx:TabViewItem>
+        </dx:TabView>
+    </Grid>
+
+</ContentPage>
+
+

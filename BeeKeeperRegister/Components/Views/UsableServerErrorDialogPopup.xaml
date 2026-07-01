@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dx:DXPopup
+    x:Class="BeeKeeperRegister.Components.Views.UsableServerErrorDialogPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    x:Name="Popup"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center"
+    AllowAnimation="True"
+    AllowScrim="True"
+    BackgroundColor="{StaticResource Surface}"
+    CornerRadius="25"
+    ScrimColor="#80000000">
+
+    <dx:DXPopup.Content>
+        <StackLayout HeightRequest="280" WidthRequest="250">
+
+            <dx:DXBorder
+                Margin="0,25,0,10"
+                BorderColor="{StaticResource Warning}"
+                BorderThickness="4"
+                CornerRadius="50"
+                HeightRequest="60"
+                WidthRequest="60">
+
+                <Label
+                    Margin="0,0,0,10"
+                    FontAttributes="Bold"
+                    FontFamily="Roboto"
+                    FontSize="40"
+                    HorizontalTextAlignment="Center"
+                    Text="X"
+                    TextColor="{StaticResource Warning}"
+                    VerticalTextAlignment="Center" />
+            </dx:DXBorder>
+
+            <Label
+                Margin="10,5,10,10"
+                FontAttributes="Bold"
+                FontFamily="Roboto"
+                FontSize="25"
+                HorizontalTextAlignment="Center"
+                Text="Server Error"
+                TextColor="{StaticResource Label}" />
+
+            <Label
+                Margin="15,0,15,15"
+                FontFamily="Roboto"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                Text="{Binding DialogMessage}" />
+            <dx:DXButton
+                BackgroundColor="{StaticResource Warning}"
+                Clicked="TryAgainBTN"
+                Content="Ok"
+                WidthRequest="150" />
+        </StackLayout>
+    </dx:DXPopup.Content>
+</dx:DXPopup>

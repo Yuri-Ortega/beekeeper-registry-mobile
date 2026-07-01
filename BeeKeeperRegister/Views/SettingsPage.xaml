@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    Title="Settings"
+    x:DataType="viewModels:SettingsViewModel"
+    Shell.NavBarHasShadow="True"
+    Shell.NavBarIsVisible="True">
+    <ContentPage.Resources>
+        <Style x:Key="HeaderText" TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Roboto Medium" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{dx:ThemeColor Key=OnSurface}" />
+        </Style>
+        <Style x:Key="FormComponent" TargetType="dx:FormItem">
+            <Setter Property="Padding" Value="0,16" />
+            <Setter Property="ArrowMargin" Value="16,0" />
+            <Setter Property="ShowSeparator" Value="False" />
+            <Setter Property="ImageWidth" Value="24" />
+            <Setter Property="ImageHeight" Value="24" />
+            <Setter Property="ImageMargin" Value="16,0" />
+            <Setter Property="ImageColor" Value="{dx:ThemeColor Key=OnSurfaceVariant}" />
+            <Setter Property="HorizontalSpacing" Value="0" />
+            <Setter Property="VerticalSpacing" Value="10" />
+            <Setter Property="TextFontSize" Value="16" />
+            <Setter Property="TextFontFamily" Value="Roboto" />
+            <Setter Property="ShowArrow" Value="True" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Behaviors>
+        <dx:SystemBarBehavior AndroidStatusBarBackground="{dx:ThemeColor Key=SurfaceContainer}" />
+    </ContentPage.Behaviors>
+
+    <dx:DXScrollView>
+        <dx:DXStackLayout BackgroundColor="{dx:ThemeColor Key=Surface}">
+            <Label
+                Margin="16,16,16,8"
+                Style="{StaticResource HeaderText}"
+                Text="Account &amp; Profile" />
+            <dx:FormItem
+                ImageSource="user_icon.png"
+                Style="{StaticResource FormComponent}"
+                TapCommand="{Binding NavigateEditUserCommand}"
+                Text="Edit Your Profile" />
+            <dx:FormItem
+                ImageSource="user.png"
+                Style="{StaticResource FormComponent}"
+                TapCommand="{Binding NavigateChangeUsernameCommand}"
+                Text="Change Username" />
+            <dx:FormItem
+                ImageSource="lock.png"
+                Style="{StaticResource FormComponent}"
+                TapCommand="{Binding NavigateChangePasswordCommand}"
+                Text="Change Password" />
+
+            <Label
+                Margin="16,24,16,8"
+                Style="{StaticResource HeaderText}"
+                Text="App Preferences" />
+            <dx:FormItem
+                ImageSource="notifications"
+                Style="{StaticResource FormComponent}"
+                TapCommand="{Binding HandleActionCommand}"
+                Text="Notifications" />
+            <dx:FormListPickerItem
+                ImageSource="language"
+                ItemsSource="{Binding Languages}"
+                PickerShowMode="BottomSheet"
+                SelectedItem="{Binding Language}"
+                Style="{StaticResource FormComponent}"
+                Text="Language" />
+            <dx:DXButton
+                Margin="16,24"
+                ButtonType="Outlined"
+                Command="{Binding LogoutCommand}"
+                Content="Log Out"
+                Style="{StaticResource ButtonOutlineStyle}"
+                WidthRequest="160" />
+        </dx:DXStackLayout>
+    </dx:DXScrollView>
+</ContentPage>

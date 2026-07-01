@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.AddTempBeeSpeciesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    Title="Add Bee Species"
+    x:DataType="viewModels:AddTempBeeSpeciesViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarHasShadow="True"
+    Shell.NavBarIsVisible="True">
+    <dx:DXScrollView>
+        <Grid Padding="50" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, *">
+            <HorizontalStackLayout
+                Grid.Row="0"
+                RadioButtonGroup.GroupName="Imp"
+                RadioButtonGroup.SelectedValue="{Binding SelectedImported, Mode=TwoWay}"
+                Spacing="10">
+                <Label
+                    FontAttributes="Bold"
+                    Text="Imported"
+                    TextColor="{StaticResource Label}"
+                    VerticalTextAlignment="Center" />
+                <RadioButton
+                    BackgroundColor="Transparent"
+                    Content="Yes"
+                    GroupName="Imp"
+                    TextColor="{StaticResource Label}"
+                    Value="Yes" />
+                <RadioButton
+                    BackgroundColor="Transparent"
+                    Content="No"
+                    GroupName="Imp"
+                    TextColor="{StaticResource Label}"
+                    Value="No" />
+            </HorizontalStackLayout>
+
+            <dx:ComboBoxEdit
+                Grid.Row="1"
+                AllowAnimation="True"
+                DisplayMember="ProvinceName"
+                HasError="{Binding ErrProvinceSourceBool}"
+                IsEnabled="{Binding IsLocal, Mode=TwoWay}"
+                IsVisible="{Binding IsLocal, Mode=TwoWay}"
+                ItemsSource="{Binding ProvinceSource}"
+                LabelText="Province Source *"
+                SelectedItem="{Binding SelectedProvinceSource, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectionProvinceSourceCommand}" />
+
+            <dx:ComboBoxEdit
+                Grid.Row="2"
+                AllowAnimation="True"
+                DisplayMember="CountryName"
+                HasError="{Binding ErrCountryBool}"
+                IsEnabled="{Binding IsImported, Mode=TwoWay}"
+                IsVisible="{Binding IsImported, Mode=TwoWay}"
+                ItemsSource="{Binding Country}"
+                LabelText="Country *"
+                SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectionCountryCommand}" />
+
+            <dx:ComboBoxEdit
+                Grid.Row="3"
+                AllowAnimation="True"
+                DisplayMember="BeeTypeDescription"
+                HasError="{Binding ErrBeeTypeBool}"
+                IsEnabled="{Binding ShowBeeType, Mode=TwoWay}"
+                ItemsSource="{Binding BeeType}"
+                LabelText="Type of Bee *"
+                SelectedItem="{Binding SelectedBeeType, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectionBeeTypeCommand}" />
+
+            <dx:ComboBoxEdit
+                Grid.Row="4"
+                AllowAnimation="True"
+                DisplayMember="BscoloniesDescription"
+                HasError="{Binding ErrBsColoniesBool}"
+                ItemsSource="{Binding BsColonies}"
+                LabelText="Source of Colonies *"
+                SelectedItem="{Binding SelectedBsColonies, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding SelectionBsColoniesCommand}" />
+
+            <dx:TextEdit
+                Grid.Row="5"
+                HasError="{Binding ErrNumberOfColoniesBool}"
+                IsErrorIconVisible="False"
+                Keyboard="Numeric"
+                LabelText="Number of Colonies *"
+                Text="{Binding NumberOfColonies, Mode=TwoWay}" />
+
+            <dx:DXButton
+                Grid.Row="6"
+                Margin="0,10,0,0"
+                Command="{Binding AddBeeSpeciesCommand}"
+                Content="Add New Bee Species"
+                Icon="add.png" />
+        </Grid>
+    </dx:DXScrollView>
+</ContentPage>
+
+
+
+
+
+
+

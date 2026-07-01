@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.AddFarmProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    Title="New Farm Location"
+    x:DataType="viewModels:AddFarmProfileViewModel"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarHasShadow="True"
+    Shell.NavBarIsVisible="True">
+    <dx:DXScrollView>
+        <Grid
+            Padding="50"
+            RowDefinitions="Auto,*,Auto"
+            VerticalOptions="Center">
+
+            <!--  🔹 STEP INDICATOR  -->
+            <ScrollView
+                x:Name="stepScroll"
+                Grid.Row="0"
+                HorizontalScrollBarVisibility="Never"
+                Orientation="Horizontal">
+
+                <HorizontalStackLayout
+                    x:Name="stepContainer"
+                    Padding="10"
+                    HorizontalOptions="Center"
+                    Spacing="12">
+
+                    <Border
+                        x:Name="step1"
+                        BackgroundColor="#698E49"
+                        HeightRequest="30"
+                        StrokeShape="15"
+                        WidthRequest="30">
+                        <Label
+                            x:Name="step1Txt"
+                            HorizontalOptions="Center"
+                            Text="1"
+                            TextColor="#E0E0E0"
+                            VerticalOptions="Center" />
+                    </Border>
+
+                    <BoxView
+                        x:Name="line1"
+                        BackgroundColor="#979797"
+                        HeightRequest="2"
+                        WidthRequest="40" />
+
+                    <Border
+                        x:Name="step2"
+                        BackgroundColor="#979797"
+                        HeightRequest="30"
+                        StrokeShape="15"
+                        WidthRequest="30">
+                        <Label
+                            x:Name="step2Txt"
+                            HorizontalOptions="Center"
+                            Text="2"
+                            VerticalOptions="Center" />
+                    </Border>
+
+                    <BoxView
+                        x:Name="line2"
+                        BackgroundColor="#979797"
+                        HeightRequest="2"
+                        WidthRequest="40" />
+
+                    <Border
+                        x:Name="step3"
+                        BackgroundColor="#979797"
+                        HeightRequest="30"
+                        StrokeShape="15"
+                        WidthRequest="30">
+                        <Label
+                            x:Name="step3Txt"
+                            HorizontalOptions="Center"
+                            Text="3"
+                            VerticalOptions="Center" />
+                    </Border>
+
+                    <BoxView
+                        x:Name="line3"
+                        BackgroundColor="#979797"
+                        HeightRequest="2"
+                        WidthRequest="40" />
+
+                    <Border
+                        x:Name="step4"
+                        BackgroundColor="#979797"
+                        HeightRequest="30"
+                        StrokeShape="15"
+                        WidthRequest="30">
+                        <Label
+                            x:Name="step4Txt"
+                            HorizontalOptions="Center"
+                            Text="4"
+                            VerticalOptions="Center" />
+                    </Border>
+
+                    <BoxView
+                        x:Name="line4"
+                        BackgroundColor="#979797"
+                        HeightRequest="2"
+                        WidthRequest="40" />
+
+                    <Border
+                        x:Name="step5"
+                        BackgroundColor="#979797"
+                        HeightRequest="30"
+                        StrokeShape="15"
+                        WidthRequest="30">
+                        <Label
+                            x:Name="step5Txt"
+                            HorizontalOptions="Center"
+                            Text="5"
+                            VerticalOptions="Center" />
+                    </Border>
+
+                </HorizontalStackLayout>
+
+            </ScrollView>
+            <dx:SlideView
+                x:Name="slideView"
+                Grid.Row="1"
+                Margin="0,0,0,15"
+                AllowAnimation="True"
+                AllowSwipe="False">
+
+                <dx:SlideView.Items>
+
+                    <!--  STEP 1  -->
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                        <Label
+                            Grid.Row="0"
+                            Padding="5,10"
+                            FontSize="20"
+                            HorizontalTextAlignment="Start"
+                            Text="Administrative Location" />
+
+                        <dx:ComboBoxEdit
+                            Grid.Row="1"
+                            AllowAnimation="True"
+                            DisplayMember="Region"
+                            HasError="{Binding ErrRegionBool}"
+                            ItemsSource="{Binding Region}"
+                            LabelText="Region *"
+                            SelectedItem="{Binding SelectedRegion, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectionRegionCommand}" />
+
+                        <dx:ComboBoxEdit
+                            Grid.Row="2"
+                            DisplayMember="ProvinceName"
+                            HasError="{Binding ErrProvinceBool}"
+                            IsEnabled="{Binding IsEnabledProvince}"
+                            ItemsSource="{Binding Province}"
+                            LabelText="Province *"
+                            SelectedItem="{Binding SelectedProvince, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectionProvinceCommand}" />
+
+                        <dx:ComboBoxEdit
+                            Grid.Row="3"
+                            DisplayMember="MunCity"
+                            HasError="{Binding ErrMunicipalityBool}"
+                            IsEnabled="{Binding IsEnabledMunicipality}"
+                            ItemsSource="{Binding Municipality}"
+                            LabelText="Municipality *"
+                            SelectedItem="{Binding SelectedMunicipality, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectionMunicipalityCommand}" />
+
+                        <dx:ComboBoxEdit
+                            Grid.Row="4"
+                            DisplayMember="BarangayName"
+                            HasError="{Binding ErrBarangayBool}"
+                            IsEnabled="{Binding IsEnabledBarangay}"
+                            ItemsSource="{Binding Barangay}"
+                            LabelText="Barangay *"
+                            SelectedItem="{Binding SelectedBarangay, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectionBarangayCommand}" />
+
+                        <dxe:NumericEdit
+                            Grid.Row="5"
+                            HasError="{Binding ErrLotNoBool}"
+                            LabelText="Lot Number *"
+                            Value="{Binding LotNo}" />
+
+                        <Label
+                            Grid.Row="6"
+                            Padding="5,10"
+                            FontSize="20"
+                            HorizontalTextAlignment="Start"
+                            Text="Geographic Coordinate"
+                            TextColor="{StaticResource TextPrimary}" />
+
+                        <dx:DXBorder
+                            Grid.Row="7"
+                            BorderThickness="1"
+                            CornerRadius="10">
+                            <Grid RowDefinitions="Auto, Auto" RowSpacing="10">
+                                <Label
+                                    Grid.Row="0"
+                                    FontSize="15"
+                                    Text="{Binding Latitude, Mode=TwoWay, StringFormat='Latitude: {0}'}" />
+                                <Label
+                                    Grid.Row="1"
+                                    FontSize="15"
+                                    Text="{Binding Longitude, Mode=TwoWay, StringFormat='Longitude: {0}'}" />
+                            </Grid>
+                        </dx:DXBorder>
+                        <dx:DXButton
+                            Grid.Row="8"
+                            Margin="0,10,0,0"
+                            Padding="10"
+                            BorderColor="{Binding ErrLocationColor}"
+                            BorderThickness="2"
+                            Command="{Binding MapLocationBtnCommand}"
+                            Content="Select Location"
+                            CornerRadius="10"
+                            FontSize="15"
+                            IsEnabled="{Binding IsEnabledSelectLocation}" />
+                    </Grid>
+
+                    <!--  STEP 2  -->
+                    <Grid
+                        Margin="0,10,0,0"
+                        RowDefinitions="Auto, Auto, Auto"
+                        RowSpacing="10">
+                        <Grid
+                            Grid.Row="0"
+                            Margin="0,0,0,9"
+                            ColumnDefinitions="*, Auto">
+                            <HorizontalStackLayout Grid.Column="0" Spacing="6">
+                                <dx:DXImage
+                                    HeightRequest="16"
+                                    Source="bee_icon.png"
+                                    TintColor="{StaticResource BrandDark}"
+                                    WidthRequest="16" />
+                                <Label
+                                    CharacterSpacing="0.4"
+                                    FontAttributes="Bold"
+                                    FontSize="12"
+                                    Text="BEE SPECIES"
+                                    TextColor="{StaticResource BrandDark}"
+                                    VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+                            <dx:DXButton
+                                Grid.Column="1"
+                                Padding="10,5"
+                                Command="{Binding AddBeeSpeciesCommand}"
+                                Content="+ Add"
+                                CornerRadius="7"
+                                FontSize="11"
+                                IsEnabled="{Binding IsEnabledAddBeeSpecies}" />
+                        </Grid>
+
+                        <VerticalStackLayout
+                            Grid.Row="1"
+                            Margin="0,0,0,22"
+                            BindableLayout.ItemsSource="{Binding SpeciesList}"
+                            IsVisible="{Binding BeeSpeciesHasData}"
+                            Spacing="10">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type x:Object}">
+                                    <dx:DXBorder
+                                        Padding="12"
+                                        BorderThickness="1"
+                                        CornerRadius="12">
+                                        <VerticalStackLayout Spacing="8">
+
+                                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8">
+                                                <dx:DXBorder
+                                                    Grid.Column="0"
+                                                    BackgroundColor="{StaticResource BackgroundColor}"
+                                                    BorderThickness="0"
+                                                    CornerRadius="8"
+                                                    HeightRequest="30"
+                                                    WidthRequest="30">
+                                                    <dx:DXImage
+                                                        Aspect="AspectFit"
+                                                        HeightRequest="15"
+                                                        Source="bee_icon.png"
+                                                        TintColor="{StaticResource Action}"
+                                                        WidthRequest="15" />
+                                                </dx:DXBorder>
+                                                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="12.5"
+                                                        Text="{Binding BeeTypeDescription}"
+                                                        TextColor="{StaticResource TextPrimary}" />
+                                                    <Label FontSize="10.5" TextColor="{StaticResource Label}">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Imported: " />
+                                                                <Span Text="{Binding Imported}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </VerticalStackLayout>
+                                            </Grid>
+
+                                            <BoxView HeightRequest="0.5" Color="{StaticResource BorderEdge}" />
+
+                                            <Label FontSize="11" TextColor="{StaticResource Label}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            Text="Origins  "
+                                                            TextColor="{StaticResource TextPrimary}" />
+                                                        <Span Text="{Binding Origin}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <Label FontSize="11" TextColor="{StaticResource Label}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            Text="Colonies "
+                                                            TextColor="{StaticResource TextPrimary}" />
+                                                        <Span Text="{Binding NOC}" />
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            Text="   •   Source "
+                                                            TextColor="{StaticResource TextPrimary}" />
+                                                        <Span Text="{Binding Source}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <HorizontalStackLayout HorizontalOptions="End" Spacing="10">
+                                                <dx:DXImage
+                                                    HeightRequest="15"
+                                                    Source="edit_icon.png"
+                                                    TintColor="{StaticResource BrandDark}"
+                                                    WidthRequest="15">
+                                                    <dx:DXImage.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateBeeSpeciesCommand}" CommandParameter="{Binding .}" />
+                                                    </dx:DXImage.GestureRecognizers>
+                                                </dx:DXImage>
+                                                <dx:DXImage
+                                                    HeightRequest="15"
+                                                    Source="delete_icon.png"
+                                                    TintColor="{StaticResource Danger}"
+                                                    WidthRequest="15">
+                                                    <dx:DXImage.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteBeeSpeciesCommand}" CommandParameter="{Binding .}" />
+                                                    </dx:DXImage.GestureRecognizers>
+                                                </dx:DXImage>
+                                            </HorizontalStackLayout>
+
+                                        </VerticalStackLayout>
+                                    </dx:DXBorder>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+
+                        <Label
+                            Grid.Row="2"
+                            Margin="0,0,0,22"
+                            Padding="0,30"
+                            FontSize="14"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding SpeciesListIsEmpty}"
+                            Text="No items to display"
+                            TextColor="{StaticResource Label}" />
+
+
+                    </Grid>
+
+
+                    <!--  STEP 3  -->
+                    <Grid
+                        Margin="0,10,0,0"
+                        RowDefinitions="Auto, Auto, Auto"
+                        RowSpacing="10">
+                        <Grid
+                            Grid.Row="0"
+                            Margin="0,0,0,9"
+                            ColumnDefinitions="*, Auto">
+                            <HorizontalStackLayout Grid.Column="0" Spacing="6">
+                                <dx:DXImage
+                                    HeightRequest="16"
+                                    Source="honey_pot_icon.png"
+                                    TintColor="{StaticResource BrandDark}"
+                                    WidthRequest="16" />
+                                <Label
+                                    CharacterSpacing="0.4"
+                                    FontAttributes="Bold"
+                                    FontSize="12"
+                                    Text="BEE PRODUCTION"
+                                    TextColor="{StaticResource BrandDark}"
+                                    VerticalTextAlignment="Center" />
+                            </HorizontalStackLayout>
+                            <dx:DXButton
+                                Grid.Column="1"
+                                Padding="10,5"
+                                Command="{Binding AddBeeProductioonCommand}"
+                                Content="+ Add"
+                                CornerRadius="7"
+                                FontSize="11"
+                                IsEnabled="{Binding IsEnabledAddBeeProduction}" />
+                        </Grid>
+
+                        <dx:DXBorder
+                            Grid.Row="1"
+                            Margin="0,0,0,22"
+                            Padding="0,4"
+                            BorderThickness="1"
+                            CornerRadius="12"
+                            IsVisible="{Binding BeeProductioonHasData}">
+                            <VerticalStackLayout BindableLayout.ItemsSource="{Binding BeeProductioonList}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate x:DataType="{x:Type x:Object}">
+                                        <VerticalStackLayout>
+                                            <Grid
+                                                Padding="12,9"
+                                                ColumnDefinitions="Auto, *, Auto, Auto"
+                                                ColumnSpacing="10">
+                                                <dx:DXBorder
+                                                    Grid.Column="0"
+                                                    BackgroundColor="{StaticResource BackgroundColor}"
+                                                    BorderThickness="0"
+                                                    CornerRadius="9"
+                                                    HeightRequest="34"
+                                                    WidthRequest="34">
+                                                    <dx:DXImage
+                                                        Aspect="AspectFit"
+                                                        HeightRequest="17"
+                                                        Source="honey_pot_icon.png"
+                                                        TintColor="{StaticResource Action}"
+                                                        WidthRequest="17" />
+                                                </dx:DXBorder>
+                                                <VerticalStackLayout
+                                                    Grid.Column="1"
+                                                    Spacing="2"
+                                                    VerticalOptions="Center">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="12.5"
+                                                        Text="{Binding BeeProduction}"
+                                                        TextColor="{StaticResource TextPrimary}" />
+                                                    <Label FontSize="10.5" TextColor="{StaticResource Label}">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding EstProdYield}" />
+                                                                <Span Text=" kg / year average" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </VerticalStackLayout>
+                                                <dx:DXImage
+                                                    Grid.Column="2"
+                                                    HeightRequest="15"
+                                                    Source="edit_icon.png"
+                                                    TintColor="{StaticResource BrandDark}"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="15">
+                                                    <dx:DXImage.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateBeeProductioonCommand}" CommandParameter="{Binding .}" />
+                                                    </dx:DXImage.GestureRecognizers>
+                                                </dx:DXImage>
+                                                <dx:DXImage
+                                                    Grid.Column="3"
+                                                    HeightRequest="15"
+                                                    Source="delete_icon.png"
+                                                    TintColor="{StaticResource Danger}"
+                                                    VerticalOptions="Center"
+                                                    WidthRequest="15">
+                                                    <dx:DXImage.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteBeeProductioonCommand}" CommandParameter="{Binding .}" />
+                                                    </dx:DXImage.GestureRecognizers>
+                                                </dx:DXImage>
+                                            </Grid>
+                                            <BoxView
+                                                Margin="12,0"
+                                                HeightRequest="0.5"
+                                                Color="{StaticResource BorderEdge}" />
+                                        </VerticalStackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </VerticalStackLayout>
+                        </dx:DXBorder>
+
+                        <Label
+                            Grid.Row="2"
+                            Margin="0,0,0,22"
+                            Padding="0,30"
+                            FontSize="14"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="{Binding BeeProductioonListIsEmpty}"
+                            Text="No items to display"
+                            TextColor="{StaticResource Label}" />
+
+                    </Grid>
+
+
+                    <!--  STEP 4  -->
+
+                    <Grid RowDefinitions="Auto,*">
+                        <Label
+                            Grid.Row="0"
+                            Padding="5,10"
+                            FontSize="20"
+                            HorizontalTextAlignment="Start"
+                            Text="Biosecurity Measures (Yes/No)"
+                            TextColor="{StaticResource TextPrimary}" />
+
+                        <CollectionView Grid.Row="1" ItemsSource="{Binding BioSecurityList}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="{x:Type x:Object}">
+                                    <dx:DXBorder
+                                        Margin="0,0,0,10"
+                                        Padding="14"
+                                        BackgroundColor="{StaticResource Surface}"
+                                        BorderColor="{StaticResource BorderEdge}"
+                                        BorderThickness="1"
+                                        CornerRadius="12">
+                                        <VerticalStackLayout Spacing="10">
+
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="12.5"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding BeeBioDescription}"
+                                                TextColor="{StaticResource TextPrimary}" />
+
+                                            <Grid
+                                                ColumnDefinitions="*, *"
+                                                ColumnSpacing="10"
+                                                RadioButtonGroup.GroupName="{Binding BeeBioCode}"
+                                                RadioButtonGroup.SelectedValue="{Binding SelectedBioSecurity}">
+
+                                                <dx:DXBorder
+                                                    Grid.Column="0"
+                                                    Padding="0,7"
+                                                    BackgroundColor="{Binding YesRadioBg, Mode=TwoWay}"
+                                                    BorderColor="{StaticResource Success}"
+                                                    BorderThickness="1"
+                                                    CornerRadius="8">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="12"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="Yes"
+                                                        TextColor="{Binding YesRadioTxt, Mode=TwoWay}" />
+                                                    <dx:DXBorder.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectYesBioCommand}" CommandParameter="{Binding .}" />
+                                                    </dx:DXBorder.GestureRecognizers>
+                                                </dx:DXBorder>
+
+                                                <dx:DXBorder
+                                                    Grid.Column="1"
+                                                    Padding="0,7"
+                                                    BackgroundColor="{Binding NoRadioBg, Mode=TwoWay}"
+                                                    BorderColor="{StaticResource Danger}"
+                                                    BorderThickness="1"
+                                                    CornerRadius="8">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="12"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="No"
+                                                        TextColor="{Binding NoRadioTxt, Mode=TwoWay}" />
+                                                    <dx:DXBorder.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectNoBioCommand}" CommandParameter="{Binding .}" />
+                                                    </dx:DXBorder.GestureRecognizers>
+                                                </dx:DXBorder>
+
+                                            </Grid>
+                                        </VerticalStackLayout>
+                                    </dx:DXBorder>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </Grid>
+
+                    <!--  STEP 5  -->
+                    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                        <Label
+                            Grid.Row="0"
+                            Padding="5,10"
+                            FontSize="20"
+                            HorizontalTextAlignment="Start"
+                            Text="Production System"
+                            TextColor="{StaticResource TextPrimary}" />
+
+                        <dxe:TokenEdit
+                            Grid.Row="1"
+                            DisplayMember="BeeSystemProduction"
+                            HasError="{Binding ErrBeeProductionSystemBool}"
+                            ItemsSource="{Binding BeeProductionSystem}"
+                            LabelText="Production System *"
+                            PlaceholderText="Select one or more"
+                            SelectedItems="{Binding SelectedBeeProductionSystem, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectionBeeProductionSystemCommand}">
+
+                            <dxe:TokenEdit.TokenAppearance>
+                                <dxe:TokenAppearance
+                                    Padding="12,6"
+                                    BackgroundColor="{StaticResource BrandLight}"
+                                    BorderColor="{StaticResource BrandDark}"
+                                    BorderThickness="0.5"
+                                    CornerRadius="20"
+                                    TextColor="{StaticResource Surface}" />
+                            </dxe:TokenEdit.TokenAppearance>
+
+                        </dxe:TokenEdit>
+
+
+                        <dxe:TokenEdit
+                            Grid.Row="2"
+                            DisplayMember="CommonPestsDescription"
+                            ItemsSource="{Binding BeeCommonPest}"
+                            LabelText="Common Pest/s Encountered"
+                            PlaceholderText="Select one or more"
+                            SelectedItems="{Binding SelectedBeeCommonPest, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectionBeeCommonPestCommand}">
+
+                            <dxe:TokenEdit.TokenAppearance>
+                                <dxe:TokenAppearance
+                                    Padding="12,6"
+                                    BackgroundColor="{StaticResource BrandLight}"
+                                    BorderColor="{StaticResource BrandDark}"
+                                    BorderThickness="0.5"
+                                    CornerRadius="20"
+                                    TextColor="{StaticResource Surface}" />
+                            </dxe:TokenEdit.TokenAppearance>
+
+                        </dxe:TokenEdit>
+
+
+                        <dxe:TokenEdit
+                            Grid.Row="3"
+                            DisplayMember="CommonDiseaseBeeDescription"
+                            ItemsSource="{Binding BeeCommonDiseases}"
+                            LabelText="Common Disease/s Encountered"
+                            PlaceholderText="Select one or more"
+                            SelectedItems="{Binding SelectedBeeCommonDiseases, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectionBeeCommonDiseasesCommand}">
+
+                            <dxe:TokenEdit.TokenAppearance>
+                                <dxe:TokenAppearance
+                                    Padding="12,6"
+                                    BackgroundColor="{StaticResource BrandLight}"
+                                    BorderColor="{StaticResource BrandDark}"
+                                    BorderThickness="0.5"
+                                    CornerRadius="20"
+                                    TextColor="{StaticResource Surface}" />
+                            </dxe:TokenEdit.TokenAppearance>
+
+                        </dxe:TokenEdit>
+
+                        <dx:DXBorder
+                            Grid.Row="4"
+                            BorderThickness="1"
+                            CornerRadius="10">
+                            <VerticalStackLayout
+                                RadioButtonGroup.GroupName="HMP"
+                                RadioButtonGroup.SelectedValue="{Binding SelectedHDMng, Mode=TwoWay}"
+                                Spacing="10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="Use of Health Monitoring Protocol"
+                                    TextColor="{StaticResource Label}"
+                                    VerticalTextAlignment="Center" />
+                                <RadioButton
+                                    Content="Yes"
+                                    GroupName="HMP"
+                                    TextColor="{StaticResource Label}"
+                                    Value="Yes" />
+                                <RadioButton
+                                    Content="No"
+                                    GroupName="HMP"
+                                    Value="No" />
+                            </VerticalStackLayout>
+                        </dx:DXBorder>
+
+
+
+                        <Label
+                            Grid.Row="5"
+                            Padding="5,10"
+                            FontSize="20"
+                            HorizontalTextAlignment="Start"
+                            Text="Forages"
+                            TextColor="{StaticResource TextPrimary}" />
+
+
+                        <dxe:TokenEdit
+                            Grid.Row="6"
+                            DisplayMember="ForagesDescription"
+                            HasError="{Binding ErrBeeLocationForageBool}"
+                            ItemsSource="{Binding BeeLocationForage}"
+                            LabelText="Species Plant"
+                            PlaceholderText="Select one or more"
+                            SelectedItems="{Binding SelectedBeeLocationForage, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectionBeeLocationForageCommand}">
+
+                            <dxe:TokenEdit.TokenAppearance>
+                                <dxe:TokenAppearance
+                                    Padding="12,6"
+                                    BackgroundColor="{StaticResource BrandLight}"
+                                    BorderColor="{StaticResource BrandDark}"
+                                    BorderThickness="0.5"
+                                    CornerRadius="20"
+                                    TextColor="{StaticResource Surface}" />
+                            </dxe:TokenEdit.TokenAppearance>
+
+                        </dxe:TokenEdit>
+                    </Grid>
+                </dx:SlideView.Items>
+            </dx:SlideView>
+
+
+            <Grid
+                Grid.Row="2"
+                Margin="0,10,0,0"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10">
+                <dx:DXButton
+                    x:Name="backButton"
+                    Grid.Column="0"
+                    Padding="5,10"
+                    Clicked="OnBackClicked"
+                    Content="BACK"
+                    CornerRadius="10"
+                    FontSize="15"
+                    Style="{StaticResource ButtonOutlineStyle}" />
+                <dx:DXButton
+                    x:Name="nextButton"
+                    Grid.Column="1"
+                    Padding="5,10"
+                    Clicked="OnNextClicked"
+                    Content="NEXT"
+                    CornerRadius="10"
+                    FontSize="15" />
+            </Grid>
+
+        </Grid>
+    </dx:DXScrollView>
+</ContentPage>
+
+
+
+
+
+
+
+
