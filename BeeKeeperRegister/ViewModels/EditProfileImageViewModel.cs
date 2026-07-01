@@ -43,7 +43,7 @@ namespace BeeKeeperRegister.ViewModels
         {
             var result = await _accountService.GetProfileImageAsync();
 
-            if (result?.ProfilePicture is not null && result.ProfilePicture.Length > 0)
+            if (result is not null && result?.ProfilePicture is not null && result.ProfilePicture.Length > 0)
                 SelectedImageSource = ImageSource.FromStream(
                         () => new MemoryStream(result.ProfilePicture));
             else

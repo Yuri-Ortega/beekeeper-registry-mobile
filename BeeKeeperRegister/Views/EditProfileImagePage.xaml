@@ -57,15 +57,9 @@
             </dx:DXToolbar>
         </dx:DXBorder>
 
-        <dx:DXButton
-            Command="{Binding PickImgBTNCommand}"
-            Content="Select from Gallery"
-            Style="{StaticResource ButtonStyle}" />
+        <dx:DXButton Command="{Binding PickImgBTNCommand}" Content="Select from Gallery" />
 
-        <dx:DXButton
-            Command="{Binding SaveImgBTNCommand}"
-            Content="Save Photo"
-            Style="{StaticResource ButtonStyle}" />
+        <dx:DXButton Command="{Binding SaveImgBTNCommand}" Content="Save Photo" />
 
     </VerticalStackLayout>
 </ContentPage>

@@ -8,6 +8,11 @@ public partial class EditProfileImagePage : ContentPage
 	{
         InitializeComponent();
         BindingContext = vm;
+
+        if (BindingContext is EditProfileImageViewModel mvvm)
+        {
+            mvvm.ImageEditControl = editor;
+        }
     }
 
     protected override async void OnAppearing()
@@ -16,7 +21,6 @@ public partial class EditProfileImagePage : ContentPage
 
         if (BindingContext is EditProfileImageViewModel vm)
         {
-            vm.ImageEditControl = editor;
             await vm.LoaderAsync();
         }
 

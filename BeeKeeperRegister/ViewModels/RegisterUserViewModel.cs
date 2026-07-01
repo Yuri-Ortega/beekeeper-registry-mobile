@@ -223,10 +223,10 @@ namespace BeeKeeperRegister.ViewModels
         {
             return CurrentStep switch
             {
-                //0 => ValidateStepZero(),
-                //1 => ValidateStepOne(),
-                //2 => ValidateStepTwo(),
-                //3 => ValidateStepThree(),
+                0 => ValidateStepZero(),
+                1 => ValidateStepOne(),
+                2 => ValidateStepTwo(),
+                3 => ValidateStepThree(),
                 _ => true
             };
         }

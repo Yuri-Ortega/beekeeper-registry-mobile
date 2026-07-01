@@ -154,6 +154,8 @@
                             BorderColor="{StaticResource BrandDark}"
                             BorderThickness="0.5"
                             CornerRadius="20"
+                            PressedBackgroundColor="{StaticResource BrandDark}"
+                            PressedTextColor="{StaticResource Surface}"
                             TextColor="{StaticResource Surface}" />
                     </dxe:TokenEdit.TokenAppearance>
                 </dxe:TokenEdit>
@@ -173,6 +175,8 @@
                             BorderColor="{StaticResource BrandDark}"
                             BorderThickness="0.5"
                             CornerRadius="20"
+                            PressedBackgroundColor="{StaticResource BrandDark}"
+                            PressedTextColor="{StaticResource Surface}"
                             TextColor="{StaticResource Surface}" />
                     </dxe:TokenEdit.TokenAppearance>
                 </dxe:TokenEdit>
@@ -192,6 +196,8 @@
                             BorderColor="{StaticResource BrandDark}"
                             BorderThickness="0.5"
                             CornerRadius="20"
+                            PressedBackgroundColor="{StaticResource BrandDark}"
+                            PressedTextColor="{StaticResource Surface}"
                             TextColor="{StaticResource Surface}" />
                     </dxe:TokenEdit.TokenAppearance>
                 </dxe:TokenEdit>
@@ -229,6 +235,8 @@
                         BorderColor="{StaticResource BrandDark}"
                         BorderThickness="0.5"
                         CornerRadius="20"
+                        PressedBackgroundColor="{StaticResource BrandDark}"
+                        PressedTextColor="{StaticResource Surface}"
                         TextColor="{StaticResource Surface}" />
                 </dxe:TokenEdit.TokenAppearance>
             </dxe:TokenEdit>

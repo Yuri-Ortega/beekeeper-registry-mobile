@@ -10,6 +10,7 @@
     xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
     Title="Settings"
     x:DataType="viewModels:SettingsViewModel"
+    Background="{StaticResource BackgroundColor}"
     Shell.NavBarHasShadow="True"
     Shell.NavBarIsVisible="True">
     <ContentPage.Resources>
@@ -46,12 +47,12 @@
                 Style="{StaticResource HeaderText}"
                 Text="Account &amp; Profile" />
             <dx:FormItem
-                ImageSource="user_icon.png"
+                ImageSource="user.png"
                 Style="{StaticResource FormComponent}"
                 TapCommand="{Binding NavigateEditUserCommand}"
                 Text="Edit Your Profile" />
             <dx:FormItem
-                ImageSource="user.png"
+                ImageSource="user_icon.png"
                 Style="{StaticResource FormComponent}"
                 TapCommand="{Binding NavigateChangeUsernameCommand}"
                 Text="Change Username" />

@@ -179,20 +179,20 @@ namespace BeeKeeperRegister.ViewModels
         [RelayCommand]
         public async Task SelectionBeeProductionSystemAsync()
         {
-            if (!SelectedBeeProductionSystem.Any()) return;
+            if (SelectedBeeProductionSystem.Any() == false) return;
             ErrBeeProductionSystemBool = false;
         }
 
         [RelayCommand]
         public async Task SelectionBeeCommonPestAsync()
         {
-            if (!SelectedBeeCommonPest.Any()) return;
+            if (SelectedBeeCommonPest.Any() == false) return;
         }
 
         [RelayCommand]
         public async Task SelectionBeeCommonDiseasesAsync()
         {
-            if (!SelectedBeeCommonDiseases.Any()) return;
+            if (SelectedBeeCommonDiseases.Any() == false) return;
         }
 
 
