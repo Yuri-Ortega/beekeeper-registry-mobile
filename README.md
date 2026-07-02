@@ -19,7 +19,7 @@ The registration flow is a guided multi-step wizard with inline validation (e.g.
 ### Beekeeper Dashboard
 
 | Home Dashboard | Trainings | My Farms |
-|---|---|---|---|
+|---|---|---|
 | ![Dashboard](Screenshots/05-dashboard-home.jpg) | ![Trainings](Screenshots/06-trainings.jpg) | ![My Farms](Screenshots/07-my-farms.jpg) |
 
 The home dashboard aggregates farm and colony data into at-a-glance stats (total colonies, total farms, total production in kg) plus a species breakdown chart — giving beekeepers a quick health check of their operations.
