@@ -18,7 +18,7 @@ The registration flow is a guided multi-step wizard with inline validation (e.g.
 
 ### Beekeeper Dashboard
 
-| Home Dashboard | Trainings | My Farms | Profile |
+| Home Dashboard | Trainings | My Farms |
 |---|---|---|---|
 | ![Dashboard](Screenshots/05-dashboard-home.jpg) | ![Trainings](Screenshots/06-trainings.jpg) | ![My Farms](Screenshots/07-my-farms.jpg) |
 
