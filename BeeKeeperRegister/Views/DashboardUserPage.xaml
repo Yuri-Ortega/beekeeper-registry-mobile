@@ -215,7 +215,7 @@
                                         FontSize="12"
                                         Text="Species"
                                         TextColor="{StaticResource TextPrimary}" />
-                                    <dxc:PieChartView HeightRequest="200">
+                                    <dxc:PieChartView HeightRequest="200" IsVisible="{Binding SpeciesChartData.Count}">
                                         <dxc:PieChartView.Series>
                                             <dxc:DonutSeries>
                                                 <dxc:DonutSeries.Data>
@@ -233,6 +233,10 @@
                                                 VerticalPosition="Center" />
                                         </dxc:PieChartView.Legend>
                                     </dxc:PieChartView>
+                                    <dxc:DXImage
+                                        HeightRequest="200"
+                                        IsVisible="{Binding HasNoSpeciesChartData}"
+                                        Source="no_diagram.png" />
                                 </VerticalStackLayout>
                             </dx:DXBorder>
 
@@ -250,7 +254,7 @@
                                         FontSize="12"
                                         Text="Production"
                                         TextColor="{StaticResource TextPrimary}" />
-                                    <dxc:PieChartView HeightRequest="200">
+                                    <dxc:PieChartView HeightRequest="200" IsVisible="{Binding ProductionChartData.Count}">
                                         <dxc:PieChartView.Series>
                                             <dxc:DonutSeries>
                                                 <dxc:DonutSeries.Data>
@@ -268,6 +272,10 @@
                                                 VerticalPosition="Center" />
                                         </dxc:PieChartView.Legend>
                                     </dxc:PieChartView>
+                                    <dxc:DXImage
+                                        HeightRequest="200"
+                                        IsVisible="{Binding HasNoProductioonChartData}"
+                                        Source="no_diagram.png" />
                                 </VerticalStackLayout>
                             </dx:DXBorder>
 
@@ -285,7 +293,7 @@
                                         FontSize="12"
                                         Text="Forages"
                                         TextColor="{StaticResource TextPrimary}" />
-                                    <dxc:ChartView HeightRequest="240">
+                                    <dxc:ChartView HeightRequest="240" IsVisible="{Binding ForagesChartData.Count}">
                                         <dxc:ChartView.Series>
                                             <dxc:BarSeries>
                                                 <dxc:BarSeries.Data>
@@ -296,6 +304,10 @@
                                             </dxc:BarSeries>
                                         </dxc:ChartView.Series>
                                     </dxc:ChartView>
+                                    <dxc:DXImage
+                                        HeightRequest="200"
+                                        IsVisible="{Binding HasNoForagesChartData}"
+                                        Source="no_diagram.png" />
                                 </VerticalStackLayout>
                             </dx:DXBorder>
                         </VerticalStackLayout>

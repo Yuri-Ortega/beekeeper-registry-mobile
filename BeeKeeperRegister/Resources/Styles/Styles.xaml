@@ -95,6 +95,7 @@
         <Setter Property="FocusedBorderColor" Value="{StaticResource FocusedBorderEdge}" />
         <Setter Property="LabelColor" Value="{StaticResource Label}" />
         <Setter Property="FocusedLabelColor" Value="{StaticResource FocusedBorderEdge}" />
+        <Setter Property="IconColor" Value="#000000" />
         <Setter Property="ErrorColor" Value="{StaticResource Warning}" />
         <Setter Property="CornerRadius" Value="10" />
     </Style>

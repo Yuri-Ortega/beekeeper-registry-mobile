@@ -106,6 +106,15 @@ namespace BeeKeeperRegister.ViewModels
         [ObservableProperty]
         private ObservableCollection<SummaryChartItemModel> foragesChartData = new();
 
+        [ObservableProperty]
+        private bool hasNoSpeciesChartData;
+
+        [ObservableProperty]
+        private bool hasNoProductioonChartData;
+
+        [ObservableProperty]
+        private bool hasNoForagesChartData;
+
 
         public DashboardUserViewModel(
             IAccountService accountService,
@@ -261,6 +270,9 @@ namespace BeeKeeperRegister.ViewModels
 
         private async Task LoadSummaryAsync()
         {
+            HasNoSpeciesChartData = true;
+            HasNoProductioonChartData = true;
+            HasNoForagesChartData = true;
             var productionTask = _productionTypeService.GetAllBeeLocationProductionTypeSourcesAsync();
             var beeProductioonTask = _beeProductioonService.GetAllBeeProductioonAsync();
             var forageTask = _forageService.GetAllBeeLocationForagesAsync();
@@ -274,11 +286,14 @@ namespace BeeKeeperRegister.ViewModels
             if (production is not null)
             {
                 TotalColonies = production.Sum(u => u?.NumberColonies ?? 0);
-
+                
                 SpeciesChartData.Clear();
                 var speciesGroups = production
                     .Where(u => !string.IsNullOrEmpty(u?.BeeTypeDescription))
                     .GroupBy(u => FilterHandler.RemoveSpacingBeeSummary(u!.BeeTypeDescription));
+
+                if(speciesGroups.Any())
+                    HasNoSpeciesChartData = false;
 
                 foreach (var g in speciesGroups)
                     SpeciesChartData.Add(new SummaryChartItemModel { Label = g.Key!, Count = g.Count() });
@@ -287,11 +302,14 @@ namespace BeeKeeperRegister.ViewModels
             if (beeProductioon is not null)
             {
                 TotalProductioonKG = beeProductioon.Sum(u => u?.EstProdYield ?? 0);
-
+                
                 ProductionChartData.Clear();
                 var productionGroups = beeProductioon
                     .Where(u => !string.IsNullOrEmpty(u?.BeeProductionDescription))
                     .GroupBy(u => FilterHandler.RemoveSpacingBeeSummary(u!.BeeProductionDescription));
+
+                if (productionGroups.Any())
+                    HasNoProductioonChartData = false;
 
                 foreach (var g in productionGroups)
                     ProductionChartData.Add(new SummaryChartItemModel { Label = g.Key!, Count = g.Count() });
@@ -299,10 +317,14 @@ namespace BeeKeeperRegister.ViewModels
 
             if (forages is not null)
             {
+                
                 ForagesChartData.Clear();
                 var foragesGroups = forages
                     .Where(u => !string.IsNullOrEmpty(u?.ForagesDescription))
                     .GroupBy(u => FilterHandler.RemoveSpacingBeeSummary(u!.ForagesDescription!));
+
+                if (foragesGroups.Any())
+                    HasNoForagesChartData = false;
 
                 foreach (var g in foragesGroups)
                     ForagesChartData.Add(new SummaryChartItemModel { Label = g.Key!, Count = g.Count() });
