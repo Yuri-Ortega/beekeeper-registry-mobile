@@ -18,9 +18,9 @@ The registration flow is a guided multi-step wizard with inline validation (e.g.
 
 ### Beekeeper Dashboard
 
-| Home Dashboard | Trainings | My Farms | Profile |
-|---|---|---|---|
-| ![Dashboard](Screenshots/05-dashboard-home.jpg) | ![Trainings](Screenshots/06-trainings.jpg) | ![My Farms](Screenshots/07-my-farms.jpg) | ![Profile](Screenshots/08-profile.jpg) |
+| Home Dashboard | Trainings | My Farms |
+|---|---|---|
+| ![Dashboard](Screenshots/05-dashboard-home.jpg) | ![Trainings](Screenshots/06-trainings.jpg) | ![My Farms](Screenshots/07-my-farms.jpg) |
 
 The home dashboard aggregates farm and colony data into at-a-glance stats (total colonies, total farms, total production in kg) plus a species breakdown chart — giving beekeepers a quick health check of their operations.
 
@@ -64,20 +64,18 @@ Each registered farm holds detailed records of species kept, production output (
 - **Production Records** — track honey, beeswax, bee pollen, and royal jelly output per farm, in kg/year
 - **Biosecurity Compliance Checklist** — Yes/No questionnaire covering hive siting, disease-free colony introduction, equipment sanitation, and record-keeping practices
 - **Training Records** — view and manage beekeeping trainings attended, with duration and year
-- **Profile Management** — update personal profile and profile photo, with upload validation
 - **Authentication** — secure login/registration backed by JWT with refresh token support
 
 ---
 
 ## 🔐 Note on Backend Access
 
-This app communicates with a private ASP.NET Core Web API. The API repository is not public because the system is built for and partially deployed within a Philippine government agency (BAI). The backend handles:
+This app communicates with a private ASP.NET Core Web API. The API repository is not public because the system was developed exclusively for a Philippine government agency (BAI). The backend handles:
 
 - JWT issuance & refresh token rotation
-- Beekeeper/farm/species/production CRUD operations
-- Role-based access control
+- CRUD operations
 
-Architecture, code structure, and implementation details (JWT flow, repository pattern, EF Core setup) can be walked through on request.
+Simplified Architecture, code structure, and implementation details (JWT flow, repository pattern, EF Core setup) can be walked through on request.
 
 ---
 
