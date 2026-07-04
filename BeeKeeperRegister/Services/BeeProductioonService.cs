@@ -47,9 +47,9 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                // ✅ Binago — HttpPost → HttpPut
+                //HttpPost → HttpPut
                 var response = await _httpClient.PostAsJsonAsync(
-                    $"{BaseUrl}/update-bee-productioon", model);
+                    $"{BaseUrl}/update/{model.OldBeeProdId}", model);
 
                 return response.IsSuccessStatusCode;
             }
@@ -66,7 +66,7 @@ namespace BeeKeeperRegister.Services
             try
             {
                 var response = await _httpClient.DeleteAsync(
-                    $"{BaseUrl}/productioon/beeProdId/{beeProdId}");
+                    $"{BaseUrl}/{beeProdId}");
 
                 return response.IsSuccessStatusCode;
             }
@@ -103,7 +103,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/productioons/locationId/{locationId}");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/productioons/{locationId}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -124,7 +124,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/productioon/beeProdId/{beeProdId}");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/productioon/{beeProdId}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -145,7 +145,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/productioon-per-farm/locationId/{locationId}/count");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/count-productioon/{locationId}");
 
                 if (!response.IsSuccessStatusCode)
                 {

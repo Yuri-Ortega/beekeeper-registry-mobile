@@ -48,7 +48,7 @@ namespace BeeKeeperRegister.Services
             try
             {
                 var response = await _httpClient.DeleteAsync(
-                    $"{BaseUrl}/location-forages/forageCode/{forageCode}");
+                    $"{BaseUrl}/{forageCode}");
 
                 return response.IsSuccessStatusCode;
             }
@@ -85,7 +85,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/location-forages/locationId/{locationId}");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/forages/{locationId}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -106,7 +106,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/location-forage/locationId/{locationId}");
+                var response = await _httpClient.GetAsync($"{BaseUrl}forage/{locationId}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -127,7 +127,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/location-forages-per-farm/locationId/{locationId}/count");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/count-forages/{locationId}");
 
                 if (!response.IsSuccessStatusCode)
                 {

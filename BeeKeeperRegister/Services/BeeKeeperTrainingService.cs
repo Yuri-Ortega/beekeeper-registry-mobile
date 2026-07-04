@@ -48,7 +48,7 @@ namespace BeeKeeperRegister.Services
             try
             {
                 var response = await _httpClient.PutAsJsonAsync(
-                    $"{BaseUrl}", model);
+                    $"{BaseUrl}/{model.TrainingCtr}", model);
 
                 return response.IsSuccessStatusCode;
             }
@@ -65,7 +65,7 @@ namespace BeeKeeperRegister.Services
             try
             {
                 var response = await _httpClient.DeleteAsync(
-                    $"{BaseUrl}/training/trainingCtr/{trainingCtr}");
+                    $"{BaseUrl}/{trainingCtr}");
 
                 return response.IsSuccessStatusCode;
             }
@@ -103,7 +103,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/training/trainingCtr/{trainingCtr}");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/{trainingCtr}");
 
                 if (!response.IsSuccessStatusCode)
                 {

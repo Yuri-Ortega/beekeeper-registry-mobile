@@ -48,7 +48,7 @@ namespace BeeKeeperRegister.Services
             try
             {
                 var response = await _httpClient.PatchAsJsonAsync(
-                    $"{BaseUrl}", model);
+                    $"{BaseUrl}/{model.LocationId}/{model.BeeBioCode}", model);
 
                 return response.IsSuccessStatusCode;
             }
@@ -64,7 +64,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/locationId/{locationId}");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/{locationId}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -86,7 +86,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/locationId/{locationId}/beeBioCode/{beeBioCode}");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/{locationId}/{beeBioCode}");
 
                 if (!response.IsSuccessStatusCode)
                 {

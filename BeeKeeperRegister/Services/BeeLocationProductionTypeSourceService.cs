@@ -52,7 +52,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/location-production-type-source/locationId/{locationId}");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/production-type-sources/{locationId}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -74,7 +74,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/location-production-type-source/beeProdCtr/{beeProdCtr}");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/production-type-source/{beeProdCtr}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -114,7 +114,7 @@ namespace BeeKeeperRegister.Services
             try
             {
                 var response = await _httpClient.PutAsJsonAsync(
-                    $"{BaseUrl}", model);
+                    $"{BaseUrl}/{model.BeeProdCtr}", model);
 
                 return response.IsSuccessStatusCode;
             }
@@ -131,7 +131,7 @@ namespace BeeKeeperRegister.Services
             try
             {
                 var response = await _httpClient.DeleteAsync(
-                    $"{BaseUrl}/location-production-type-source/beeProdCtr/{beeProdCtr}");
+                    $"{BaseUrl}/{beeProdCtr}");
 
                 return response.IsSuccessStatusCode;
             }
@@ -147,7 +147,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/species-per-farm/locationId/{locationId}/count");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/count-species/{locationId}");
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -168,7 +168,7 @@ namespace BeeKeeperRegister.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{BaseUrl}/colonies-per-farm/locationId/{locationId}/count");
+                var response = await _httpClient.GetAsync($"{BaseUrl}/count-colonies/{locationId}");
 
                 if (!response.IsSuccessStatusCode)
                 {
