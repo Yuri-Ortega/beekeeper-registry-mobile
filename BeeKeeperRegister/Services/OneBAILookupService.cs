@@ -13,7 +13,7 @@ namespace BeeKeeperRegister.Services
         private readonly IDialogPopupService _popupService;
         private readonly ILogger<OneBAILookupService> _logger;
 
-        private const string BaseUrl = "api/OneBAILookup";
+        private const string BaseUrl = "api/v1/OneBAILookup";
 
         public OneBAILookupService(
             IHttpClientFactory httpClientFactory,

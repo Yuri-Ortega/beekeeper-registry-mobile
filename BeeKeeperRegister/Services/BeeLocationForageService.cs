@@ -14,7 +14,7 @@ namespace BeeKeeperRegister.Services
         private readonly IDialogPopupService _popupService;
         private readonly ILogger<BeeLocationForageService> _logger;
 
-        private const string BaseUrl = "api/BeeLocationForages";
+        private const string BaseUrl = "api/v1/BeeLocationForages";
 
         public BeeLocationForageService(
             IHttpClientFactory httpClientFactory,

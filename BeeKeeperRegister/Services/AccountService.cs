@@ -26,7 +26,7 @@ namespace BeeKeeperRegister.Services
         private readonly HttpClient _httpClient;
         private readonly ILogger<AccountService> _logger;
 
-        private const string BaseUrl = "api/Account";
+        private const string BaseUrl = "api/v1/Account";
 
         public AccountService(IHttpClientFactory httpClientFactory,ILogger<AccountService> logger)
         {

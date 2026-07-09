@@ -14,7 +14,7 @@ namespace BeeKeeperRegister.Services
         private readonly IDialogPopupService _popupService;
         private readonly ILogger<BeeFarmProfileAttachmentService> _logger;
 
-        private const string BaseUrl = "api/BeeFarmProfileAttachment";
+        private const string BaseUrl = "api/v1/BeeFarmProfileAttachment";
 
         public BeeFarmProfileAttachmentService(
             IHttpClientFactory httpClientFactory,

@@ -21,7 +21,7 @@ namespace BeeKeeperRegister.Services
         private readonly IDialogPopupService _popupService;
         private readonly ILogger<AHWDLookupService> _logger;
 
-        private const string BaseUrl = "api/AHWDLookup";
+        private const string BaseUrl = "api/v1/AHWDLookup";
 
         public AHWDLookupService(
             IHttpClientFactory httpClientFactory,
