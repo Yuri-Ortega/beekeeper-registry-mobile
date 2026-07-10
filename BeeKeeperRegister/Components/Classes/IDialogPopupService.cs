@@ -1,4 +1,4 @@
-﻿using BeeKeeperRegister.Models;
+﻿using BeeKeeperRegister.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +17,6 @@ namespace BeeKeeperRegister.Components.Classes
         Task<bool> ShowConfirmDialog(string title, string message, string leftButtonContent, string rightButtonContent);
 
 
-        Task<GoogleMapModel> ShowGoogleMapPopup(string region, string province, string municipality, string barangay, double? latitude = null, double? longitude = null);
+        Task<GoogleMapResponseModel> ShowGoogleMapPopup(string region, string province, string municipality, string barangay, double? latitude = null, double? longitude = null);
     }
 }

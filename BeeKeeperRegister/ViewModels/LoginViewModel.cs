@@ -74,7 +74,7 @@ namespace BeeKeeperRegister.ViewModels
 
                 using (await _loadingPopupService.Show())
                 {
-                    var userData = await _accountService.LoginUserAsync(new Models.LoginRequestModel
+                    var userData = await _accountService.LoginUserAsync(new Models.Request.LoginRequestModel
                     {
                         UserName = User,
                         Password = Pass,
@@ -82,10 +82,10 @@ namespace BeeKeeperRegister.ViewModels
 
                     if (userData != null)
                     {
-                        await SecureStorage.Default.SetAsync("access_token", userData.Token);
-                        await SecureStorage.Default.SetAsync("refresh_token", userData.RefreshToken);
+                        await SecureStorage.Default.SetAsync("access_token", userData.Token!);
+                        await SecureStorage.Default.SetAsync("refresh_token", userData.RefreshToken!);
                         await SecureStorage.Default.SetAsync("access_userID", userData.UserId!.ToString());
-                        await SecureStorage.Default.SetAsync("userName", userData.UserName);
+                        await SecureStorage.Default.SetAsync("userName", userData.UserName!);
 
 
                         //Remenber me functionality
@@ -125,14 +125,14 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         //Property Changed Handlers
-        partial void OnUserChanged(string newValue)
+        partial void OnUserChanged(string value)
         {
-            ErrUserBool = string.IsNullOrWhiteSpace(newValue);
+            ErrUserBool = string.IsNullOrWhiteSpace(value);
         }
 
-        partial void OnPassChanged(string newValue)
+        partial void OnPassChanged(string value)
         {
-            ErrPassBool = string.IsNullOrEmpty(newValue);
+            ErrPassBool = string.IsNullOrEmpty(value);
         }
     }
 }

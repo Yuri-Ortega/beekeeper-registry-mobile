@@ -1,6 +1,5 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
 using BeeKeeperRegister.Models.UI;
 using BeeKeeperRegister.Services;
 using BeeKeeperRegister.Services.Interfaces;
@@ -8,6 +7,8 @@ using BeeKeeperRegister.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using Microsoft.Maui.Graphics;
+using BeeKeeperRegister.Models.Response;
 
 
 namespace BeeKeeperRegister.ViewModels
@@ -81,7 +82,7 @@ namespace BeeKeeperRegister.ViewModels
 
         //Profile Properties
         [ObservableProperty]
-        private ImageSource selectedImageSource;
+        private ImageSource? selectedImageSource;
         [ObservableProperty]
         private string fullName = string.Empty;
         [ObservableProperty]
@@ -98,13 +99,13 @@ namespace BeeKeeperRegister.ViewModels
         private string numberOfFarm = string.Empty;
 
         [ObservableProperty]
-        private ObservableCollection<SummaryChartItemModel> speciesChartData = new();
+        private ObservableCollection<SummaryChartItemResponseModel> speciesChartData = new();
 
         [ObservableProperty]
-        private ObservableCollection<SummaryChartItemModel> productionChartData = new();
+        private ObservableCollection<SummaryChartItemResponseModel> productionChartData = new();
 
         [ObservableProperty]
-        private ObservableCollection<SummaryChartItemModel> foragesChartData = new();
+        private ObservableCollection<SummaryChartItemResponseModel> foragesChartData = new();
 
         [ObservableProperty]
         private bool hasNoSpeciesChartData;
@@ -114,6 +115,9 @@ namespace BeeKeeperRegister.ViewModels
 
         [ObservableProperty]
         private bool hasNoForagesChartData;
+
+        [ObservableProperty]
+        private double foragesChartWidth = 400;
 
 
         public DashboardUserViewModel(
@@ -211,11 +215,13 @@ namespace BeeKeeperRegister.ViewModels
 
                 var speciesTask = _productionTypeService
                     .CountBeeSpeciesPerFarmByLocationIdAsync(locationId);
+                var coloniesTask = _productionTypeService
+                    .CountBeeColoniesPerFarmByLocationIdAsync(locationId);
                 var forageTask = _forageService
                     .CountBeeLocationForagesPerFarmByLocationIdAsync(locationId);
                 var productioonTask = _beeProductioonService.CountBeeProductioonPerFarmByLocationIdAsync(locationId);
 
-                await Task.WhenAll(speciesTask, productioonTask, forageTask);
+                await Task.WhenAll(speciesTask, coloniesTask, productioonTask, forageTask);
 
                 FarmList.Add(new FarmUIModel
                 {
@@ -223,6 +229,7 @@ namespace BeeKeeperRegister.ViewModels
                     Location = $"{farm.Barangay}, {farm.Municipalities}, {farm.Provinces}",
                     LotNo = farm.LotNo,
                     NumberSpecies = await speciesTask,
+                    NumberColonies = await coloniesTask,
                     NumberForages = await forageTask,
                     NumberProductioon = await productioonTask,
                     Latitude = Convert.ToDouble(farm.Latitude),
@@ -296,7 +303,7 @@ namespace BeeKeeperRegister.ViewModels
                     HasNoSpeciesChartData = false;
 
                 foreach (var g in speciesGroups)
-                    SpeciesChartData.Add(new SummaryChartItemModel { Label = g.Key!, Count = g.Count() });
+                    SpeciesChartData.Add(new SummaryChartItemResponseModel { Label = g.Key!, Count = g.Count() });
             }
 
             if (beeProductioon is not null)
@@ -312,7 +319,7 @@ namespace BeeKeeperRegister.ViewModels
                     HasNoProductioonChartData = false;
 
                 foreach (var g in productionGroups)
-                    ProductionChartData.Add(new SummaryChartItemModel { Label = g.Key!, Count = g.Count() });
+                    ProductionChartData.Add(new SummaryChartItemResponseModel { Label = g.Key!, Count = g.Count() });
             }
 
             if (forages is not null)
@@ -327,8 +334,27 @@ namespace BeeKeeperRegister.ViewModels
                     HasNoForagesChartData = false;
 
                 foreach (var g in foragesGroups)
-                    ForagesChartData.Add(new SummaryChartItemModel { Label = g.Key!, Count = g.Count() });
+                    ForagesChartData.Add(new SummaryChartItemResponseModel { Label = g.Key!, Count = g.Count() });
+
+                RecalculateForagesChartWidth();
             }
+        }
+
+        public Color[] BrandChartPalette { get; } = new Color[]
+        {
+            Color.FromArgb("#5C6B2F"), // olive
+            Color.FromArgb("#C9962F"), // gold
+            Color.FromArgb("#9CA052"), // light olive
+            Color.FromArgb("#B5651D"), // warm accent
+            Color.FromArgb("#2F6B5C"), // cool complement
+            Color.FromArgb("#7A5C3E"), // earthy brown
+        };
+
+        private void RecalculateForagesChartWidth()
+        {
+            const double minWidthPerBar = 70;
+            const double minTotalWidth = 400;
+            ForagesChartWidth = Math.Max(minTotalWidth, ForagesChartData.Count * minWidthPerBar);
         }
 
         // Training Commands
@@ -353,9 +379,9 @@ namespace BeeKeeperRegister.ViewModels
                     $"Contains([TrainingHour], '{text}')";
 
                 var hasResults = TrainingList.Any(t =>
-                    (t.TrainingDescription?.Contains(text, StringComparison.OrdinalIgnoreCase) ?? false) ||
-                    t.TrainingYear.ToString()!.Contains(text) ||
-                    t.TrainingHour.ToString()!.Contains(text));
+                    (t.TrainingDescription?.Contains(text!, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                    t.TrainingYear.ToString()!.Contains(text!) ||
+                    t.TrainingHour.ToString()!.Contains(text!));
 
                 NoSearchResultsForTrainingList = !hasResults;
                 TrainingListHasData = hasResults;

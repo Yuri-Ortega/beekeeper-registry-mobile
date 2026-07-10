@@ -1,6 +1,6 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
@@ -33,7 +33,7 @@ namespace BeeKeeperRegister.Services
             _logger = logger;
         }
 
-        public async Task<List<BeeProductionSystemModel>?> GetAllBeeProductionSystemsAsync()
+        public async Task<List<BeeProductionSystemResponseModel>?> GetAllBeeProductionSystemsAsync()
         {
             try
             {
@@ -46,7 +46,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeProductionSystemModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeProductionSystemResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeCommonPestModel>?> GetAllBeeCommonPestsAsync()
+        public async Task<List<BeeCommonPestResponseModel>?> GetAllBeeCommonPestsAsync()
         {
             try
             {
@@ -67,7 +67,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeCommonPestModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeCommonPestResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeCommonDiseasesModel>?> GetAllBeeCommonDiseasesAsync()
+        public async Task<List<BeeCommonDiseasesResponseModel>?> GetAllBeeCommonDiseasesAsync()
         {
             try
             {
@@ -88,7 +88,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeCommonDiseasesModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeCommonDiseasesResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -98,7 +98,7 @@ namespace BeeKeeperRegister.Services
         }
 
 
-        public async Task<List<BeeTrainingModel>?> GetAllBeeTrainingsAsync()
+        public async Task<List<BeeTrainingResponseModel>?> GetAllBeeTrainingsAsync()
         {
             try
             {
@@ -111,7 +111,7 @@ namespace BeeKeeperRegister.Services
                 }
 
                 return await response.Content
-                    .ReadFromJsonAsync<List<BeeTrainingModel>>();
+                    .ReadFromJsonAsync<List<BeeTrainingResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -121,7 +121,7 @@ namespace BeeKeeperRegister.Services
         }
 
 
-        public async Task<List<BeeForagesModel>?> GetAllBeeForagesAsync()
+        public async Task<List<BeeForagesResponseModel>?> GetAllBeeForagesAsync()
         {
             try
             {
@@ -133,7 +133,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeForagesModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeForagesResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -143,7 +143,7 @@ namespace BeeKeeperRegister.Services
         }
 
 
-        public async Task<List<BeeTypesModel>?> GetAllBeeTypesAsync()
+        public async Task<List<BeeTypesResponseModel>?> GetAllBeeTypesAsync()
         {
             try
             {
@@ -155,7 +155,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeTypesModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeTypesResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -164,7 +164,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeSourceColoniesModel>?> GetAllBeeSourcesColoniesAsync()
+        public async Task<List<BeeSourceColoniesResponseModel>?> GetAllBeeSourcesColoniesAsync()
         {
             try
             {
@@ -176,7 +176,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeSourceColoniesModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeSourceColoniesResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -186,7 +186,7 @@ namespace BeeKeeperRegister.Services
         }
 
 
-        public async Task<List<BeeProductionModel>?> GetAllBeeProductionCategoriesAsync()
+        public async Task<List<BeeProductionResponseModel>?> GetAllBeeProductionCategoriesAsync()
         {
             try
             {
@@ -198,7 +198,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeProductionModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeProductionResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -208,7 +208,7 @@ namespace BeeKeeperRegister.Services
         }
 
 
-        public async Task<List<BeeBioSecurityModel>?> GetAllBeeBiosecuritiesAsync()
+        public async Task<List<BeeBioSecurityResponseModel>?> GetAllBeeBiosecuritiesAsync()
         {
             try
             {
@@ -220,7 +220,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeBioSecurityModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeBioSecurityResponseModel>>();
             }
             catch (Exception ex)
             {

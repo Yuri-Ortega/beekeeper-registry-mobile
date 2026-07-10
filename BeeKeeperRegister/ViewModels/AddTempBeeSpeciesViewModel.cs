@@ -1,5 +1,6 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services;
 using BeeKeeperRegister.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -45,30 +46,30 @@ namespace BeeKeeperRegister.ViewModels
 
         // Collections
         [ObservableProperty]
-        private ObservableCollection<BeeTypesModel> beeType = new();
+        private ObservableCollection<BeeTypesResponseModel> beeType = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeSourceColoniesModel> bsColonies = new();
+        private ObservableCollection<BeeSourceColoniesResponseModel> bsColonies = new();
 
         [ObservableProperty]
-        private ObservableCollection<ProvinceModel> provinceSource = new();
+        private ObservableCollection<ProvinceResponseModel> provinceSource = new();
 
         [ObservableProperty]
-        private ObservableCollection<CountryModel> country = new();
+        private ObservableCollection<CountryResponseModel> country = new();
 
 
         // Selected Items
         [ObservableProperty]
-        private BeeTypesModel? selectedBeeType;
+        private BeeTypesResponseModel? selectedBeeType;
 
         [ObservableProperty]
-        private BeeSourceColoniesModel? selectedBsColonies;
+        private BeeSourceColoniesResponseModel? selectedBsColonies;
 
         [ObservableProperty]
-        private ProvinceModel? selectedProvinceSource;
+        private ProvinceResponseModel? selectedProvinceSource;
 
         [ObservableProperty]
-        private CountryModel? selectedCountry;
+        private CountryResponseModel? selectedCountry;
 
 
         // Error Flags
@@ -180,14 +181,14 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         [RelayCommand]
-        public async Task SelectionBeeTypeAsync()
+        public void SelectionBeeType()
         {
             if (SelectedBeeType == null) return;
             ErrBeeTypeBool = false;
         }
 
         [RelayCommand]
-        public async Task SelectionBsColoniesAsync()
+        public void SelectionBsColonies()
         {
             if (SelectedBsColonies == null) return;
             ErrBsColoniesBool = false;
@@ -295,9 +296,9 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         // Property Changed Handlers
-        partial void OnNumberOfColoniesChanged(int newValue)
+        partial void OnNumberOfColoniesChanged(int value)
         {
-            ErrNumberOfColoniesBool = newValue == 0;
+            ErrNumberOfColoniesBool = value == 0;
         }
     }
 }

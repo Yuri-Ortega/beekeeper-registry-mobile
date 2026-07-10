@@ -1,5 +1,6 @@
 ﻿using BeeKeeperRegister.Components.Classes;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services;
 using BeeKeeperRegister.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -27,11 +28,11 @@ namespace BeeKeeperRegister.ViewModels
         [ObservableProperty] private Color errTrainingYearColor = Color.FromArgb("#030303");
 
         //Selected Items
-        [ObservableProperty] private BeeTrainingModel? selectedBeeTrainings;
+        [ObservableProperty] private BeeTrainingResponseModel? selectedBeeTrainings;
 
         //Collection 7 List
         [ObservableProperty]
-        private ObservableCollection<BeeTrainingModel> beeTrainings = new();
+        private ObservableCollection<BeeTrainingResponseModel> beeTrainings = new();
 
         public List<int> Years { get; } =
             Enumerable.Range(1900, DateTime.Now.Year - 1900 + 1).ToList();
@@ -70,7 +71,7 @@ namespace BeeKeeperRegister.ViewModels
 
         //Selection Event
         [RelayCommand]
-        public async Task SelectionBeeTrainingsAsync()
+        public void SelectionBeeTrainings()
         {
             if (SelectedBeeTrainings == null) return;
             ErrBeeTrainingsBool = false;
@@ -92,10 +93,10 @@ namespace BeeKeeperRegister.ViewModels
                 using (await _loading.Show())
                 {
                     var isCreated = await _trainingsService.AddTrainingAsync(
-                        new AddBeeKeeperTrainingsModel
+                        new AddBeeKeeperTrainingsRequestModel
                         {
                             TrainingCode = SelectedBeeTrainings!.TrainingCode,
-                            TrainingDescription = SelectedBeeTrainings.TrainingDescription,
+                            TrainingDescription = SelectedBeeTrainings.TrainingDescription!,
                             TrainingYear = TrainingYear,
                             NumberofHrs = NumberOfHrs
                         });
@@ -117,14 +118,14 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         // Property Changed Handlers
-        partial void OnTrainingYearChanged(int newValue)
+        partial void OnTrainingYearChanged(int value)
         {
-            ErrTrainingYearColor = newValue == 0 ? ErrorColor : NormalColor;
+            ErrTrainingYearColor = value == 0 ? ErrorColor : NormalColor;
         }
 
-        partial void OnNumberOfHrsChanged(int newValue)
+        partial void OnNumberOfHrsChanged(int value)
         {
-            ErrNumberOfHrsBool = newValue == 0;
+            ErrNumberOfHrsBool = value == 0;
         }
     }
 }

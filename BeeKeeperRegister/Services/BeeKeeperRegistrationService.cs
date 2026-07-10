@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -26,7 +27,7 @@ namespace BeeKeeperRegister.Services
             _logger = logger;
         }
 
-        public async Task<GetBeeKeeperRegisterModel?> GetBeeKeeperProfileAsync()
+        public async Task<BeeKeeperRegistrationResponseModel?> GetBeeKeeperProfileAsync()
         {
             try
             {
@@ -39,7 +40,7 @@ namespace BeeKeeperRegister.Services
                 }
 
                 return await response.Content
-                    .ReadFromJsonAsync<GetBeeKeeperRegisterModel>();
+                    .ReadFromJsonAsync<BeeKeeperRegistrationResponseModel>();
             }
             catch (Exception ex)
             {
@@ -48,7 +49,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<bool> RegisterBeeKeeperProfileAsync(RegisterBeeKeeperModel model)
+        public async Task<bool> RegisterBeeKeeperProfileAsync(AddBeeKeeperRegisterRequestModel model)
         {
             try
             {

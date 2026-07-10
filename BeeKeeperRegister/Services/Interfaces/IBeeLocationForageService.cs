@@ -1,4 +1,5 @@
-﻿using BeeKeeperRegister.Models;
+﻿using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace BeeKeeperRegister.Services.Interfaces
 {
     public interface IBeeLocationForageService
     {
-        Task<bool> AddBeeLocationForagesAsync(AddBeeLocationForageModel model);
+        Task<bool> AddBeeLocationForagesAsync(AddBeeLocationForageRequestModel model);
         Task<bool> DeleteBeeLocationForagesAsync(string forageCode);
-        Task<List<BeeLocationForageModel>?> GetAllBeeLocationForagesAsync();
-        Task<List<BeeLocationForageModel>?> GetAllBeeLocationForagesByLocationIdAsync(string locationId);
-        Task<BeeLocationForageModel?> GetBeeLocationForageByLocationIdAsync(string locationId);
+        Task<List<BeeLocationForageResponseModel>?> GetAllBeeLocationForagesAsync();
+        Task<List<BeeLocationForageResponseModel>?> GetAllBeeLocationForagesByLocationIdAsync(string locationId);
+        Task<BeeLocationForageResponseModel?> GetBeeLocationForageByLocationIdAsync(string locationId);
         Task<int?> CountBeeLocationForagesPerFarmByLocationIdAsync(string locationId);
     }
 }

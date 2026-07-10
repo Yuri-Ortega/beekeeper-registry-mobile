@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -26,7 +27,7 @@ namespace BeeKeeperRegister.Services
             _logger = logger;
         }
 
-        public async Task<List<BeeLocationProductionTypeSourceModel>?> GetAllBeeLocationProductionTypeSourcesAsync()
+        public async Task<List<BeeLocationProductionTypeSourceResponseModel>?> GetAllBeeLocationProductionTypeSourcesAsync()
         {
             try
             {
@@ -39,7 +40,7 @@ namespace BeeKeeperRegister.Services
                 }
 
                 return await response.Content
-                    .ReadFromJsonAsync<List<BeeLocationProductionTypeSourceModel>>();
+                    .ReadFromJsonAsync<List<BeeLocationProductionTypeSourceResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -48,7 +49,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeLocationProductionTypeSourceModel>?> GetAllBeeLocationProductionTypeSourcesByLocationIdAsync(string locationId)
+        public async Task<List<BeeLocationProductionTypeSourceResponseModel>?> GetAllBeeLocationProductionTypeSourcesByLocationIdAsync(string locationId)
         {
             try
             {
@@ -61,7 +62,7 @@ namespace BeeKeeperRegister.Services
                 }
 
                 return await response.Content
-                    .ReadFromJsonAsync<List<BeeLocationProductionTypeSourceModel>>();
+                    .ReadFromJsonAsync<List<BeeLocationProductionTypeSourceResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -70,7 +71,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<BeeLocationProductionTypeSourceModel?> GetBeeLocationProductionTypeSourceByBeeProdCtrAsync(int beeProdCtr)
+        public async Task<BeeLocationProductionTypeSourceResponseModel?> GetBeeLocationProductionTypeSourceByBeeProdCtrAsync(int beeProdCtr)
         {
             try
             {
@@ -83,7 +84,7 @@ namespace BeeKeeperRegister.Services
                 }
 
                 return await response.Content
-                    .ReadFromJsonAsync<BeeLocationProductionTypeSourceModel>();
+                    .ReadFromJsonAsync<BeeLocationProductionTypeSourceResponseModel>();
             }
             catch (Exception ex)
             {
@@ -92,7 +93,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<bool> AddBeeLocationProductionTypeSourceAsync(AddBeeLocationProductionTypeSourceModel model)
+        public async Task<bool> AddBeeLocationProductionTypeSourceAsync(AddBeeLocationProductionTypeSourceRequestModel model)
         {
             try
             {
@@ -109,7 +110,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<bool> UpdateBeeLocationProductionTypeSourceAsync(UpdateBeeLocationProductionTypeSourceModel model)
+        public async Task<bool> UpdateBeeLocationProductionTypeSourceAsync(UpdateBeeLocationProductionTypeSourceRequestModel model)
         {
             try
             {

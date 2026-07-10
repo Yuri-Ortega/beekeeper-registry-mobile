@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -26,7 +27,7 @@ namespace BeeKeeperRegister.Services
             _logger = logger;
         }
 
-        public async Task<bool> AddFarmProfileAsync(AddBeeKeeperFarmProfileLocationModel model)
+        public async Task<bool> AddFarmProfileAsync(AddBeeKeeperFarmProfileLocationRequestModel model)
         {
             try
             {
@@ -49,7 +50,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<bool> UpdateFarmProfileAsync(UpdateBeeKeeperFarmProfileLocationModel model)
+        public async Task<bool> UpdateFarmProfileAsync(UpdateBeeKeeperFarmProfileLocationRequestModel model)
         {
             try
             {
@@ -72,7 +73,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<BeeKeeperFarmProfileLocationModel?> GetFarmProfileByLocationIdAsync(string locationId)
+        public async Task<BeeKeeperFarmProfileLocationResponseModel?> GetFarmProfileByLocationIdAsync(string locationId)
         {
             try
             {
@@ -84,7 +85,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<BeeKeeperFarmProfileLocationModel>();
+                return await response.Content.ReadFromJsonAsync<BeeKeeperFarmProfileLocationResponseModel>();
             }
             catch (Exception ex)
             {
@@ -93,7 +94,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeKeeperFarmProfileLocationModel>?> GetAllFarmProfilesAsync()
+        public async Task<List<BeeKeeperFarmProfileLocationResponseModel>?> GetAllFarmProfilesAsync()
         {
             try
             {
@@ -105,7 +106,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeKeeperFarmProfileLocationModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeKeeperFarmProfileLocationResponseModel>>();
             }
             catch (Exception ex)
             {

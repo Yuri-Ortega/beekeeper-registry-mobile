@@ -1,6 +1,6 @@
 ﻿using BeeKeeperRegister.Components.Classes;
-using BeeKeeperRegister.Models;
-using BeeKeeperRegister.Services;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -30,24 +30,24 @@ namespace BeeKeeperRegister.ViewModels
         [ObservableProperty] private bool errBsColoniesBool;
 
         //Selected Items
-        [ObservableProperty] private BeeTypesModel? selectedBeeType;
-        [ObservableProperty] private BeeSourceColoniesModel? selectedBsColonies;
-        [ObservableProperty] private ProvinceModel? selectedProvinceSource;
-        [ObservableProperty] private CountryModel? selectedCountry;
+        [ObservableProperty] private BeeTypesResponseModel? selectedBeeType;
+        [ObservableProperty] private BeeSourceColoniesResponseModel? selectedBsColonies;
+        [ObservableProperty] private ProvinceResponseModel? selectedProvinceSource;
+        [ObservableProperty] private CountryResponseModel? selectedCountry;
 
 
         //Collections
         [ObservableProperty]
-        private ObservableCollection<BeeTypesModel> beeType = new();
+        private ObservableCollection<BeeTypesResponseModel> beeType = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeSourceColoniesModel> bsColonies = new();
+        private ObservableCollection<BeeSourceColoniesResponseModel> bsColonies = new();
 
         [ObservableProperty]
-        private ObservableCollection<ProvinceModel> provinceSource = new();
+        private ObservableCollection<ProvinceResponseModel> provinceSource = new();
 
         [ObservableProperty]
-        private ObservableCollection<CountryModel> country = new();
+        private ObservableCollection<CountryResponseModel> country = new();
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
@@ -126,9 +126,9 @@ namespace BeeKeeperRegister.ViewModels
             }
         }
 
-        partial void OnNumberOfColoniesChanged(int newValue)
+        partial void OnNumberOfColoniesChanged(int value)
         {
-            ErrNumberOfColoniesBool = newValue == 0;
+            ErrNumberOfColoniesBool = value == 0;
         }
 
         //Selection Event
@@ -179,14 +179,14 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         [RelayCommand]
-        public async Task SelectionBeeTypeAsync()
+        public void SelectionBeeType()
         {
             if (SelectedBeeType == null) return;
             ErrBeeTypeBool = false;
         }
 
         [RelayCommand]
-        public async Task SelectionBsColoniesAsync()
+        public void SelectionBsColonies()
         {
             if (SelectedBsColonies == null) return;
             ErrBsColoniesBool = false;
@@ -215,7 +215,7 @@ namespace BeeKeeperRegister.ViewModels
                 using (await _loading.Show())
                 {
                     var isCreated = await _productionTypeService.AddBeeLocationProductionTypeSourceAsync(
-                        new AddBeeLocationProductionTypeSourceModel
+                        new AddBeeLocationProductionTypeSourceRequestModel
                         {
                             LocationId = LocationId,
                             BeeTypeId = SelectedBeeType!.BeeTypeId,

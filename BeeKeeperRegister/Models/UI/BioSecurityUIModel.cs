@@ -12,8 +12,8 @@ namespace BeeKeeperRegister.Models.UI
         [ObservableProperty]
         private bool? selectedBioSecurity;
 
-        public string BeeBioCode { get; set; }
-        public string BeeBioDescription { get; set; }
+        public string? BeeBioCode { get; set; }
+        public string? BeeBioDescription { get; set; }
 
         public int ColumnNumNoBio { get; set; }
 

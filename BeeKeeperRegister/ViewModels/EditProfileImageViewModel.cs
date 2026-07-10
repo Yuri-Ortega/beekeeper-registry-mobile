@@ -19,16 +19,12 @@ namespace BeeKeeperRegister.ViewModels
         private readonly IDialogPopupService _popupService;
 
         [ObservableProperty]
-        private ImageSource selectedImageSource;
+        private ImageSource? selectedImageSource;
 
-        public ImageEdit ImageEditControl { get; set; }
+        public ImageEdit? ImageEditControl { get; set; }
 
         private byte[]? _editedImageBytes;
         private byte[]? _originalImageBytes;
-
-        private ImageSource? _cachedUsers;
-
-        private FileResult? _profilePictureFile;
 
         public EditProfileImageViewModel(IAccountService accountService, ILoadingPopupService loading, IDialogPopupService popupService)
         {
@@ -92,7 +88,7 @@ namespace BeeKeeperRegister.ViewModels
                 using (await _loading.Show())
                 {
                     using var memoryStream = new MemoryStream();
-                    ImageEditControl.SaveAsStream(memoryStream, DevExpress.Maui.Editors.ImageFormat.Png, true);
+                    ImageEditControl!.SaveAsStream(memoryStream, DevExpress.Maui.Editors.ImageFormat.Png, true);
 
                     _editedImageBytes = memoryStream.ToArray();
 

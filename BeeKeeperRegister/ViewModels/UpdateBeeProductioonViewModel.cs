@@ -1,5 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services;
 using BeeKeeperRegister.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -23,11 +25,11 @@ namespace BeeKeeperRegister.ViewModels
         [ObservableProperty] private bool errEstProdYieldBool;
 
         //Selected Item
-        [ObservableProperty] private BeeProductionModel? selectedBeeProduction;
+        [ObservableProperty] private BeeProductionResponseModel? selectedBeeProduction;
 
         //Collections
         [ObservableProperty]
-        private ObservableCollection<BeeProductionModel> beeProduction = new();
+        private ObservableCollection<BeeProductionResponseModel> beeProduction = new();
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
@@ -86,7 +88,7 @@ namespace BeeKeeperRegister.ViewModels
 
         //Selection Event
         [RelayCommand]
-        public async Task SelectionBeeProductionAsync()
+        public void SelectionBeeProduction()
         {
             if (SelectedBeeProduction == null) return;
             ErrBeeProductionBool = false;
@@ -106,7 +108,7 @@ namespace BeeKeeperRegister.ViewModels
                 using (await _loading.Show())
                 {
                     var isUpdated = await _beeProductioonService.UpdateBeeProductioonAsync(
-                        new UpdateProductioonModel
+                        new UpdateProductioonRequestModel
                         {
                             LocationId = LocationId,
                             OldBeeProdId = BeeProdID,
@@ -128,9 +130,9 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         //Property Changed Handler
-        partial void OnEstProdYieldChanged(int? newValue)
+        partial void OnEstProdYieldChanged(int? value)
         {
-            ErrEstProdYieldBool = newValue == 0;
+            ErrEstProdYieldBool = value == 0;
         }
     }
 }

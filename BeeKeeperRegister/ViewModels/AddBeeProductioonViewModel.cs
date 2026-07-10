@@ -1,6 +1,5 @@
 ﻿using BeeKeeperRegister.Components.Classes;
-using BeeKeeperRegister.Models;
-using BeeKeeperRegister.Services;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -22,11 +21,11 @@ namespace BeeKeeperRegister.ViewModels
         [ObservableProperty] private bool errEstProdYieldBool;
 
         //Selected Items
-        [ObservableProperty] private BeeProductionModel? selectedBeeProduction;
+        [ObservableProperty] private BeeProductionResponseModel? selectedBeeProduction;
 
         //Collection
         [ObservableProperty]
-        private ObservableCollection<BeeProductionModel> beeProduction = new();
+        private ObservableCollection<BeeProductionResponseModel> beeProduction = new();
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
@@ -69,7 +68,7 @@ namespace BeeKeeperRegister.ViewModels
 
         //Selection Event
         [RelayCommand]
-        public async Task SelectionBeeProductionAsync()
+        public void SelectionBeeProduction()
         {
             if (SelectedBeeProduction == null) return;
             ErrBeeProductionBool = false;
@@ -89,7 +88,7 @@ namespace BeeKeeperRegister.ViewModels
                 using (await _loading.Show())
                 {
                     var isCreated = await _beeProductioonService.AddBeeProductioonAsync(
-                        new BeeProductioonModel
+                        new BeeProductioonResponseModel
                         {
                             LocationId = LocationId,
                             BeeProdId = SelectedBeeProduction!.BeeProdId,
@@ -113,9 +112,9 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         // Property Changed Handlers
-        partial void OnEstProdYieldChanged(int newValue)
+        partial void OnEstProdYieldChanged(int value)
         {
-            ErrEstProdYieldBool = newValue == 0;
+            ErrEstProdYieldBool = value == 0;
         }
     }
 }

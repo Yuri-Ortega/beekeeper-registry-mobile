@@ -1,4 +1,4 @@
-﻿using BeeKeeperRegister.Models;
+﻿using BeeKeeperRegister.Models.Response;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace BeeKeeperRegister.Components.Classes
 {
     public partial class GoogleMapPopupViewModel : ObservableObject
     {
-        private TaskCompletionSource<GoogleMapModel> _tcs;
+        private TaskCompletionSource<GoogleMapResponseModel> _tcs;
 
         [ObservableProperty]
         private double latitude;
@@ -21,7 +21,7 @@ namespace BeeKeeperRegister.Components.Classes
 
         public GoogleMapPopupViewModel(string region, string province, string municipality, string barangay, double? latitude = null, double? longitude = null)
         {
-            _tcs = new TaskCompletionSource<GoogleMapModel>();
+            _tcs = new TaskCompletionSource<GoogleMapResponseModel>();
 
             ConfirmCommand = new Command(OnClose);
 
@@ -56,7 +56,7 @@ namespace BeeKeeperRegister.Components.Classes
             }
         }
 
-        public Action<Location> MoveMapAction { get; set; }
+        public Action<Location>? MoveMapAction { get; set; }
 
         public void UpdateLocation(double lat, double lng)
         {
@@ -66,14 +66,14 @@ namespace BeeKeeperRegister.Components.Classes
 
         private void OnClose()
         {
-            _tcs.TrySetResult(new GoogleMapModel
+            _tcs.TrySetResult(new GoogleMapResponseModel
             {
                 Latitude = Latitude,
                 Longitude = Longitude
             });
         }
 
-        public Task<GoogleMapModel> WaitForResultAsync()
+        public Task<GoogleMapResponseModel> WaitForResultAsync()
         {
             return _tcs.Task;
         }

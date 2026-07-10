@@ -1,4 +1,4 @@
-﻿using BeeKeeperRegister.Models;
+﻿using BeeKeeperRegister.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +9,13 @@ namespace BeeKeeperRegister.Services.Interfaces
 {
     public interface IOneBAILookupService
     {
-        Task<List<AttachmentLibraryModel>?> GetAllAttachmentLibraryAsync();
-        Task<List<SexTypesModel>?> GetSexTypesAsync();
-        Task<List<RegionModel>?> GetRegionsAsync();
-        Task<List<ProvinceModel>?> GetProvincesByRcodeAsync(string rcode);
-        Task<List<ProvinceModel>?> GetProvincesAsync();
-        Task<List<CountryModel>?> GetCountriesAsync();
-        Task<List<MunicipalityModel>?> GetMunicipalitiesByProvCodeAsync(string provCode);
-        Task<List<BarangayModel>?> GetBarangaysByMunCodeAsync(string munCode);
+        Task<List<AttachmentLibraryResponseModel>?> GetAllAttachmentLibraryAsync();
+        Task<List<SexTypesResponseModel>?> GetSexTypesAsync();
+        Task<List<RegionResponseModel>?> GetRegionsAsync();
+        Task<List<ProvinceResponseModel>?> GetProvincesByRcodeAsync(string rcode);
+        Task<List<ProvinceResponseModel>?> GetProvincesAsync();
+        Task<List<CountryResponseModel>?> GetCountriesAsync();
+        Task<List<MunicipalityResponseModel>?> GetMunicipalitiesByProvCodeAsync(string provCode);
+        Task<List<BarangayResponseModel>?> GetBarangaysByMunCodeAsync(string munCode);
     }
 }

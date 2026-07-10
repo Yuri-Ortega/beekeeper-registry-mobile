@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
 using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
 using BeeKeeperRegister.Models.UI;
 using BeeKeeperRegister.Services;
 using BeeKeeperRegister.Services.Interfaces;
@@ -39,7 +40,7 @@ namespace BeeKeeperRegister.ViewModels
 
         // Farm Profile Fields
         [ObservableProperty]
-        private int lotNo;
+        private int? lotNo;
 
         [ObservableProperty]
         private string location = string.Empty;
@@ -54,7 +55,7 @@ namespace BeeKeeperRegister.ViewModels
         private string pest = string.Empty;
 
         [ObservableProperty]
-        private string hDMng = string.Empty;
+        private string? hDMng = string.Empty;
 
         [ObservableProperty]
         private string forages = string.Empty;
@@ -162,18 +163,18 @@ namespace BeeKeeperRegister.ViewModels
             TempLocationId = $"{farm.Bcode}{farm.LotNo}";
             LotNo = farm.LotNo;
             Location = $"{farm.Barangay}, {farm.Municipalities}, {farm.Provinces}";
-            ProductionSystem = farm.BeeSystemProduction;
+            ProductionSystem = farm.BeeSystemProduction!;
             Disease = string.IsNullOrEmpty(farm.CommonDiseaseBeeDescription)
                 ? "None" : farm.CommonDiseaseBeeDescription;
             Pest = string.IsNullOrEmpty(farm.CommonPestsDescription)
                 ? "None" : farm.CommonPestsDescription;
-            HDMng = farm.Hdmng ? "Yes" : "No";
+            HDMng = (bool)farm.Hdmng! ? "Yes" : "No";
             Forages = string.Join(", ",
                 forageLocation.Select(u => u.ForagesDescription));
 
             await InitializeLocationAsync(
-                farm.Regions, farm.Provinces,
-                farm.Municipalities, farm.Barangay,
+                farm.Regions!, farm.Provinces!,
+                farm.Municipalities!, farm.Barangay!,
                 Convert.ToDouble(farm.Latitude),
                 Convert.ToDouble(farm.Longitude));
         }
@@ -202,12 +203,12 @@ namespace BeeKeeperRegister.ViewModels
         private async Task LoadBeeSpecies()
         {
             var species = await _productionTypeService.GetAllBeeLocationProductionTypeSourcesByLocationIdAsync(LocationId);
-            SpeciesListIsEmpty = !species.Any();
-            if (!species.Any()) return;
-            BeeSpeciesHasData = species.Any();
+            SpeciesListIsEmpty = !species!.Any();
+            if (!species!.Any()) return;
+            BeeSpeciesHasData = species!.Any();
 
             SpeciesList.Clear();
-            foreach (var item in species)
+            foreach (var item in species!)
             {
                 SpeciesList.Add(new ViewFarmBeeSpeciesUIModel
                 {
@@ -270,11 +271,11 @@ namespace BeeKeeperRegister.ViewModels
         private async Task LoadBeeProductioon()
         {
             var beeProductioon = await _beeProductioonService.GetAllBeeProductioonByLocationIdAsync(LocationId);
-            BeeProductioonListIsEmpty = !beeProductioon.Any();
-            if (!beeProductioon.Any()) return;
-            BeeProductioonHasData = beeProductioon.Any();
+            BeeProductioonListIsEmpty = !beeProductioon!.Any();
+            if (!beeProductioon!.Any()) return;
+            BeeProductioonHasData = beeProductioon!.Any();
             BeeProductioonList.Clear();
-            foreach (var item in beeProductioon)
+            foreach (var item in beeProductioon!)
             {
                 BeeProductioonList.Add(new ViewFarmBeeProductioonUIModel
                 {
@@ -401,10 +402,10 @@ namespace BeeKeeperRegister.ViewModels
                     _popupService.ShowSuccessDialog("Biosecurity Measures updated successfully");
                     foreach (var item in BioSecurityList)
                         await _bioSecurityService.UpdateBeeProfileBiosecurityAsync(
-                            new UpdateBeeProfileBioSecurityModel
+                            new UpdateBeeProfileBioSecurityRequestModel
                             {
                                 LocationId = LocationId,
-                                BeeBioCode = item.BeeBioCode,
+                                BeeBioCode = item.BeeBioCode!,
                                 Result = item.SelectedBioSecurity
                             });
 

@@ -1,4 +1,5 @@
-﻿using BeeKeeperRegister.Models;
+﻿using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace BeeKeeperRegister.Services.Interfaces
 byte[] profilePictureBytes, string fileName = "profile.png", string contentType = "image/png");
 
         public Task<UserImageResponseModel?> GetProfileImageAsync();
-        public Task<ApplicationUserResponse?> GetUserProfileAsync();
+        public Task<ApplicationUserResponseModel?> GetUserProfileAsync();
         public Task<LoginResponseModel?> LoginUserAsync(LoginRequestModel model);
-        public Task<bool?> RegisterUserAsync(RegisterUserModel model);
+        public Task<bool?> RegisterUserAsync(RegisterUserRequestModel model);
     }
 }

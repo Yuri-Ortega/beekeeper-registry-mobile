@@ -1,5 +1,6 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services;
 using BeeKeeperRegister.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -30,11 +31,11 @@ namespace BeeKeeperRegister.ViewModels
         [ObservableProperty] private bool errEstProdYieldBool;
 
         //Selected Items
-        [ObservableProperty] private BeeProductionModel? selectedBeeProduction;
+        [ObservableProperty] private BeeProductionResponseModel? selectedBeeProduction;
 
         //Collections
         [ObservableProperty]
-        private ObservableCollection<BeeProductionModel> beeProduction = new();
+        private ObservableCollection<BeeProductionResponseModel> beeProduction = new();
 
         public UpdateTempBeeProductioonViewModel(
             IBeeProductioonService beeProductioonService,
@@ -82,7 +83,7 @@ namespace BeeKeeperRegister.ViewModels
 
         //Selection Event
         [RelayCommand]
-        public async Task SelectionBeeProductionAsync()
+        public void SelectionBeeProduction()
         {
             if (SelectedBeeProduction == null) return;
             ErrBeeProductionBool = false;
@@ -123,9 +124,9 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         //Property Changed Handler
-        partial void OnEstProdYieldChanged(int newValue)
+        partial void OnEstProdYieldChanged(int value)
         {
-            ErrEstProdYieldBool = newValue == 0;
+            ErrEstProdYieldBool = value == 0;
         }
     }
 }

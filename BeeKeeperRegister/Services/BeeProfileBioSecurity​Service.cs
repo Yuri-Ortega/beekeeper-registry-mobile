@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -26,7 +27,7 @@ namespace BeeKeeperRegister.Services
             _logger = logger;
         }
 
-        public async Task<bool> AddBeeProfileBiosecurityAsync(AddBeeProfileBioSecurityModel model)
+        public async Task<bool> AddBeeProfileBiosecurityAsync(AddBeeProfileBioSecurityRequestModel model)
         {
             try
             {
@@ -43,7 +44,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<bool> UpdateBeeProfileBiosecurityAsync(UpdateBeeProfileBioSecurityModel model)
+        public async Task<bool> UpdateBeeProfileBiosecurityAsync(UpdateBeeProfileBioSecurityRequestModel model)
         {
             try
             {
@@ -60,7 +61,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeProfileBioSecurityModel>?> GetAllBeeProfileBiosecurityByLocationIdAsync(string locationId)
+        public async Task<List<BeeProfileBioSecurityResponseModel>?> GetAllBeeProfileBiosecurityByLocationIdAsync(string locationId)
         {
             try
             {
@@ -73,7 +74,7 @@ namespace BeeKeeperRegister.Services
                 }
 
                 return await response.Content
-                    .ReadFromJsonAsync<List<BeeProfileBioSecurityModel>>();
+                    .ReadFromJsonAsync<List<BeeProfileBioSecurityResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -82,7 +83,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<BeeProfileBioSecurityModel?> GetBeeProfileBiosecurityByLocationIdAndBeeBioCodeAsync(string locationId, string beeBioCode)
+        public async Task<BeeProfileBioSecurityResponseModel?> GetBeeProfileBiosecurityByLocationIdAndBeeBioCodeAsync(string locationId, string beeBioCode)
         {
             try
             {
@@ -95,7 +96,7 @@ namespace BeeKeeperRegister.Services
                 }
 
                 return await response.Content
-                    .ReadFromJsonAsync<BeeProfileBioSecurityModel?>();
+                    .ReadFromJsonAsync<BeeProfileBioSecurityResponseModel?>();
             }
             catch (Exception ex)
             {

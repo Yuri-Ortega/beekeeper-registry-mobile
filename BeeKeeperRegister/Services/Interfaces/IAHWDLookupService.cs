@@ -1,4 +1,4 @@
-﻿using BeeKeeperRegister.Models;
+﻿using BeeKeeperRegister.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,14 @@ namespace BeeKeeperRegister.Services.Interfaces
 {
     public interface IAHWDLookupService
     {
-        Task<List<BeeProductionSystemModel>?> GetAllBeeProductionSystemsAsync();
-        Task<List<BeeCommonPestModel>?> GetAllBeeCommonPestsAsync();
-        Task<List<BeeCommonDiseasesModel>?> GetAllBeeCommonDiseasesAsync();
-        Task<List<BeeTrainingModel>?> GetAllBeeTrainingsAsync();
-        Task<List<BeeForagesModel>?> GetAllBeeForagesAsync();
-        Task<List<BeeTypesModel>?> GetAllBeeTypesAsync();
-        Task<List<BeeSourceColoniesModel>?> GetAllBeeSourcesColoniesAsync();
-        Task<List<BeeProductionModel>?> GetAllBeeProductionCategoriesAsync();
-        Task<List<BeeBioSecurityModel>?> GetAllBeeBiosecuritiesAsync();
+        Task<List<BeeProductionSystemResponseModel>?> GetAllBeeProductionSystemsAsync();
+        Task<List<BeeCommonPestResponseModel>?> GetAllBeeCommonPestsAsync();
+        Task<List<BeeCommonDiseasesResponseModel>?> GetAllBeeCommonDiseasesAsync();
+        Task<List<BeeTrainingResponseModel>?> GetAllBeeTrainingsAsync();
+        Task<List<BeeForagesResponseModel>?> GetAllBeeForagesAsync();
+        Task<List<BeeTypesResponseModel>?> GetAllBeeTypesAsync();
+        Task<List<BeeSourceColoniesResponseModel>?> GetAllBeeSourcesColoniesAsync();
+        Task<List<BeeProductionResponseModel>?> GetAllBeeProductionCategoriesAsync();
+        Task<List<BeeBioSecurityResponseModel>?> GetAllBeeBiosecuritiesAsync();
     }
 }

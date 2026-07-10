@@ -11,13 +11,13 @@ namespace BeeKeeperRegister.Components.Classes
 {
     public partial class DialogPopupViewModel : ObservableObject
     {
-        private readonly DXPopup _popup;
+        private readonly DXPopup? _popup;
 
         [ObservableProperty]
         private string dialogMessage;
 
         [ObservableProperty]
-        private string title;
+        private string? title;
 
         public DialogPopupViewModel(string message, DXPopup popup)
         {
@@ -25,13 +25,13 @@ namespace BeeKeeperRegister.Components.Classes
             DialogMessage = message;
         }
 
-        private TaskCompletionSource<bool> _tcs;
+        private TaskCompletionSource<bool>? _tcs;
 
         [ObservableProperty]
-        private string leftBTNContent;
+        private string? leftBTNContent;
 
         [ObservableProperty]
-        private string rightBTNContent;
+        private string? rightBTNContent;
 
         [ObservableProperty]
         private bool isOpen;
@@ -47,21 +47,21 @@ namespace BeeKeeperRegister.Components.Classes
 
         public Task<bool> WaitForResultAsync()
         {
-            return _tcs.Task;
+            return _tcs!.Task;
         }
 
         [RelayCommand]
         private void LeftBTN()
         {
             IsOpen = false;
-            _tcs.TrySetResult(true);
+            _tcs!.TrySetResult(true);
         }
 
         [RelayCommand]
         private void RightBTN()
         {
             IsOpen = false;
-            _tcs.TrySetResult(false);
+            _tcs!.TrySetResult(false);
         }
     }
 }

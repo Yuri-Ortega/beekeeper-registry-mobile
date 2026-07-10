@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Models.UI;
 using BeeKeeperRegister.Services;
 using BeeKeeperRegister.Services.Interfaces;
@@ -8,7 +9,6 @@ using BeeKeeperRegister.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using System.Net.Mail;
 
 namespace BeeKeeperRegister.ViewModels
 {
@@ -31,40 +31,40 @@ namespace BeeKeeperRegister.ViewModels
 
         //Collections
         [ObservableProperty]
-        private ObservableCollection<RegionModel> region = new();
+        private ObservableCollection<RegionResponseModel> region = new();
 
         [ObservableProperty]
-        private ObservableCollection<ProvinceModel> province = new();
+        private ObservableCollection<ProvinceResponseModel> province = new();
 
         [ObservableProperty]
-        private ObservableCollection<MunicipalityModel> municipality = new();
+        private ObservableCollection<MunicipalityResponseModel> municipality = new();
 
         [ObservableProperty]
-        private ObservableCollection<BarangayModel> barangay = new();
+        private ObservableCollection<BarangayResponseModel> barangay = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeProductionSystemModel> beeProductionSystem = new();
+        private ObservableCollection<BeeProductionSystemResponseModel> beeProductionSystem = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeCommonPestModel> beeCommonPest = new();
+        private ObservableCollection<BeeCommonPestResponseModel> beeCommonPest = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeCommonDiseasesModel> beeCommonDiseases = new();
+        private ObservableCollection<BeeCommonDiseasesResponseModel> beeCommonDiseases = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeProductionSystemModel> selectedBeeProductionSystem = new();
+        private ObservableCollection<BeeProductionSystemResponseModel> selectedBeeProductionSystem = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeCommonPestModel> selectedBeeCommonPest = new();
+        private ObservableCollection<BeeCommonPestResponseModel> selectedBeeCommonPest = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeCommonDiseasesModel> selectedBeeCommonDiseases = new();
+        private ObservableCollection<BeeCommonDiseasesResponseModel> selectedBeeCommonDiseases = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeForagesModel> beeLocationForage = new();
+        private ObservableCollection<BeeForagesResponseModel> beeLocationForage = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeForagesModel> selectedBeeLocationForage = new();
+        private ObservableCollection<BeeForagesResponseModel> selectedBeeLocationForage = new();
 
         [ObservableProperty]
         private ObservableCollection<BioSecurityUIModel> bioSecurityList = new();
@@ -77,16 +77,16 @@ namespace BeeKeeperRegister.ViewModels
 
         // Selected Items
         [ObservableProperty]
-        private RegionModel? selectedRegion;
+        private RegionResponseModel? selectedRegion;
 
         [ObservableProperty]
-        private ProvinceModel? selectedProvince;
+        private ProvinceResponseModel? selectedProvince;
 
         [ObservableProperty]
-        private MunicipalityModel? selectedMunicipality;
+        private MunicipalityResponseModel? selectedMunicipality;
 
         [ObservableProperty]
-        private BarangayModel? selectedBarangay;
+        private BarangayResponseModel? selectedBarangay;
 
         // Farm Profile Fields
         [ObservableProperty]
@@ -163,7 +163,7 @@ namespace BeeKeeperRegister.ViewModels
         [ObservableProperty]
         private bool errBeeLocationForageBool;
 
-        [ObservableProperty] private Color errLocationColor;
+        [ObservableProperty] private Color? errLocationColor;
 
         public AddFarmProfileViewModel(
             IBeeKeeperFarmProfileService farmProfileService,
@@ -260,7 +260,7 @@ namespace BeeKeeperRegister.ViewModels
                 BioSecurityList.Add(new BioSecurityUIModel
                 {
                     BeeBioCode = item.BeeBioCode,
-                    BeeBioDescription = item.BeeBioDescription
+                    BeeBioDescription = item.BeeBioDescription!
                 });
             }
         }
@@ -284,7 +284,7 @@ namespace BeeKeeperRegister.ViewModels
                 SpeciesList.Add(new BeeSpeciesUIModel
                 {
                     Id = item.Id,
-                    BeeTypeDescription = FilterHandler.RemoveParenthesis(item.BeeTypeDescription),
+                    BeeTypeDescription = FilterHandler.RemoveParenthesis(item.BeeTypeDescription!),
                     Origin = $"{item.ProvinceName}{item.CountryName}",
                     NOC = item.NumberColonies,
                     Source = item.BscoloniesDescription,
@@ -345,7 +345,7 @@ namespace BeeKeeperRegister.ViewModels
             }
         }
 
-        private AddBeeKeeperFarmProfileLocationModel BuildFarmProfileModel() => new()
+        private AddBeeKeeperFarmProfileLocationRequestModel BuildFarmProfileModel() => new()
         {
             Rcode = SelectedRegion!.Rcode,
             Regions = SelectedRegion.Region!,
@@ -380,14 +380,14 @@ namespace BeeKeeperRegister.ViewModels
 
             foreach (var item in tempSpecies)
                 await _productionTypeService.AddBeeLocationProductionTypeSourceAsync(
-                    new AddBeeLocationProductionTypeSourceModel
+                    new AddBeeLocationProductionTypeSourceRequestModel
                     {
-                        LocationId = item.LocationId,
-                        BeeTypeId = item.BeeTypeId,
-                        BeeTypeDescription = item.BeeTypeDescription,
+                        LocationId = item.LocationId!,
+                        BeeTypeId = item.BeeTypeId!,
+                        BeeTypeDescription = item.BeeTypeDescription!,
                         NumberColonies = item.NumberColonies,
-                        Bscolonies = item.Bscolonies,
-                        BscoloniesDescription = item.BscoloniesDescription,
+                        Bscolonies = item.Bscolonies!,
+                        BscoloniesDescription = item.BscoloniesDescription!,
                         ProvCode = item.ProvCode ?? string.Empty,
                         ProvinceName = item.ProvinceName ?? string.Empty,
                         IfImported = item.IfImported,
@@ -403,11 +403,11 @@ namespace BeeKeeperRegister.ViewModels
 
             foreach (var item in tempProductioon)
                 await _beeProductioonService.AddBeeProductioonAsync(
-                    new BeeProductioonModel
+                    new BeeProductioonResponseModel
                     {
-                        LocationId = item.LocationId,
-                        BeeProdId = item.BeeProdId,
-                        BeeProductionDescription = item.BeeProductionDescription,
+                        LocationId = item.LocationId!,
+                        BeeProdId = item.BeeProdId!,
+                        BeeProductionDescription = item.BeeProductionDescription!,
                         EstProdYield = item.EstProdYield
                     });
         }
@@ -416,7 +416,7 @@ namespace BeeKeeperRegister.ViewModels
         {
             foreach (var forage in SelectedBeeLocationForage)
                 await _forageService.AddBeeLocationForagesAsync(
-                    new AddBeeLocationForageModel
+                    new AddBeeLocationForageRequestModel
                     {
                         LocationId = LocationId,
                         ForageCode = forage.ForageCode,
@@ -428,10 +428,10 @@ namespace BeeKeeperRegister.ViewModels
         {
             foreach (var item in BioSecurityList)
                 await _bioSecurityService.AddBeeProfileBiosecurityAsync(
-                    new AddBeeProfileBioSecurityModel
+                    new AddBeeProfileBioSecurityRequestModel
                     {
                         LocationId = LocationId,
-                        BeeBioCode = item.BeeBioCode,
+                        BeeBioCode = item.BeeBioCode!,
                         BeeBioDescription = item.BeeBioDescription,
                         Result = item.SelectedBioSecurity
                     });
@@ -522,7 +522,7 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         [RelayCommand]
-        public async Task SelectionBarangayAsync()
+        public void SelectionBarangay()
         {
             if (SelectedBarangay is null)
             {
@@ -543,26 +543,26 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         [RelayCommand]
-        public async Task SelectionBeeProductionSystemAsync()
+        public void SelectionBeeProductionSystem()
         {
             if (!SelectedBeeProductionSystem.Any()) return;
             ErrBeeProductionSystemBool = false;
         }
 
         [RelayCommand]
-        public async Task SelectionBeeCommonPestAsync()
+        public void SelectionBeeCommonPest()
         {
             if (!SelectedBeeCommonPest.Any()) return;
         }
 
         [RelayCommand]
-        public async Task SelectionBeeCommonDiseasesAsync()
+        public void SelectionBeeCommonDiseases()
         {
             if (!SelectedBeeCommonDiseases.Any()) return;
         }
 
         [RelayCommand]
-        public async Task SelectionBeeLocationForageAsync()
+        public void SelectionBeeLocationForage()
         {
             if (!SelectedBeeLocationForage.Any()) return;
             ErrBeeLocationForageBool = false;
@@ -681,12 +681,12 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         // Property Changed Handlers
-        partial void OnLotNoChanged(int newValue)
+        partial void OnLotNoChanged(int value)
         {
-            ErrLotNoBool = newValue == 0;
+            ErrLotNoBool = value == 0;
             _tempDataBeeSpecies.ClearAll();
 
-            if (newValue != 0 && SelectedBarangay != null)
+            if (value != 0 && SelectedBarangay != null)
             {
                 IsEnabledAddBeeSpecies = true;
                 IsEnabledAddBeeProduction = true;

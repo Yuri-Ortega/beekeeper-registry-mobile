@@ -1,6 +1,6 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
@@ -25,7 +25,7 @@ namespace BeeKeeperRegister.Services
             _logger = logger;
         }
 
-        public async Task<List<AttachmentLibraryModel>?> GetAllAttachmentLibraryAsync()
+        public async Task<List<AttachmentLibraryResponseModel>?> GetAllAttachmentLibraryAsync()
         {
             try
             {
@@ -37,7 +37,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<AttachmentLibraryModel>>();
+                return await response.Content.ReadFromJsonAsync<List<AttachmentLibraryResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<SexTypesModel>?> GetSexTypesAsync()
+        public async Task<List<SexTypesResponseModel>?> GetSexTypesAsync()
         {
             try
             {
@@ -58,7 +58,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<SexTypesModel>>();
+                return await response.Content.ReadFromJsonAsync<List<SexTypesResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -67,7 +67,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<RegionModel>?> GetRegionsAsync()
+        public async Task<List<RegionResponseModel>?> GetRegionsAsync()
         {
             try
             {
@@ -79,7 +79,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<RegionModel>>();
+                return await response.Content.ReadFromJsonAsync<List<RegionResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -88,7 +88,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<ProvinceModel>?> GetProvincesByRcodeAsync(string rCode)
+        public async Task<List<ProvinceResponseModel>?> GetProvincesByRcodeAsync(string rCode)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<ProvinceModel>>();
+                return await response.Content.ReadFromJsonAsync<List<ProvinceResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -109,7 +109,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<ProvinceModel>?> GetProvincesAsync()
+        public async Task<List<ProvinceResponseModel>?> GetProvincesAsync()
         {
             try
             {
@@ -121,7 +121,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<ProvinceModel>>();
+                return await response.Content.ReadFromJsonAsync<List<ProvinceResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<CountryModel>?> GetCountriesAsync()
+        public async Task<List<CountryResponseModel>?> GetCountriesAsync()
         {
             try
             {
@@ -142,7 +142,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<CountryModel>>();
+                return await response.Content.ReadFromJsonAsync<List<CountryResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -151,7 +151,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<MunicipalityModel>?> GetMunicipalitiesByProvCodeAsync(string provCode)
+        public async Task<List<MunicipalityResponseModel>?> GetMunicipalitiesByProvCodeAsync(string provCode)
         {
             try
             {
@@ -163,7 +163,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<MunicipalityModel>>();
+                return await response.Content.ReadFromJsonAsync<List<MunicipalityResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -172,7 +172,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BarangayModel>?> GetBarangaysByMunCodeAsync(string munCode)
+        public async Task<List<BarangayResponseModel>?> GetBarangaysByMunCodeAsync(string munCode)
         {
             try
             {
@@ -184,7 +184,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BarangayModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BarangayResponseModel>>();
             }
             catch (Exception ex)
             {

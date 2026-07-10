@@ -2,6 +2,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
+using System.Diagnostics;
 
 namespace BeeKeeperRegister.Views;
 
@@ -9,7 +10,7 @@ public partial class RegisterUserPage : ContentPage
 {
     public RegisterUserPage(RegisterUserViewModel vm)
 	{
-		InitializeComponent();
+        InitializeComponent();
 		BindingContext = vm;
 
         slideView.CurrentItemChanged += (s, e) =>
@@ -143,11 +144,9 @@ public partial class RegisterUserPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-
         if (BindingContext is RegisterUserViewModel vm)
         {
             await vm.LoaderAsync();
         }
-
     }
 }

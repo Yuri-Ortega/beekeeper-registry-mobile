@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -26,7 +27,7 @@ namespace BeeKeeperRegister.Services
             _logger = logger;
         }
 
-        public async Task<bool> AddBeeProductioonAsync(BeeProductioonModel model)
+        public async Task<bool> AddBeeProductioonAsync(BeeProductioonResponseModel model)
         {
             try
             {
@@ -43,7 +44,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<bool> UpdateBeeProductioonAsync(UpdateProductioonModel model)
+        public async Task<bool> UpdateBeeProductioonAsync(UpdateProductioonRequestModel model)
         {
             try
             {
@@ -78,7 +79,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeProductioonModel>?> GetAllBeeProductioonAsync()
+        public async Task<List<BeeProductioonResponseModel>?> GetAllBeeProductioonAsync()
         {
             try
             {
@@ -90,7 +91,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeProductioonModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeProductioonResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -99,7 +100,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeProductioonModel>?> GetAllBeeProductioonByLocationIdAsync(string locationId)
+        public async Task<List<BeeProductioonResponseModel>?> GetAllBeeProductioonByLocationIdAsync(string locationId)
         {
             try
             {
@@ -111,7 +112,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeProductioonModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeProductioonResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -120,7 +121,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<BeeProductioonModel?> GetBeeProductioonByBeeProdIdAsync(string beeProdId)
+        public async Task<BeeProductioonResponseModel?> GetBeeProductioonByBeeProdIdAsync(string beeProdId)
         {
             try
             {
@@ -132,7 +133,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<BeeProductioonModel>();
+                return await response.Content.ReadFromJsonAsync<BeeProductioonResponseModel>();
             }
             catch (Exception ex)
             {

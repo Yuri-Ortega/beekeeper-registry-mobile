@@ -1,4 +1,5 @@
-﻿using BeeKeeperRegister.Models;
+﻿using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace BeeKeeperRegister.Services.Interfaces
 {
     public interface IBeeProfileBioSecurity​Service
     {
-        Task<bool> AddBeeProfileBiosecurityAsync(AddBeeProfileBioSecurityModel model);
-        Task<List<BeeProfileBioSecurityModel>?> GetAllBeeProfileBiosecurityByLocationIdAsync(string locationId);
-        public Task<bool> UpdateBeeProfileBiosecurityAsync(UpdateBeeProfileBioSecurityModel model);
+        Task<bool> AddBeeProfileBiosecurityAsync(AddBeeProfileBioSecurityRequestModel model);
+        Task<List<BeeProfileBioSecurityResponseModel>?> GetAllBeeProfileBiosecurityByLocationIdAsync(string locationId);
+        public Task<bool> UpdateBeeProfileBiosecurityAsync(UpdateBeeProfileBioSecurityRequestModel model);
 
-        public Task<BeeProfileBioSecurityModel?> GetBeeProfileBiosecurityByLocationIdAndBeeBioCodeAsync(string locationId, string beeBioCode);
+        public Task<BeeProfileBioSecurityResponseModel?> GetBeeProfileBiosecurityByLocationIdAndBeeBioCodeAsync(string locationId, string beeBioCode);
     }
 }

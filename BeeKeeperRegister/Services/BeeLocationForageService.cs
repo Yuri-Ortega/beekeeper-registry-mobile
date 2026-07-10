@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -26,7 +27,7 @@ namespace BeeKeeperRegister.Services
             _logger = logger;
         }
 
-        public async Task<bool> AddBeeLocationForagesAsync(AddBeeLocationForageModel model)
+        public async Task<bool> AddBeeLocationForagesAsync(AddBeeLocationForageRequestModel model)
         {
             try
             {
@@ -60,7 +61,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeLocationForageModel>?> GetAllBeeLocationForagesAsync()
+        public async Task<List<BeeLocationForageResponseModel>?> GetAllBeeLocationForagesAsync()
         {
             try
             {
@@ -72,7 +73,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeLocationForageModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeLocationForageResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -81,7 +82,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<BeeLocationForageModel>?> GetAllBeeLocationForagesByLocationIdAsync(string locationId)
+        public async Task<List<BeeLocationForageResponseModel>?> GetAllBeeLocationForagesByLocationIdAsync(string locationId)
         {
             try
             {
@@ -93,7 +94,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<BeeLocationForageModel>>();
+                return await response.Content.ReadFromJsonAsync<List<BeeLocationForageResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -102,7 +103,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<BeeLocationForageModel?> GetBeeLocationForageByLocationIdAsync(string locationId)
+        public async Task<BeeLocationForageResponseModel?> GetBeeLocationForageByLocationIdAsync(string locationId)
         {
             try
             {
@@ -114,7 +115,7 @@ namespace BeeKeeperRegister.Services
                     return null;
                 }
 
-                return await response.Content.ReadFromJsonAsync<BeeLocationForageModel>();
+                return await response.Content.ReadFromJsonAsync<BeeLocationForageResponseModel>();
             }
             catch (Exception ex)
             {

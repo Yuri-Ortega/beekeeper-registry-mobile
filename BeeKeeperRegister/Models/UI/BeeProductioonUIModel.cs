@@ -9,7 +9,7 @@ namespace BeeKeeperRegister.Models.UI
     public class BeeProductioonUIModel
     {
         public int Id { get; set; }
-        public string BeeProduction { get; set; }
+        public string? BeeProduction { get; set; }
         public int EstProdYield { get; set; }
     }
 }

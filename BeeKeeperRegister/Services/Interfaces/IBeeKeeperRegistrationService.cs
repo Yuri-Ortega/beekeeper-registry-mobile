@@ -1,4 +1,5 @@
-﻿using BeeKeeperRegister.Models;
+﻿using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BeeKeeperRegister.Services.Interfaces
 {
     public interface IBeeKeeperRegistrationService
     {
-        Task<GetBeeKeeperRegisterModel?> GetBeeKeeperProfileAsync();
-        Task<bool> RegisterBeeKeeperProfileAsync(RegisterBeeKeeperModel model);
+        Task<BeeKeeperRegistrationResponseModel?> GetBeeKeeperProfileAsync();
+        Task<bool> RegisterBeeKeeperProfileAsync(AddBeeKeeperRegisterRequestModel model);
     }
 }

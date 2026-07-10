@@ -1,5 +1,6 @@
 ﻿using BeeKeeperRegister.Components.Classes;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services;
 using BeeKeeperRegister.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -26,16 +27,16 @@ namespace BeeKeeperRegister.ViewModels
 
         // Error Messages Account
         [ObservableProperty]
-        private string errPassTxt;
+        private string? errPassTxt;
 
         [ObservableProperty]
-        private string errConfPassTxt;
+        private string? errConfPassTxt;
 
         [ObservableProperty]
-        private string errEmailTxt;
+        private string? errEmailTxt;
 
         [ObservableProperty]
-        private string errContactTxt;
+        private string? errContactTxt;
 
         // Error Flags Account
         [ObservableProperty] private bool errUserBool;
@@ -61,7 +62,7 @@ namespace BeeKeeperRegister.ViewModels
         [ObservableProperty] private bool errProvinceBool;
         [ObservableProperty] private bool errMunicipalityBool;
         [ObservableProperty] private bool errBarangayBool;
-        [ObservableProperty] private Color errLocationColor;
+        [ObservableProperty] private Color? errLocationColor;
 
         // BeeKeeper Info Fields
         [ObservableProperty] private string selectedPMB = "No";
@@ -84,27 +85,27 @@ namespace BeeKeeperRegister.ViewModels
 
         // Collections  
         [ObservableProperty]
-        private ObservableCollection<SexTypesModel> sex = new();
+        private ObservableCollection<SexTypesResponseModel> sex = new();
 
         [ObservableProperty]
-        private ObservableCollection<RegionModel> region = new();
+        private ObservableCollection<RegionResponseModel> region = new();
 
         [ObservableProperty]
-        private ObservableCollection<ProvinceModel> province = new();
+        private ObservableCollection<ProvinceResponseModel> province = new();
 
         [ObservableProperty]
-        private ObservableCollection<MunicipalityModel> municipality = new();
+        private ObservableCollection<MunicipalityResponseModel> municipality = new();
 
         [ObservableProperty]
-        private ObservableCollection<BarangayModel> barangay = new();
+        private ObservableCollection<BarangayResponseModel> barangay = new();
 
 
         // Selected Items
-        [ObservableProperty] private SexTypesModel? selectedSex;
-        [ObservableProperty] private RegionModel? selectedRegion;
-        [ObservableProperty] private ProvinceModel? selectedProvince;
-        [ObservableProperty] private MunicipalityModel? selectedMunicipality;
-        [ObservableProperty] private BarangayModel? selectedBarangay;
+        [ObservableProperty] private SexTypesResponseModel? selectedSex;
+        [ObservableProperty] private RegionResponseModel? selectedRegion;
+        [ObservableProperty] private ProvinceResponseModel? selectedProvince;
+        [ObservableProperty] private MunicipalityResponseModel? selectedMunicipality;
+        [ObservableProperty] private BarangayResponseModel? selectedBarangay;
 
 
         // Step
@@ -177,7 +178,7 @@ namespace BeeKeeperRegister.ViewModels
             }
         }
 
-        private RegisterBeeKeeperModel BuildBeeKeeperModel() => new()
+        private AddBeeKeeperRegisterRequestModel BuildBeeKeeperModel() => new()
         {
             Firstname = FN!,
             Lastname = LN!,
@@ -202,7 +203,7 @@ namespace BeeKeeperRegister.ViewModels
             UserName = User!
         };
 
-        private RegisterUserModel BuildRegisterUser() => new()
+        private RegisterUserRequestModel BuildRegisterUser() => new()
         {
             UserName = User!,
             Email = Email!,
@@ -274,19 +275,19 @@ namespace BeeKeeperRegister.ViewModels
 
         // Selection Events
         [RelayCommand]
-        public async Task BirthdayChangedAsync()
+        public void BirthdayChanged()
         {
             ErrBirthdayBool = Birthday == DateTime.MinValue;
         }
 
         [RelayCommand]
-        public async Task StartBeeKeepingChangedAsync()
+        public void StartBeeKeepingChanged()
         {
             ErrStartBeeKeepingBool = StartBeeKeeping == DateTime.MinValue;
         }
 
         [RelayCommand]
-        public async Task SelectionSexAsync()
+        public void SelectionSex()
         {
             if (SelectedSex == null) return;
             ErrSexBool = false;
@@ -341,7 +342,7 @@ namespace BeeKeeperRegister.ViewModels
         }
 
         [RelayCommand]
-        public async Task SelectionBarangayAsync()
+        public void SelectionBarangay()
         {
             if (SelectedBarangay == null)
             {
@@ -390,18 +391,18 @@ namespace BeeKeeperRegister.ViewModels
             IsYesPMBBool = value == "Yes";
         }
 
-        partial void OnUserChanged(string newValue)
+        partial void OnUserChanged(string? value)
         {
-            ErrUserBool = string.IsNullOrEmpty(newValue);
+            ErrUserBool = string.IsNullOrEmpty(value);
         }
 
-        partial void OnContactNumberChanged(string newValue)
+        partial void OnContactNumberChanged(string? value)
         {
-            if (string.IsNullOrEmpty(newValue))
+            if (string.IsNullOrEmpty(value))
             {
                 ErrContactBool = true;
             }
-            else if (newValue.Length != 11)
+            else if (value.Length != 11)
             {
                 ErrContactBool = true;
                 ErrContactTxt = "*Contact number must have 11 digits";
@@ -413,18 +414,18 @@ namespace BeeKeeperRegister.ViewModels
             }
         }
 
-        partial void OnEmailChanged(string newValue)
+        partial void OnEmailChanged(string? value)
         {
-            if (string.IsNullOrEmpty(newValue))
+            if (string.IsNullOrEmpty(value))
             {
                 ErrEmailBool = true;
             }
-            else if (!newValue.Contains('@'))
+            else if (!value.Contains('@'))
             {
                 ErrEmailBool = true;
                 ErrEmailTxt = "*Invalid E-mail address (missing '@')";
             }
-            else if (!newValue.Contains('.'))
+            else if (!value.Contains('.'))
             {
                 ErrEmailBool = true;
                 ErrEmailTxt = "*Invalid E-mail address (missing '.')";
@@ -436,19 +437,19 @@ namespace BeeKeeperRegister.ViewModels
             }
         }
 
-        partial void OnPassChanged(string newValue)
+        partial void OnPassChanged(string? value)
         {
 
-            if (string.IsNullOrEmpty(newValue))
+            if (string.IsNullOrEmpty(value))
             {
                 ErrPassBool = true;
             }
-            else if (!newValue.Any(char.IsUpper))
+            else if (!value.Any(char.IsUpper))
             {
                 ErrPassBool = true;
                 ErrPassTxt = "*Uppercase is Required";
             }
-            else if (newValue.Length < 8)
+            else if (value.Length < 8)
             {
                 ErrPassBool = true;
                 ErrPassTxt = "*Password at least 8 characters";
@@ -460,23 +461,23 @@ namespace BeeKeeperRegister.ViewModels
             }
         }
 
-        partial void OnConfPassChanged(string newValue)
+        partial void OnConfPassChanged(string? value)
         {
-            if (string.IsNullOrEmpty(newValue))
+            if (string.IsNullOrEmpty(value))
             {
                 ErrConfPassBool = true;
             }
-            else if (!newValue.Any(char.IsUpper))
+            else if (!value.Any(char.IsUpper))
             {
                 ErrConfPassBool = true;
                 ErrConfPassTxt = "*Uppercase is Required";
             }
-            else if (newValue.Length < 8)
+            else if (value.Length < 8)
             {
                 ErrConfPassBool = true;
                 ErrConfPassTxt = "*Confirm password at least 8 characters";
             }
-            else if (newValue != Pass)
+            else if (value != Pass)
             {
                 ErrConfPassBool = true;
                 ErrConfPassTxt = "*Confirm Passwords do not match";
@@ -488,19 +489,19 @@ namespace BeeKeeperRegister.ViewModels
             }
         }
 
-        partial void OnFNChanged(string newValue)
+        partial void OnFNChanged(string? value)
         {
-            ErrFNBool = string.IsNullOrEmpty(newValue);
+            ErrFNBool = string.IsNullOrEmpty(value);
         }
 
-        partial void OnLNChanged(string newValue)
+        partial void OnLNChanged(string? value)
         {
-            ErrLNBool = string.IsNullOrEmpty(newValue);
+            ErrLNBool = string.IsNullOrEmpty(value);
         }
 
-        partial void OnNoFPChanged(int newValue)
+        partial void OnNoFPChanged(int value)
         {
-            ErrNoFPBool = newValue == 0;
+            ErrNoFPBool = value == 0;
         }
 
 

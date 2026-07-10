@@ -1,4 +1,5 @@
 ﻿using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,9 @@ namespace BeeKeeperRegister.Handler
         /// <param name="provCode">The province code used to check for duplicates.</param>
         /// <param name="countryCode">The country code used to check for duplicates.</param>
         /// <returns>A filtered collection of bee types with duplicates removed except for the current bee type.</returns>
-        public static IEnumerable<BeeTypesModel> FilterBeeTypes(
-        IEnumerable<BeeTypesModel> all,
-        IEnumerable<BeeLocationProductionTypeSourceModel> temp,
+        public static IEnumerable<BeeTypesResponseModel> FilterBeeTypes(
+        IEnumerable<BeeTypesResponseModel> all,
+        IEnumerable<BeeLocationProductionTypeSourceResponseModel> temp,
         string currentBeeTypeId,
         string? provCode,
         string? countryCode)
@@ -53,8 +54,8 @@ namespace BeeKeeperRegister.Handler
         /// <param name="provCode">The province code used to match duplicates.</param>
         /// <param name="countryCode">The country code used to match duplicates.</param>
         /// <returns>A filtered collection of bee types excluding duplicates except for the current bee type.</returns>
-        public static IEnumerable<BeeTypesModel> TempFilterBeeTypes(
-        IEnumerable<BeeTypesModel> all,
+        public static IEnumerable<BeeTypesResponseModel> TempFilterBeeTypes(
+        IEnumerable<BeeTypesResponseModel> all,
         IEnumerable<TempDataBeeSpeciesModel> temp,
         string currentBeeTypeId,
         string? provCode,

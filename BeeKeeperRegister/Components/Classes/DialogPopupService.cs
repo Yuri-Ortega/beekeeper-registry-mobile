@@ -1,5 +1,5 @@
 ﻿using BeeKeeperRegister.Components.Views;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +61,7 @@ namespace BeeKeeperRegister.Components.Classes
             popup.Show();
         }
 
-        public async Task<GoogleMapModel> ShowGoogleMapPopup(
+        public async Task<GoogleMapResponseModel> ShowGoogleMapPopup(
     string region,
     string province,
     string municipality,

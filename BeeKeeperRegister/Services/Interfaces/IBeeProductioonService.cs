@@ -1,4 +1,5 @@
-﻿using BeeKeeperRegister.Models;
+﻿using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,12 @@ namespace BeeKeeperRegister.Services.Interfaces
 {
     public interface IBeeProductioonService
     {
-        Task<bool> AddBeeProductioonAsync(BeeProductioonModel model);
-        Task<bool> UpdateBeeProductioonAsync(UpdateProductioonModel model);
+        Task<bool> AddBeeProductioonAsync(BeeProductioonResponseModel model);
+        Task<bool> UpdateBeeProductioonAsync(UpdateProductioonRequestModel model);
         Task<bool> DeleteBeeProductioonByBeeProdIdAsync(string beeProdId);
-        Task<List<BeeProductioonModel>?> GetAllBeeProductioonAsync();
-        Task<List<BeeProductioonModel>?> GetAllBeeProductioonByLocationIdAsync(string locationId);
-        Task<BeeProductioonModel?> GetBeeProductioonByBeeProdIdAsync(string beeProdId);
+        Task<List<BeeProductioonResponseModel>?> GetAllBeeProductioonAsync();
+        Task<List<BeeProductioonResponseModel>?> GetAllBeeProductioonByLocationIdAsync(string locationId);
+        Task<BeeProductioonResponseModel?> GetBeeProductioonByBeeProdIdAsync(string beeProdId);
         Task<int?> CountBeeProductioonPerFarmByLocationIdAsync(string locationId);
     }
 }

@@ -8,6 +8,7 @@
     xmlns:dxc="http://schemas.devexpress.com/maui"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    xmlns:model="clr-namespace:BeeKeeperRegister.Models.UI"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
     x:DataType="viewModels:DashboardUserViewModel"
@@ -216,6 +217,9 @@
                                         Text="Species"
                                         TextColor="{StaticResource TextPrimary}" />
                                     <dxc:PieChartView HeightRequest="200" IsVisible="{Binding SpeciesChartData.Count}">
+                                        <dxc:PieChartView.ChartStyle>
+                                            <dxc:PieChartStyle Palette="{Binding BrandChartPalette}" />
+                                        </dxc:PieChartView.ChartStyle>
                                         <dxc:PieChartView.Series>
                                             <dxc:DonutSeries>
                                                 <dxc:DonutSeries.Data>
@@ -224,6 +228,17 @@
                                                         LabelDataMember="Label"
                                                         ValueDataMember="Count" />
                                                 </dxc:DonutSeries.Data>
+                                                <dxc:DonutSeries.Label>
+                                                    <dxc:PieSeriesLabel Position="Inside" TextPattern="{}{VP}%">
+                                                        <dxc:PieSeriesLabel.Style>
+                                                            <dxc:PieSeriesLabelStyle ConnectorThickness="1">
+                                                                <dxc:PieSeriesLabelStyle.TextStyle>
+                                                                    <dxc:TextStyle Size="12" Color="{StaticResource Surface}" />
+                                                                </dxc:PieSeriesLabelStyle.TextStyle>
+                                                            </dxc:PieSeriesLabelStyle>
+                                                        </dxc:PieSeriesLabel.Style>
+                                                    </dxc:PieSeriesLabel>
+                                                </dxc:DonutSeries.Label>
                                             </dxc:DonutSeries>
                                         </dxc:PieChartView.Series>
                                         <dxc:PieChartView.Legend>
@@ -255,6 +270,9 @@
                                         Text="Production"
                                         TextColor="{StaticResource TextPrimary}" />
                                     <dxc:PieChartView HeightRequest="200" IsVisible="{Binding ProductionChartData.Count}">
+                                        <dxc:PieChartView.ChartStyle>
+                                            <dxc:PieChartStyle Palette="{Binding BrandChartPalette}" />
+                                        </dxc:PieChartView.ChartStyle>
                                         <dxc:PieChartView.Series>
                                             <dxc:DonutSeries>
                                                 <dxc:DonutSeries.Data>
@@ -263,6 +281,17 @@
                                                         LabelDataMember="Label"
                                                         ValueDataMember="Count" />
                                                 </dxc:DonutSeries.Data>
+                                                <dxc:DonutSeries.Label>
+                                                    <dxc:PieSeriesLabel Position="Inside" TextPattern="{}{VP}%">
+                                                        <dxc:PieSeriesLabel.Style>
+                                                            <dxc:PieSeriesLabelStyle ConnectorThickness="1">
+                                                                <dxc:PieSeriesLabelStyle.TextStyle>
+                                                                    <dxc:TextStyle Size="12" Color="{StaticResource Surface}" />
+                                                                </dxc:PieSeriesLabelStyle.TextStyle>
+                                                            </dxc:PieSeriesLabelStyle>
+                                                        </dxc:PieSeriesLabel.Style>
+                                                    </dxc:PieSeriesLabel>
+                                                </dxc:DonutSeries.Label>
                                             </dxc:DonutSeries>
                                         </dxc:PieChartView.Series>
                                         <dxc:PieChartView.Legend>
@@ -293,17 +322,28 @@
                                         FontSize="12"
                                         Text="Forages"
                                         TextColor="{StaticResource TextPrimary}" />
-                                    <dxc:ChartView HeightRequest="240" IsVisible="{Binding ForagesChartData.Count}">
-                                        <dxc:ChartView.Series>
-                                            <dxc:BarSeries>
-                                                <dxc:BarSeries.Data>
-                                                    <dxc:SeriesDataAdapter ArgumentDataMember="Label" DataSource="{Binding ForagesChartData}">
-                                                        <dxc:ValueDataMember Member="Count" Type="Value" />
-                                                    </dxc:SeriesDataAdapter>
-                                                </dxc:BarSeries.Data>
-                                            </dxc:BarSeries>
-                                        </dxc:ChartView.Series>
-                                    </dxc:ChartView>
+                                    <ScrollView HorizontalScrollBarVisibility="Always" Orientation="Horizontal">
+                                        <dxc:ChartView
+                                            HeightRequest="240"
+                                            IsVisible="{Binding ForagesChartData.Count}"
+                                            WidthRequest="{Binding ForagesChartWidth}">
+                                            <dxc:ChartView.Series>
+                                                <dxc:BarSeries>
+                                                    <dxc:BarSeries.Data>
+                                                        <dxc:SeriesDataAdapter ArgumentDataMember="Label" DataSource="{Binding ForagesChartData}">
+                                                            <dxc:ValueDataMember Member="Count" Type="Value" />
+                                                        </dxc:SeriesDataAdapter>
+                                                    </dxc:BarSeries.Data>
+                                                    <dxc:BarSeries.Style>
+                                                        <dxc:BarSeriesStyle Fill="{StaticResource BrandLight}" />
+                                                    </dxc:BarSeries.Style>
+                                                    <dxc:BarSeries.Label>
+                                                        <dxc:BarSeriesLabel Position="InsideTop" TextPattern="{}{V}" />
+                                                    </dxc:BarSeries.Label>
+                                                </dxc:BarSeries>
+                                            </dxc:ChartView.Series>
+                                        </dxc:ChartView>
+                                    </ScrollView>
                                     <dxc:DXImage
                                         HeightRequest="200"
                                         IsVisible="{Binding HasNoForagesChartData}"
@@ -394,7 +434,7 @@
                                 VerticalOptions="Fill">
 
                                 <dx:DXCollectionView.ItemTemplate>
-                                    <DataTemplate x:DataType="{x:Type x:Object}">
+                                    <DataTemplate x:DataType="model:TrainingUIModel">
                                         <dx:DXBorder
                                             Margin="14,0,14,10"
                                             Padding="12"
@@ -454,7 +494,7 @@
                                                         TintColor="{StaticResource BrandDark}"
                                                         WidthRequest="17">
                                                         <dx:DXImage.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateCommand}" CommandParameter="{Binding .}" />
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DashboardUserViewModel}}, Path=UpdateCommand}" CommandParameter="{Binding .}" />
                                                         </dx:DXImage.GestureRecognizers>
                                                     </dx:DXImage>
                                                     <dx:DXImage
@@ -463,7 +503,7 @@
                                                         TintColor="{StaticResource Warning}"
                                                         WidthRequest="17">
                                                         <dx:DXImage.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteCommand}" CommandParameter="{Binding .}" />
+                                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DashboardUserViewModel}}, Path=DeleteCommand}" CommandParameter="{Binding .}" />
                                                         </dx:DXImage.GestureRecognizers>
                                                     </dx:DXImage>
                                                 </HorizontalStackLayout>
@@ -595,7 +635,7 @@
                                 VerticalOptions="Fill">
 
                                 <dx:DXCollectionView.ItemTemplate>
-                                    <DataTemplate x:DataType="{x:Type x:Object}">
+                                    <DataTemplate x:DataType="model:FarmUIModel">
                                         <dx:DXBorder
                                             Margin="0,0,0,10"
                                             Padding="0"
@@ -604,7 +644,7 @@
                                             BorderThickness="1"
                                             CornerRadius="14">
                                             <dx:DXBorder.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ViewDetailsCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DashboardUserViewModel}}, Path=ViewDetailsCommand}" CommandParameter="{Binding .}" />
                                             </dx:DXBorder.GestureRecognizers>
 
 
@@ -640,7 +680,7 @@
 
                                                     <Grid
                                                         Margin="0,2,0,0"
-                                                        ColumnDefinitions="*,*,*"
+                                                        ColumnDefinitions="*, *,*,*"
                                                         ColumnSpacing="10">
 
                                                         <dx:DXBorder
@@ -674,6 +714,25 @@
                                                                 TextColor="{StaticResource BrandDark}">
                                                                 <Label.FormattedText>
                                                                     <FormattedString>
+                                                                        <Span Text="Colonies " />
+                                                                        <Span Text="{Binding NumberColonies}" />
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                        </dx:DXBorder>
+
+                                                        <dx:DXBorder
+                                                            Grid.Column="2"
+                                                            Padding="10,5"
+                                                            BackgroundColor="{StaticResource BackgroundColor}"
+                                                            BorderThickness="0"
+                                                            CornerRadius="8">
+                                                            <Label
+                                                                FontAttributes="Bold"
+                                                                FontSize="11.5"
+                                                                TextColor="{StaticResource BrandDark}">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
                                                                         <Span Text="Production " />
                                                                         <Span Text="{Binding NumberProductioon}" />
                                                                     </FormattedString>
@@ -682,7 +741,7 @@
                                                         </dx:DXBorder>
 
                                                         <dx:DXBorder
-                                                            Grid.Column="2"
+                                                            Grid.Column="3"
                                                             Padding="10,5"
                                                             BackgroundColor="{StaticResource BackgroundColor}"
                                                             BorderThickness="0"

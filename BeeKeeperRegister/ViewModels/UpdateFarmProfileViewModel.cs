@@ -1,6 +1,8 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
 using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services;
 using BeeKeeperRegister.Services.Interfaces;
 using BeeKeeperRegister.Views;
@@ -35,8 +37,8 @@ namespace BeeKeeperRegister.ViewModels
 
 
         // Farm profile Fields
-        [ObservableProperty] private string selectedHDMng = "No";
-        [ObservableProperty] private int lotNo;
+        [ObservableProperty] private string? selectedHDMng = "No";
+        [ObservableProperty] private int? lotNo;
         [ObservableProperty] private string location = string.Empty;
         [ObservableProperty] private double selectedLatitude;
         [ObservableProperty] private double selectedLongitude;
@@ -49,30 +51,30 @@ namespace BeeKeeperRegister.ViewModels
 
         // Collections
         [ObservableProperty]
-        private ObservableCollection<BeeProductionSystemModel> beeProductionSystem = new();
+        private ObservableCollection<BeeProductionSystemResponseModel> beeProductionSystem = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeCommonPestModel> beeCommonPest = new();
+        private ObservableCollection<BeeCommonPestResponseModel> beeCommonPest = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeCommonDiseasesModel> beeCommonDiseases = new();
+        private ObservableCollection<BeeCommonDiseasesResponseModel> beeCommonDiseases = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeForagesModel> beeLocationForage = new();
+        private ObservableCollection<BeeForagesResponseModel> beeLocationForage = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeProductionSystemModel> selectedBeeProductionSystem = new();
+        private ObservableCollection<BeeProductionSystemResponseModel> selectedBeeProductionSystem = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeCommonPestModel> selectedBeeCommonPest = new();
+        private ObservableCollection<BeeCommonPestResponseModel> selectedBeeCommonPest = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeCommonDiseasesModel> selectedBeeCommonDiseases = new();
+        private ObservableCollection<BeeCommonDiseasesResponseModel> selectedBeeCommonDiseases = new();
 
         [ObservableProperty]
-        private ObservableCollection<BeeForagesModel> selectedBeeLocationForage = new();
+        private ObservableCollection<BeeForagesResponseModel> selectedBeeLocationForage = new();
 
-        private Task<List<BeeLocationForageModel>?> forageLocationTask;
+        private Task<List<BeeLocationForageResponseModel>?>? forageLocationTask;
 
         public UpdateFarmProfileViewModel(
             IBeeKeeperFarmProfileService farmProfileService,
@@ -130,30 +132,30 @@ namespace BeeKeeperRegister.ViewModels
 
             LotNo = farm.LotNo;
             Location = $"{farm.Barangay}, {farm.Municipalities}, {farm.Provinces}";
-            SelectedHDMng = farm.Hdmng ? "Yes" : "No";
+            SelectedHDMng = (bool)farm.Hdmng! ? "Yes" : "No";
             SelectedLatitude = Convert.ToDouble(farm.Latitude);
             SelectedLongitude = Convert.ToDouble(farm.Longitude);
 
             await InitializeLocationAsync(
-                farm.Regions, farm.Provinces,
-                farm.Municipalities, farm.Barangay,
+                farm.Regions!, farm.Provinces!,
+                farm.Municipalities!, farm.Barangay!,
                 Convert.ToDouble(farm.Latitude),
                 Convert.ToDouble(farm.Longitude));
 
-            SelectedBeeProductionSystem = new ObservableCollection<BeeProductionSystemModel>(
+            SelectedBeeProductionSystem = new ObservableCollection<BeeProductionSystemResponseModel>(
                 BeeProductionSystem.Where(x =>
-                    FilterHandler.FilterMultipleSelectionTokenEdit(farm.BeeSystemProduction)
-                        .Contains(x.BeeSystemProduction?.Trim().ToLower())));
+                    FilterHandler.FilterMultipleSelectionTokenEdit(farm.BeeSystemProduction!)
+                        .Contains(x.BeeSystemProduction?.Trim().ToLower()!)));
 
-            SelectedBeeCommonDiseases = new ObservableCollection<BeeCommonDiseasesModel>(
+            SelectedBeeCommonDiseases = new ObservableCollection<BeeCommonDiseasesResponseModel>(
                 BeeCommonDiseases.Where(x =>
-                    FilterHandler.FilterMultipleSelectionTokenEdit(farm.CommonDiseaseBeeDescription)
-                        .Contains(x.CommonDiseaseBeeDescription?.Trim().ToLower())));
+                    FilterHandler.FilterMultipleSelectionTokenEdit(farm.CommonDiseaseBeeDescription!)
+                        .Contains(x.CommonDiseaseBeeDescription?.Trim().ToLower()!)));
 
-            SelectedBeeCommonPest = new ObservableCollection<BeeCommonPestModel>(
+            SelectedBeeCommonPest = new ObservableCollection<BeeCommonPestResponseModel>(
                 BeeCommonPest.Where(x =>
-                    FilterHandler.FilterMultipleSelectionTokenEdit(farm.CommonPestsDescription)
-                        .Contains(x.CommonPestsDescription?.Trim().ToLower())));
+                    FilterHandler.FilterMultipleSelectionTokenEdit(farm.CommonPestsDescription!)
+                        .Contains(x.CommonPestsDescription?.Trim().ToLower()!)));
 
             var filterBeeForage = forageLocation
                 .Where(x => !string.IsNullOrEmpty(x.ForagesDescription))
@@ -162,7 +164,7 @@ namespace BeeKeeperRegister.ViewModels
                 .Select(x => x.Trim())
                 .ToHashSet();
 
-            SelectedBeeLocationForage = new ObservableCollection<BeeForagesModel>(
+            SelectedBeeLocationForage = new ObservableCollection<BeeForagesResponseModel>(
                 BeeLocationForage.Where(x =>
                     filterBeeForage.Contains(x.ForagesDescription!)));
         }
@@ -170,27 +172,27 @@ namespace BeeKeeperRegister.ViewModels
 
         // Selection Events
         [RelayCommand]
-        public async Task SelectionBeeLocationForageAsync()
+        public void SelectionBeeLocationForage()
         {
             if (!SelectedBeeLocationForage.Any()) return;
             ErrBeeLocationForageBool = false;
         }
 
         [RelayCommand]
-        public async Task SelectionBeeProductionSystemAsync()
+        public void SelectionBeeProductionSystem()
         {
             if (SelectedBeeProductionSystem.Any() == false) return;
             ErrBeeProductionSystemBool = false;
         }
 
         [RelayCommand]
-        public async Task SelectionBeeCommonPestAsync()
+        public void SelectionBeeCommonPest()
         {
             if (SelectedBeeCommonPest.Any() == false) return;
         }
 
         [RelayCommand]
-        public async Task SelectionBeeCommonDiseasesAsync()
+        public void SelectionBeeCommonDiseases()
         {
             if (SelectedBeeCommonDiseases.Any() == false) return;
         }
@@ -270,7 +272,7 @@ namespace BeeKeeperRegister.ViewModels
                     await SaveForagesAsync();
 
                     var isUpdated = await _farmProfileService.UpdateFarmProfileAsync(
-                        new UpdateBeeKeeperFarmProfileLocationModel
+                        new UpdateBeeKeeperFarmProfileLocationRequestModel
                         {
                             LocationId = LocationId,
                             Latitude = SelectedLatitude.ToString(),
@@ -293,7 +295,7 @@ namespace BeeKeeperRegister.ViewModels
                     if (!isUpdated) return;
 
                     _popupService.ShowSuccessDialog("Farm profile updated successfully");
-                    _ = LoaderAsync();
+                    await Shell.Current.GoToAsync("..");
                 }
             }
             catch (Exception ex)
@@ -304,15 +306,15 @@ namespace BeeKeeperRegister.ViewModels
 
         private async Task SaveForagesAsync()
         {
-            var forageLocation = await forageLocationTask;
-            foreach (var forage in forageLocation)
+            var forageLocation = await forageLocationTask!;
+            foreach (var forage in forageLocation!)
                 await _forageService.DeleteBeeLocationForagesAsync(forage.ForageCode);
 
 
 
             foreach (var forage in SelectedBeeLocationForage)
                 await _forageService.AddBeeLocationForagesAsync(
-                    new AddBeeLocationForageModel
+                    new AddBeeLocationForageRequestModel
                     {
                         LocationId = LocationId,
                         ForageCode = forage.ForageCode,

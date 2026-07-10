@@ -32,7 +32,6 @@
             <Setter Property="VerticalSpacing" Value="10" />
             <Setter Property="TextFontSize" Value="16" />
             <Setter Property="TextFontFamily" Value="Roboto" />
-            <Setter Property="ShowArrow" Value="True" />
         </Style>
     </ContentPage.Resources>
 
@@ -79,12 +78,13 @@
                 Style="{StaticResource FormComponent}"
                 Text="Language" />
             <dx:DXButton
-                Margin="16,24"
+                Margin="60,24"
+                Padding="5,7"
                 ButtonType="Outlined"
                 Command="{Binding LogoutCommand}"
                 Content="Log Out"
-                Style="{StaticResource ButtonOutlineStyle}"
-                WidthRequest="160" />
+                FontSize="15"
+                Style="{StaticResource ButtonOutlineStyle}" />
         </dx:DXStackLayout>
     </dx:DXScrollView>
 </ContentPage>

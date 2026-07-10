@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -26,7 +27,7 @@ namespace BeeKeeperRegister.Services
             _logger = logger;
         }
 
-        public async Task<bool> AddTrainingAsync(AddBeeKeeperTrainingsModel model)
+        public async Task<bool> AddTrainingAsync(AddBeeKeeperTrainingsRequestModel model)
         {
             try
             {
@@ -43,7 +44,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<bool> UpdateTrainingAsync(UpdateBeeKeeperTrainingsModel model)
+        public async Task<bool> UpdateTrainingAsync(UpdateBeeKeeperTrainingsRequestModel model)
         {
             try
             {
@@ -77,7 +78,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<List<GetBeeKeeperTrainingsModel>?> GetAllBeeKeeperTrainingsAsync()
+        public async Task<List<AllBeeKeeperTrainingsResponseModel>?> GetAllBeeKeeperTrainingsAsync()
         {
             try
             {
@@ -90,7 +91,7 @@ namespace BeeKeeperRegister.Services
                 }
 
                 return await response.Content
-                    .ReadFromJsonAsync<List<GetBeeKeeperTrainingsModel>>();
+                    .ReadFromJsonAsync<List<AllBeeKeeperTrainingsResponseModel>>();
             }
             catch (Exception ex)
             {
@@ -99,7 +100,7 @@ namespace BeeKeeperRegister.Services
             }
         }
 
-        public async Task<GetBeeKeeperTrainingModel?> GetTrainingByCtrAsync(int trainingCtr)
+        public async Task<BeeKeeperTrainingResponseModel?> GetTrainingByCtrAsync(int trainingCtr)
         {
             try
             {
@@ -112,7 +113,7 @@ namespace BeeKeeperRegister.Services
                 }
 
                 return await response.Content
-                    .ReadFromJsonAsync<GetBeeKeeperTrainingModel>();
+                    .ReadFromJsonAsync<BeeKeeperTrainingResponseModel>();
             }
             catch (Exception ex)
             {

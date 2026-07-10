@@ -7,6 +7,7 @@
     xmlns:dxc="http://schemas.devexpress.com/maui"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    xmlns:model="clr-namespace:BeeKeeperRegister.Models.UI"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
     Title="View Farm Profile"
@@ -195,7 +196,7 @@
                     IsVisible="{Binding BeeSpeciesHasData}"
                     Spacing="10">
                     <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="{x:Type x:Object}">
+                        <DataTemplate x:DataType="model:ViewFarmBeeSpeciesUIModel">
                             <dx:DXBorder
                                 Padding="12"
                                 BorderThickness="1"
@@ -272,7 +273,7 @@
                                             TintColor="{StaticResource BrandDark}"
                                             WidthRequest="15">
                                             <dx:DXImage.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateBeeSpeciesCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ViewFarmProfileViewModel}}, Path=UpdateBeeSpeciesCommand}" CommandParameter="{Binding .}" />
                                             </dx:DXImage.GestureRecognizers>
                                         </dx:DXImage>
                                         <dx:DXImage
@@ -281,7 +282,7 @@
                                             TintColor="{StaticResource Danger}"
                                             WidthRequest="15">
                                             <dx:DXImage.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteBeeSpeciesCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ViewFarmProfileViewModel}}, Path=DeleteBeeSpeciesCommand}" CommandParameter="{Binding .}" />
                                             </dx:DXImage.GestureRecognizers>
                                         </dx:DXImage>
                                     </HorizontalStackLayout>
@@ -335,7 +336,7 @@
                     IsVisible="{Binding BeeProductioonHasData}">
                     <VerticalStackLayout BindableLayout.ItemsSource="{Binding BeeProductioonList}">
                         <BindableLayout.ItemTemplate>
-                            <DataTemplate x:DataType="{x:Type x:Object}">
+                            <DataTemplate x:DataType="model:ViewFarmBeeProductioonUIModel">
                                 <VerticalStackLayout>
                                     <Grid
                                         Padding="12,9"
@@ -381,7 +382,7 @@
                                             VerticalOptions="Center"
                                             WidthRequest="15">
                                             <dx:DXImage.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UpdateBeeProductioonCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ViewFarmProfileViewModel}}, Path=UpdateBeeProductioonCommand}" CommandParameter="{Binding .}" />
                                             </dx:DXImage.GestureRecognizers>
                                         </dx:DXImage>
                                         <dx:DXImage
@@ -392,7 +393,7 @@
                                             VerticalOptions="Center"
                                             WidthRequest="15">
                                             <dx:DXImage.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteBeeProductioonCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ViewFarmProfileViewModel}}, Path=DeleteBeeProductioonCommand}" CommandParameter="{Binding .}" />
                                             </dx:DXImage.GestureRecognizers>
                                         </dx:DXImage>
                                     </Grid>
@@ -446,7 +447,7 @@
 
                 <VerticalStackLayout BindableLayout.ItemsSource="{Binding BioSecurityList}" Spacing="10">
                     <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="{x:Type x:Object}">
+                        <DataTemplate x:DataType="model:BioSecurityUIModel">
                             <dx:DXBorder
                                 Padding="14"
                                 BackgroundColor="{StaticResource Surface}"
@@ -483,7 +484,7 @@
                                                 Text="Yes"
                                                 TextColor="{Binding YesRadioTxt, Mode=TwoWay}" />
                                             <dx:DXBorder.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectYesBioCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ViewFarmProfileViewModel}}, Path=SelectYesBioCommand}" CommandParameter="{Binding .}" />
                                             </dx:DXBorder.GestureRecognizers>
                                         </dx:DXBorder>
 
@@ -503,7 +504,7 @@
                                                 Text="No"
                                                 TextColor="{Binding NoRadioTxt, Mode=TwoWay}" />
                                             <dx:DXBorder.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectNoBioCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ViewFarmProfileViewModel}}, Path=SelectNoBioCommand}" CommandParameter="{Binding .}" />
                                             </dx:DXBorder.GestureRecognizers>
                                         </dx:DXBorder>
 

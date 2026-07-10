@@ -17,22 +17,22 @@ namespace BeeKeeperRegister.Models.UI
 
         public Color YesRadioBg =>
             SelectedBioSecurity == true
-                ? Color.FromArgb("#2E7D32")
+                ? (Color)Application.Current!.Resources["Success"]
                 : Colors.Transparent;
 
         public Color NoRadioBg =>
             SelectedBioSecurity == false
-                ? Color.FromArgb("#C62828")
+                ? (Color)Application.Current!.Resources["Warning"]
                 : Colors.Transparent;
 
         public Color YesRadioTxt =>
             SelectedBioSecurity == true
-                ? Color.FromArgb("#FFFFFA")
-                : Color.FromArgb("#2E7D32");
+                ? (Color)Application.Current!.Resources["Surface"]
+                : (Color)Application.Current!.Resources["Success"];
 
         public Color NoRadioTxt =>
             SelectedBioSecurity == false
-                ? Color.FromArgb("#FFFFFA")
-                : Color.FromArgb("#C62828");
+                ? (Color)Application.Current!.Resources["Surface"]
+                : (Color)Application.Current!.Resources["Warning"];
     }
 }

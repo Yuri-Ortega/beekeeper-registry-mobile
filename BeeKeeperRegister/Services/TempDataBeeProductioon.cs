@@ -34,7 +34,7 @@ namespace BeeKeeperRegister.Services
             _counter = 1;
         }
 
-        public TempDataBeeProductioonModel GetByID(int id)
+        public TempDataBeeProductioonModel? GetByID(int id)
         {
             return TempData
                 .Where(x => x.Id == id)

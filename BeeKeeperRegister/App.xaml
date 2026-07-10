@@ -10,7 +10,6 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <handler:ZeroToHeightConverter x:Key="ZeroToHeightConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

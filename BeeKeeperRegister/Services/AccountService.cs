@@ -1,6 +1,7 @@
 ﻿using BeeKeeperRegister.Components.Classes;
 using BeeKeeperRegister.Handler;
-using BeeKeeperRegister.Models;
+using BeeKeeperRegister.Models.Request;
+using BeeKeeperRegister.Models.Response;
 using BeeKeeperRegister.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Devices.Sensors;
@@ -22,7 +23,6 @@ namespace BeeKeeperRegister.Services
     public class AccountService : IAccountService
     {
 
-
         private readonly HttpClient _httpClient;
         private readonly ILogger<AccountService> _logger;
 
@@ -36,7 +36,6 @@ namespace BeeKeeperRegister.Services
 
 
         public async Task<(bool IsSuccess, string Message)> UploadValidIdAndSignatureAsync(
-            //FileResult? profilePicture,
             FileResult? validId = null,
             FileResult? signature = null)
         {
@@ -65,17 +64,6 @@ namespace BeeKeeperRegister.Services
                 streamContent.Headers.ContentType = new MediaTypeHeaderValue(signature.ContentType);
                 content.Add(streamContent, "Signature", signature.FileName);
             }
-
-            //if (profilePicture is not null)
-            //{
-            //    var stream = await profilePicture.OpenReadAsync();
-            //    if (stream.Length > maxFileSize)
-            //        return (false, "Profile picture exceeds 5MB limit.");
-
-            //    var streamContent = new StreamContent(stream);
-            //    streamContent.Headers.ContentType = new MediaTypeHeaderValue(profilePicture.ContentType);
-            //    content.Add(streamContent, "ProfilePicture", profilePicture.FileName);
-            //}
 
             try
             {
@@ -152,20 +140,17 @@ namespace BeeKeeperRegister.Services
         }
 
 
-        public async Task<ApplicationUserResponse?> GetUserProfileAsync()
+        public async Task<ApplicationUserResponseModel?> GetUserProfileAsync()
         {
             try
             {
                 var response = await _httpClient.GetAsync($"{BaseUrl}");
 
                 if (!response.IsSuccessStatusCode)
-                {
-                    //_popupService.ShowServerErrorDialog("Server is temporarily unavailable.");
                     return null;
-                }
 
                 return await response.Content
-                    .ReadFromJsonAsync<ApplicationUserResponse>();
+                    .ReadFromJsonAsync<ApplicationUserResponseModel>();
             }
             catch (Exception ex)
             {
@@ -195,7 +180,7 @@ namespace BeeKeeperRegister.Services
         }
 
 
-        public async Task<bool?> RegisterUserAsync(RegisterUserModel model)
+        public async Task<bool?> RegisterUserAsync(RegisterUserRequestModel model)
         {
             try {
 
