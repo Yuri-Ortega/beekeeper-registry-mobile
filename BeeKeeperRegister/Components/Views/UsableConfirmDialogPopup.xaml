@@ -14,10 +14,7 @@
     ScrimColor="#80000000">
 
     <dx:DXPopup.Content>
-        <StackLayout
-            Padding="20,40"
-            HeightRequest="230"
-            WidthRequest="350">
+        <StackLayout Padding="25">
 
             <Label
                 Margin="20,0"
@@ -34,20 +31,23 @@
                 Text="{Binding DialogMessage}" />
             <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
                 <dx:DXButton
+                    Padding="30,5"
                     BackgroundColor="{StaticResource Surface}"
                     BorderColor="{StaticResource ActionOutline}"
                     BorderThickness="2"
                     Command="{Binding LeftBTNCommand}"
                     Content="{Binding LeftBTNContent, Mode=TwoWay}"
-                    TextColor="{StaticResource ActionOutline}"
-                    WidthRequest="120" />
+                    FontSize="13"
+                    TextColor="{StaticResource ActionOutline}" />
                 <dx:DXButton
+                    Padding="30,5"
                     BackgroundColor="{StaticResource Warning}"
+                    BorderColor="{StaticResource Warning}"
                     BorderThickness="2"
                     Command="{Binding RightBTNCommand}"
                     Content="{Binding RightBTNContent, Mode=TwoWay}"
-                    TextColor="{StaticResource Surface}"
-                    WidthRequest="120" />
+                    FontSize="13"
+                    TextColor="{StaticResource Surface}" />
             </HorizontalStackLayout>
         </StackLayout>
     </dx:DXPopup.Content>

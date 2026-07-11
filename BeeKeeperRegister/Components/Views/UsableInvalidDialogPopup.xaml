@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dx="http://schemas.devexpress.com/maui"
+    Margin="50,0"
     HorizontalAlignment="Center"
     VerticalAlignment="Center"
     AllowAnimation="True"
@@ -14,10 +15,7 @@
     ScrimColor="#80000000">
 
     <dx:DXPopup.Content>
-        <StackLayout
-            Padding="25"
-            HeightRequest="230"
-            WidthRequest="250">
+        <StackLayout Padding="25">
 
             <dx:DXBorder
                 Padding="0"
@@ -45,6 +43,7 @@
                 TextColor="{StaticResource Label}" />
 
             <Label
+                FontAutoScalingEnabled="True"
                 FontSize="16"
                 HorizontalTextAlignment="Center"
                 Text="{Binding DialogMessage}" />

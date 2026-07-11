@@ -513,7 +513,7 @@
                                     </DataTemplate>
                                 </dx:DXCollectionView.ItemTemplate>
 
-                                <dx:DXCollectionView.Footer>
+                                <dx:DXCollectionView.Footer IsVisible="{Binding TrainingListHasData}">
                                     <BoxView HeightRequest="90" Color="Transparent" />
                                 </dx:DXCollectionView.Footer>
 
@@ -680,7 +680,7 @@
 
                                                     <Grid
                                                         Margin="0,2,0,0"
-                                                        ColumnDefinitions="*, *,*,*"
+                                                        ColumnDefinitions="*, *"
                                                         ColumnSpacing="10">
 
                                                         <dx:DXBorder
@@ -720,9 +720,14 @@
                                                                 </Label.FormattedText>
                                                             </Label>
                                                         </dx:DXBorder>
+                                                    </Grid>
+                                                    <Grid
+                                                        Margin="0,2,0,0"
+                                                        ColumnDefinitions="*, *"
+                                                        ColumnSpacing="10">
 
                                                         <dx:DXBorder
-                                                            Grid.Column="2"
+                                                            Grid.Column="0"
                                                             Padding="10,5"
                                                             BackgroundColor="{StaticResource BackgroundColor}"
                                                             BorderThickness="0"
@@ -741,7 +746,7 @@
                                                         </dx:DXBorder>
 
                                                         <dx:DXBorder
-                                                            Grid.Column="3"
+                                                            Grid.Column="1"
                                                             Padding="10,5"
                                                             BackgroundColor="{StaticResource BackgroundColor}"
                                                             BorderThickness="0"
@@ -759,7 +764,6 @@
                                                             </Label>
                                                         </dx:DXBorder>
 
-
                                                     </Grid>
                                                 </VerticalStackLayout>
                                             </VerticalStackLayout>
@@ -767,8 +771,8 @@
                                     </DataTemplate>
                                 </dx:DXCollectionView.ItemTemplate>
 
-                                <dx:DXCollectionView.Footer>
-                                    <BoxView HeightRequest="20" Color="Transparent" />
+                                <dx:DXCollectionView.Footer IsVisible="{Binding FarmListHasData}">
+                                    <BoxView HeightRequest="70" Color="Transparent" />
                                 </dx:DXCollectionView.Footer>
 
                             </dx:DXCollectionView>

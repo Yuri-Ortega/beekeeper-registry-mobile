@@ -328,7 +328,9 @@ namespace BeeKeeperRegister.ViewModels
                 ForagesChartData.Clear();
                 var foragesGroups = forages
                     .Where(u => !string.IsNullOrEmpty(u?.ForagesDescription))
-                    .GroupBy(u => FilterHandler.RemoveSpacingBeeSummary(u!.ForagesDescription!));
+                    .GroupBy(u => FilterHandler.RemoveSpacingBeeSummary(u!.ForagesDescription!))
+                    .OrderByDescending(g => g.Count())
+                    .ThenBy(g => g.Key);
 
                 if (foragesGroups.Any())
                     HasNoForagesChartData = false;

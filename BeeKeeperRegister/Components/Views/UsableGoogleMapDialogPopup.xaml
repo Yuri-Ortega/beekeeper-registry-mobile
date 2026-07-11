@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dx="http://schemas.devexpress.com/maui"
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    Margin="15"
     HorizontalAlignment="Center"
     VerticalAlignment="Center"
     AllowAnimation="True"
@@ -14,7 +15,7 @@
     ScrimColor="#80000000">
 
     <dx:DXPopup.Content>
-        <Grid Padding="40" RowDefinitions="Auto, *, Auto">
+        <Grid Padding="20" RowDefinitions="Auto, *, Auto">
 
             <!--  🔷 HEADER  -->
             <Label
