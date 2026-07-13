@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BeeKeeperRegister.Views.LoadingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxc="http://schemas.devexpress.com/maui"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:BeeKeeperRegister.ViewModels;assembly=BeeKeeperRegister"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Shell.NavBarIsVisible="False">
+    <Grid>
+        <!--  Centered Content  -->
+        <VerticalStackLayout
+            HorizontalOptions="Center"
+            Spacing="32"
+            VerticalOptions="Center">
+
+            <!--  App Logo  -->
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="140"
+                HorizontalOptions="Center"
+                Source="logo.png"
+                WidthRequest="140" />
+
+            <Label
+                FontSize="14"
+                HorizontalOptions="Center"
+                Text="Bureau of Animal Industry"
+                TextColor="{StaticResource TextPrimary}" />
+
+            <!--  Loading Indicator  -->
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="12">
+                <ActivityIndicator
+                    HeightRequest="36"
+                    HorizontalOptions="Center"
+                    IsRunning="True"
+                    WidthRequest="36"
+                    Color="{StaticResource BrandLight}" />
+                <Label
+                    FontSize="13"
+                    HorizontalOptions="Center"
+                    Text="Loading..."
+                    TextColor="{StaticResource Label}" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

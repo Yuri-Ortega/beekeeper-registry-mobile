@@ -32,11 +32,13 @@
                         HorizontalOptions="Center"
                         Spacing="12">
 
-                        <Border
+                        <dx:DXBorder
                             x:Name="step1"
+                            Padding="0"
                             BackgroundColor="#698E49"
+                            BorderColor="Transparent"
+                            CornerRadius="25"
                             HeightRequest="30"
-                            StrokeShape="15"
                             WidthRequest="30">
                             <Label
                                 x:Name="step1Txt"
@@ -44,7 +46,7 @@
                                 Text="1"
                                 TextColor="#E0E0E0"
                                 VerticalOptions="Center" />
-                        </Border>
+                        </dx:DXBorder>
 
                         <BoxView
                             x:Name="line1"
@@ -52,18 +54,20 @@
                             HeightRequest="2"
                             WidthRequest="40" />
 
-                        <Border
+                        <dx:DXBorder
                             x:Name="step2"
+                            Padding="0"
                             BackgroundColor="#979797"
+                            BorderColor="Transparent"
+                            CornerRadius="25"
                             HeightRequest="30"
-                            StrokeShape="15"
                             WidthRequest="30">
                             <Label
                                 x:Name="step2Txt"
                                 HorizontalOptions="Center"
                                 Text="2"
                                 VerticalOptions="Center" />
-                        </Border>
+                        </dx:DXBorder>
 
                         <BoxView
                             x:Name="line2"
@@ -71,18 +75,20 @@
                             HeightRequest="2"
                             WidthRequest="40" />
 
-                        <Border
+                        <dx:DXBorder
                             x:Name="step3"
+                            Padding="0"
                             BackgroundColor="#979797"
+                            BorderColor="Transparent"
+                            CornerRadius="25"
                             HeightRequest="30"
-                            StrokeShape="15"
                             WidthRequest="30">
                             <Label
                                 x:Name="step3Txt"
                                 HorizontalOptions="Center"
                                 Text="3"
                                 VerticalOptions="Center" />
-                        </Border>
+                        </dx:DXBorder>
 
                         <BoxView
                             x:Name="line3"
@@ -90,18 +96,20 @@
                             HeightRequest="2"
                             WidthRequest="40" />
 
-                        <Border
+                        <dx:DXBorder
                             x:Name="step4"
+                            Padding="0"
                             BackgroundColor="#979797"
+                            BorderColor="Transparent"
+                            CornerRadius="25"
                             HeightRequest="30"
-                            StrokeShape="15"
                             WidthRequest="30">
                             <Label
                                 x:Name="step4Txt"
                                 HorizontalOptions="Center"
                                 Text="4"
                                 VerticalOptions="Center" />
-                        </Border>
+                        </dx:DXBorder>
 
                     </HorizontalStackLayout>
 

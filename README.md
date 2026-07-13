@@ -6,6 +6,12 @@ A cross-platform mobile application built with **.NET MAUI**, developed during m
 
 ---
 
+## 🚀 Demo
+
+- **Demo video:** [Watch on Google Drive](https://drive.google.com/file/d/1odiv4RO78If8alSGYCiQ06YP-ADOOhcQ/view?usp=sharing)
+
+---
+
 ## 📸 Screenshots
 
 ### Authentication & Onboarding
@@ -30,7 +36,7 @@ The home dashboard aggregates farm and colony data into at-a-glance stats (total
 |---|---|---|---|
 | ![Farm Profile](Screenshots/09-farm-profile-view.jpg) | ![Bee Species](Screenshots/10-bee-species.jpg) | ![Bee Production](Screenshots/11-bee-production.jpg) | ![Biosecurity](Screenshots/12-biosecurity-measures.jpg) |
 
-Each registered farm holds detailed records of species kept, production output (honey, beeswax, bee pollen, royal jelly), and a biosecurity compliance checklist — fields requested by BAI to support disease surveillance and production reporting at the agency level.
+Each registered farm holds detailed records of species kept, production output (honey, beeswax, bee pollen, royal jelly), and a biosecurity compliance checklist — fields requested by BAI to support disease surveillance and production reporting at the agency level. The **My Farms** card also surfaces a running **Bee Production count** alongside species and colony totals, giving beekeepers an at-a-glance summary without opening each farm profile.
 
 ---
 
@@ -47,8 +53,13 @@ Each registered farm holds detailed records of species kept, production output (
 - ASP.NET Core Web API
 - Entity Framework Core
 - ASP.NET Core Identity
-- JWT Authentication with refresh tokens (auto-refresh on 401, thread-safe via `SemaphoreSlim`)
-- Microsoft SQL Server
+- JWT Authentication with refresh tokens (auto-refresh on 401, thread-safe via `SemaphoreSlim` to prevent race conditions on concurrent refresh calls)
+- API Versioning
+- PostgreSQL (hosted on **Neon**, serverless) — migrated from Microsoft SQL Server
+
+**Hosting / Deployment**
+- **Render** — Web Service (Docker-based deployment) hosting the live API
+- **Neon** — serverless PostgreSQL, free tier
 
 **Architecture**
 - Simplified clean architecture on the backend: `Database → Repository → Service → Controller`
@@ -64,6 +75,7 @@ Each registered farm holds detailed records of species kept, production output (
 - **Production Records** — track honey, beeswax, bee pollen, and royal jelly output per farm, in kg/year
 - **Biosecurity Compliance Checklist** — Yes/No questionnaire covering hive siting, disease-free colony introduction, equipment sanitation, and record-keeping practices
 - **Training Records** — view and manage beekeeping trainings attended, with duration and year
+- **Profile** — view logged-in beekeeper's account details
 - **Authentication** — secure login/registration backed by JWT with refresh token support
 
 ---
@@ -73,9 +85,10 @@ Each registered farm holds detailed records of species kept, production output (
 This app communicates with a private ASP.NET Core Web API. The API repository is not public because the system was developed exclusively for a Philippine government agency (BAI). The backend handles:
 
 - JWT issuance & refresh token rotation
-- CRUD operations
+- API versioning
+- CRUD operations against a PostgreSQL (Neon) database
 
-Simplified Architecture, code structure, and implementation details (JWT flow, repository pattern, EF Core setup) can be walked through on request.
+Simplified architecture, code structure, and implementation details (JWT flow, repository pattern, EF Core setup, the SQL Server → PostgreSQL migration) can be walked through on request.
 
 ---
 

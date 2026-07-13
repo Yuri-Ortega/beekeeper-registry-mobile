@@ -2,11 +2,10 @@ using BeeKeeperRegister.ViewModels;
 
 namespace BeeKeeperRegister.Views;
 
-public partial class MainPage : ContentPage
+public partial class LoadingPage : ContentPage
 {
-	public MainPage(MainViewModel vm)
+	public LoadingPage()
 	{
 		InitializeComponent();
-		BindingContext = vm;
     }
 }

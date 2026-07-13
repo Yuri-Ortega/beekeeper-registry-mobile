@@ -86,8 +86,7 @@ namespace BeeKeeperRegister
             builder.Services.AddTransient<IBeeFarmProfileAttachmentService, BeeFarmProfileAttachmentService>();
 
             // Pages and ViewModels — Transient
-            builder.Services.AddTransient<MainPage>();
-            builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddTransient<LoadingPage>();
 
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<LoginViewModel>();

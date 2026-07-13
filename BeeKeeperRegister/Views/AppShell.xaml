@@ -12,10 +12,10 @@
         <dx:SystemBarBehavior AndroidNavigationBarBackground="#FFFDF8" StatusBarForeground="Light" />
     </Shell.Behaviors>
 
-    <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
-    <ShellContent ContentTemplate="{DataTemplate views:MainPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:LoadingPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" Route="LoginPage" />
     <ShellContent ContentTemplate="{DataTemplate views:RegisterUserPage}" />
-    <ShellContent ContentTemplate="{DataTemplate views:DashboardUserPage}" />
+    <ShellContent ContentTemplate="{DataTemplate views:DashboardUserPage}" Route="DashboardPage" />
     <ShellContent ContentTemplate="{DataTemplate views:AddFarmProfilePage}" />
     <ShellContent ContentTemplate="{DataTemplate views:UpdateFarmProfilePage}" />
     <ShellContent ContentTemplate="{DataTemplate views:SettingsPage}" />

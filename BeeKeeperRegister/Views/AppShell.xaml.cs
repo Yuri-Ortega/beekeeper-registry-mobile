@@ -1,4 +1,6 @@
 
+using System.Diagnostics;
+
 namespace BeeKeeperRegister.Views
 {
     public partial class AppShell : Shell
@@ -6,8 +8,8 @@ namespace BeeKeeperRegister.Views
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(LoadingPage), typeof(LoadingPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
-            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(RegisterUserPage), typeof(RegisterUserPage));
             Routing.RegisterRoute(nameof(DashboardUserPage), typeof(DashboardUserPage));
             Routing.RegisterRoute(nameof(AddFarmProfilePage), typeof(AddFarmProfilePage));
@@ -27,21 +29,34 @@ namespace BeeKeeperRegister.Views
             Routing.RegisterRoute(nameof(UpdateBeeProductioonPage), typeof(UpdateBeeProductioonPage));
 
             Routing.RegisterRoute(nameof(ViewFarmProfilePage), typeof(ViewFarmProfilePage));
+
+            Loaded += OnShellLoaded;
         }
 
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
+        private async void OnShellLoaded(object? sender, EventArgs e) { await CheckAuthenticationAsync(); }
 
-            //SecureStorage.RemoveAll();
-            var token = await SecureStorage.GetAsync("access_token");
-            var refreshToken = await SecureStorage.GetAsync("refresh_token");
-            if (string.IsNullOrEmpty(token) && string.IsNullOrEmpty(refreshToken))
-                await Shell.Current.GoToAsync(nameof(LoginPage));
-            else
+        private async Task CheckAuthenticationAsync()
+        {
+            try
             {
-                await Shell.Current.GoToAsync(nameof(DashboardUserPage));
+                //SecureStorage.RemoveAll();
+                var token = await SecureStorage.GetAsync("access_token");
+                var isAuthenticated = !string.IsNullOrEmpty(token);
+
+                if (isAuthenticated)
+                {
+                    await GoToAsync("//DashboardPage");
+                }
+                else
+                {
+                    await GoToAsync("//LoginPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Auth check error: {ex.Message}");
+                await GoToAsync("//LoginPage");
             }
         }
     }
