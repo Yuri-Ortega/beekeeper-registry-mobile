@@ -8,7 +8,7 @@ A cross-platform mobile application built with **.NET MAUI**, developed during m
 
 ## 🚀 Demo
 
-- **Demo video:** [Watch on Google Drive](https://drive.google.com/file/d/1odiv4RO78If8alSGYCiQ06YP-ADOOhcQ/view?usp=sharing)
+- **Demo video:** [Watch on Google Drive](https://drive.google.com/file/d/1Gt-VBtNavo9VssmIR-k3i1wCMjcej-Rq/view?usp=sharing)
 
 ---
 
